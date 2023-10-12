@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "aAtmospheric"; /* Nama yang akan kamu gunakan untuk merujuk ke font ini */
+    src: url("../../public/font/aAtmospheric.ttf") format("woff2"); /* Ganti dengan path yang sesuai ke file font yang kamu unduh */
+    /* Jika kamu memiliki format lain (misalnya, woff atau ttf), tambahkan juga format lainnya */
+}
+
+@layer utilities {
+    .space-700 {
+        --tw-gradient-stops: rgba(5, 18, 33, 1), rgba(10, 39, 70, 1);
+        background-image: var(--tw-gradient);
+    }
+
+    .space-900 {
+        --tw-gradient-stops: rgba(0, 0, 0, 1), rgba(5, 18, 33, 1);
+        background-image: var(--tw-gradient);
+    }
+}
+.hamburger-active > span:nth-child(1) {
+    @apply rotate-[40deg];
+}
+
+.landing::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    background-image: url(../../public/img/starr.png);
+    background-size: cover;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.hamburger-active > span:nth-child(2) {
+    @apply scale-0;
+}
+
+.hamburger-active > span:nth-child(3) {
+    @apply -rotate-[40deg];
+}
+.logo,
+h1 {
+    font-family: "aAtmospheric";
+}
