@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('kode_anggota');
             $table->string('nama', 255);
             $table->enum('jenis_kelamin', ['pria', 'wanita']);
+            $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('telpon');
+            $table->text('alamat');
             $table->string('foto', 255);
             $table->timestamps();
         });
