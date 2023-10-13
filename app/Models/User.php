@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Enums\LevelStatusUser;
+use App\Enums\StatusUser;
 
 class User extends Authenticatable
 {
@@ -44,6 +45,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'level' => LevelStatusUser::class
+        'level' => StatusUser::class
     ];
 }

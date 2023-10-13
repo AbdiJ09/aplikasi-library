@@ -24,7 +24,6 @@
                                 class="fa-solid me-2  fa-layer-group"></i>Peminjaman</a></li>
                     <li><a href="" class="font-medium text-gray-700"><i
                                 class="fa-solid me-2  fa-repeat"></i>Pengembalian</a></li>
-
                 </ul>
                 <hr class="my-3 border-gray-300">
                 <button class="btn btn-primary w-full" data-modal-target="authentication-modal"
