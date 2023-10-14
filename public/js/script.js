@@ -1,12 +1,12 @@
-const hamburgerButton = document.querySelector("#hamburger-button");
-const hamburgerMenu = document.querySelector("#hamburger-menu");
-
-hamburgerButton.addEventListener("click", function () {
-    hamburgerButton.classList.toggle("hamburger-active");
-
-    if (hamburgerMenu.classList.contains("scale-0")) {
-        hamburgerMenu.classList.replace("scale-0", "scale-1");
+const menu = document.querySelector("#menu");
+const sidebar = document.querySelector(".sidebar");
+const linkMenu = document.querySelector(".link-menu");
+menu.addEventListener("click", function () {
+    if (sidebar.classList.contains("w-[500px]")) {
+        sidebar.classList.replace("w-[500px]", "w-[150px]");
+        linkMenu.classList.add("hidden");
     } else {
-        hamburgerMenu.classList.replace("scale-1", "scale-0");
+        sidebar.classList.replace("w-[150px]", "w-[500px]");
+        linkMenu.classList.remove("hidden");
     }
 });
