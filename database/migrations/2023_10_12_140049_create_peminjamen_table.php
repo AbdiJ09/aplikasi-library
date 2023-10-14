@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('tanggal_pinjam');
             $table->integer('lama_pinjam');
             $table->text('keterangan');
-            $table->enum('status', ['dipinjam', 'dikembalikan']);
+            $table->enum('status', ['dipinjam', 'dikembalikan'])->default('dipinjam');
             $table->unsignedBigInteger('anggota_id');
             $table->foreign('anggota_id')->references('id')->on('anggotas')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');

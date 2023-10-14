@@ -2,10 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Kategory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Buku extends Model
 {
     use HasFactory;
+
+    protected $table = 'bukus';
+
+    protected $guarded = [];
+
+    public function kategory()
+    {
+        $this->belongsTo(Kategory::class);
+    }
 }
