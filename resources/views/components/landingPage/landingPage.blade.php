@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('content')
+@section('landingPage')
     <div class="w-full invert-0 landing bg-cover bg-bottom flex flex-col justify-center  items-center h-screen overflow-hidden"
         style="background-image: url('../img/bgg.png')">
         <header class="absolute top-0 left-0 w-full px-8 md:px-48 py-6">
@@ -52,5 +52,4 @@
         </section>
 
     </div>
-    <x-modal-login />
 @endsection

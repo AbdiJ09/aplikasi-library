@@ -7,7 +7,14 @@ export default {
         "./node_modules/flowbite/**/*.js",
     ],
     theme: {
-        extend: {},
+        extend: {
+            animation: {
+                "spin-slow": "spin 4s linear infinite",
+            },
+            fontFamily: {
+                Inter: "Inter, sans-serif",
+            },
+        },
     },
     plugins: [require("flowbite/plugin"), require("daisyui")],
     daisyui: {

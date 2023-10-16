@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\StatusUser;
-use App\Models\Users;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,26 +10,23 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $level = $request->input('level');
 
         $credentials = $request->validate([
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ]);
         if (Auth::attempt($credentials)) {
-
-            if(Auth::user()->level == StatusUser::Admin)
-            {
-                $request->session()->regenerate();
-
-                dd("berhasil login sebgai admin", $level);
-            } else {
-                dd('kotil', $level);
-            }
+            $request->session()->regenerate();
+            return redirect()->intended('/home')->with('success', 'Login Berhasil sebagai ' . Auth::user()->level);
         }
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/home')->with('success', 'Logout Berhasil');
     }
 }

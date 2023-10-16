@@ -1,5 +1,6 @@
   <div
-      class="flex px-5 md:justify-center py-5 mt-[5rem] bg-purple-900 md:bg-purple-900  md:px-20 md:items-center shadow-xl w-full md:w-full rounded-xl items-start transition-all ">
+      class="flex px-5 md:justify-center py-5 mt-[5rem] bg-purple-900   md:px-20 md:items-center shadow-xl w-full md:w-full rounded-xl items-start transition-all ">
+
       <div class="flex flex-col">
 
           <h1 class="text-white font-bold text-2xl md:text-5xl tracking-wide leading-7">Selamat datang
