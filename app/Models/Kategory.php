@@ -16,6 +16,6 @@ class Kategory extends Model
 
     public function buku()
     {
-        $this->hasMany(Buku::class);
+        return  $this->hasMany(Buku::class);
     }
 }

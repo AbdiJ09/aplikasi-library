@@ -16,6 +16,6 @@ class Buku extends Model
 
     public function kategory()
     {
-        $this->belongsTo(Kategory::class);
+        return $this->belongsTo(Kategory::class);
     }
 }

@@ -1,12 +1,21 @@
-   <header class="fixed bottom-0 left-0 w-full bg-gray-300 py-1 rounded-lg md:hidden">
+   <header class="fixed bottom-0 left-0 w-full z-50 bg-gray-300 py-1 rounded-lg md:hidden">
        <div class="flex justify-center items-center">
            <ul class="flex space-x-14 items-center">
-               <li><a href=""><i class="fa-solid fa-house text-xl" style="color: #000"></i></a></li>
-               <li><a href=""><i class="fa-solid fa-magnifying-glass text-xl" style="color:#000"></i></a></li>
+               <li><a href="{{ route('home') }}"><i class="fa-solid fa-house text-xl" style="color: #000"></i></a></li>
+               <li>
+                   <button type="button"
+                       class="relative inline-flex items-center px-2 py-1 text-sm font-medium text-center text-white">
+                       <i class="fa-solid fa-bell text-xl" style="color:#000"></i>
+
+                       <div
+                           class="absolute inline-flex items-center justify-center w-6 only:h-6 text-xs font-bold text-white bg-red-500 rounded-full -top-2 -right-2 dark:border-gray-900">
+                           8+</div>
+                   </button>
+               </li>
                <li><a href=""><i class="fa-solid fa-bookmark text-xl" style="color:#000"></i></a></li>
                <li>
                    @if (Auth::check())
-                       <div class="dropdown dropdown-end">
+                       <div class="dropdown dropdown-top">
                            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
 
                                <div

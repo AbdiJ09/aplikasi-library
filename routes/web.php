@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\DashboardAnggotaController;
+use App\Http\Controllers\DashboardBukuController;
+use App\Http\Controllers\DashboardController;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +23,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('components.landingPage.landingPage');
 });
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
-Route::get('/buku', [BukuController::class, 'index'])->name('buku');
-Route::post('/auth/login', [AuthController::class, 'login']);
-Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/profil', function () {
+    return view('profil');
+})->name('profil');
+
+Route::controller(BukuController::class)->group(function () {
+    Route::get('/home', 'index')->name('home');
+    Route::get('/buku', 'AllBuku')->name('buku');
+    Route::get('/book/{slug}', 'detailBuku')->name('detail-buku');
+    Route::get('/search', 'search')->name('search');
+});
+
+Route::controller(AuthController::class)->group(function () {
+    Route::post('/auth/login', 'login');
+    Route::post('/auth/logout', 'logout')->name('logout');
+});
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::resource('/dashboard/anggota', DashboardAnggotaController::class);
+Route::resource('/dashboard/buku', DashboardBukuController::class);
+Route::get('anggota-export', [AnggotaController::class, 'export']);
+Route::get('buku-export', [BukuController::class, 'export']);

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+html {
+    scroll-behavior: smooth;
+}
+
 @font-face {
     font-family: "aAtmospheric"; /* Nama yang akan kamu gunakan untuk merujuk ke font ini */
     src: url("../../public/font/aAtmospheric.ttf") format("woff2"); /* Ganti dengan path yang sesuai ke file font yang kamu unduh */
@@ -24,6 +29,12 @@ body {
 .hamburger-active > span:nth-child(1) {
     @apply rotate-[40deg];
 }
+.hamburger-active > span:nth-child(2) {
+    @apply scale-0;
+}
+.hamburger-active > span:nth-child(3) {
+    @apply -rotate-[40deg];
+}
 
 .landing::before {
     content: "";
@@ -36,14 +47,7 @@ body {
     background-image: url(../../public/img/starr.png);
     background-size: cover;
 }
-.container {
-    display: flex;
-}
 
-.content {
-    flex: 1; /* Konten mengisi sisa ruang yang tersedia */
-    /* Gaya lainnya untuk konten */
-}
 .nav-hover {
     @apply text-[11px] md:text-sm  text-white font-medium after:content-[''] after:bg-white after:w-0 after:h-1 after:absolute relative after:left-0 after:-bottom-1 hover:after:w-full after:rounded-md after:transition-all;
 }
@@ -57,14 +61,33 @@ body {
     }
 }
 
-.hamburger-active > span:nth-child(2) {
-    @apply scale-0;
-}
-
-.hamburger-active > span:nth-child(3) {
-    @apply -rotate-[40deg];
-}
 .logo,
 h1.library {
     font-family: "aAtmospheric";
+}
+.emoji-404 {
+    position: relative;
+    animation: mymove 2.5s infinite;
+}
+
+@keyframes mymove {
+    33% {
+        top: 0px;
+    }
+    66% {
+        top: 20px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+.description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Atur jumlah baris maksimum */
+    -webkit-box-orient: vertical;
+}
+.description.expanded {
+    -webkit-line-clamp: inherit; /* Atur jumlah baris maksimum */
 }

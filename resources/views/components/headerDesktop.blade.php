@@ -1,7 +1,7 @@
-<header class="bg-black  w-full fixed top-0 left-0 z-50">
+<header class="bg-black   w-full fixed top-0 left-0 z-50">
 
-    <div class="flex justify-between py-2 px-2  items-center md:px-20 md:py-4">
-        <div class="flex space-x-7">
+    <div class="flex md:justify-between justify-center py-2 px-5 space-x-3  items-center md:px-20 md:py-4">
+        <div class="flex  md:space-x-7 ">
             <button type="button" id="menu"
                 class="hidden md:block items-center p-2 text-sm text-gray-500 rounded-lg  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <span class="sr-only">Open sidebar</span>
@@ -14,7 +14,7 @@
             </button>
             <a href="#"><img src="/img/logo/logo_tamsis.png" class="w-8" alt=""></a>
         </div>
-        <form class="hidden md:block">
+        <form class="md:block" method="get" action="/buku" id="form">
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div class="relative">
@@ -26,22 +26,17 @@
                     </svg>
                 </div>
                 <input type="search" id="default-search"
-                    class="block w-[40rem] p-2 pl-10 text-sm text-white border border-neutral-700 rounded-full bg-transparent focus:ring-purple-800 focus:border-purple-800 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-800 dark:focus:border-purple-800"
-                    placeholder="Search Mockups, Logos..." required>
+                    class="block w-full  md:w-[40rem] p-2 pl-10 text-sm text-white border border-neutral-700 rounded-full bg-transparent focus:ring-purple-800 focus:border-purple-800 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-800 dark:focus:border-purple-800"
+                    placeholder="Search Mockups, Logos..." name="search" value="{{ request('search') }}">
 
             </div>
         </form>
-        <div class="flex space-x-3 text-center items-center">
-            <ul class="flex space-x-2 md:space-x-6 md:hidden">
-                <li><a href="" class="nav-hover">Profil</a>
-                </li>
-                <li><a href="{{ route('buku') }}" class="nav-hover">Buku</a></li>
-                <li><a href="" class="nav-hover">Peminjaman</a></li>
-                <li><a href="" class="nav-hover">Pengembalian</a></li>
-            </ul>
+        <x-hamburgerMenu />
+        <div class="flex space-x-3 text-center items-center ">
+            <x-navbarMobile />
             <span class="hidden md:block"><i class="fa-regular fa-bookmark text-xl " style="color:#fff"></i></span>
             <button type="button"
-                class="relative inline-flex items-center px-2 py-1 text-sm font-medium text-center text-white">
+                class="relative hidden md:inline-flex items-center  px-2 py-1 text-sm font-medium text-center text-white">
                 <i class="fa-regular fa-bell md:text-xl" style="color:#fff"></i>
 
                 <div
@@ -49,7 +44,7 @@
                     8+</div>
             </button>
             @if (Auth::check())
-                <div class="dropdown dropdown-end">
+                <div class="dropdown dropdown-end hidden md:block">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
 
                         <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
@@ -70,6 +65,7 @@
                             </a>
                         </li>
                         <li><a>Settings</a></li>
+                        <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                         <li>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
@@ -84,8 +80,8 @@
                     onclick="my_modal_1.showModal()">Login
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d=" M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5
+                                21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                     </svg>
                 </button>
             @endif
@@ -94,3 +90,20 @@
         </div>
     </div>
 </header>
+<script type="module">
+    $("#hamburger").click(function() {
+        $("#hamburger").toggleClass("hamburger-active");
+        $("#nav").toggleClass("scale-0 scale-100");
+    });
+    $(document).ready(function() {
+        $("#form").submit(function(event) {
+            // Mendapatkan nilai dari input search
+            var searchValue = $("#default-search").val().trim();
+
+            // Mengecek apakah input kosong atau panjang stringnya kurang dari 3
+            if (searchValue === '' || searchValue.length < 3) {
+                event.preventDefault(); // Mencegah pengiriman formulir
+            }
+        });
+    });
+</script>

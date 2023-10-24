@@ -1,11 +1,9 @@
   <div
-      class="flex px-5 md:justify-center py-5 mt-[5rem] bg-purple-900   md:px-20 md:items-center shadow-xl w-full md:w-full rounded-xl items-start transition-all ">
+      class="flex px-5 md:justify-center py-5 mt-[5rem] bg-purple-900  md:px-20 md:items-center shadow-xl w-full md:w-full rounded-xl items-start transition-all ">
 
       <div class="flex flex-col">
-
-          <h1 class="text-white font-bold text-2xl md:text-5xl tracking-wide leading-7">Selamat datang
-              diperpustakan
-              sekolah
+          <h1 class="text-white font-bold text-xl md:text-5xl tracking-wide leading-7">Selamat datang
+              diperpustakan sekolah
           </h1>
           <p class="text-xs text-gray-300 flex-initial w-56 md:w-full md:text-xl md:py-5">Ayo kembangkan budaya
               literasi
@@ -25,6 +23,6 @@
 
 
       </div>
-      <img src="/img/Group 7.png" class="w-full md:w-[400px]" alt="">
+      <img src="/img/Group 7.png" class="w-full md:w-[400px] -ms-5" alt="">
 
   </div>
