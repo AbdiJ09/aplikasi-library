@@ -1,6 +1,13 @@
 import "./bootstrap";
 import "flowbite";
 import jQuery from "jquery";
+import Alpine from "alpinejs";
+import { doc } from "prettier";
+
+window.Alpine = Alpine;
+
+Alpine.start();
+
 window.$ = jQuery;
 $(document).ready(function () {
     $("#default-search").on("keyup", function () {
@@ -14,14 +21,13 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (data) {
-                var buku = data.buku;
-                var bukuContainer = $(".buku");
-                var notFound = $(".notFound");
+                let buku = data.buku;
+                let bukuContainer = $(".buku");
+                let notFound = $(".notFound");
                 notFound.empty();
-                // Hapus buku yang sebelumnya ditampilkan
                 bukuContainer.empty();
                 if (buku.length === 0) {
-                    var notFoundHtml = `
+                    let notFoundHtml = `
                         <div class="bg-transparent overflow-hidden h-auto flex flex-col items-center justify-center ">
                            <div class="mt-24 m-auto overflow-hidden">
          <svg class="emoji-404 w-2/4 mx-auto" enable-background="new 0 0 226 249.135" height="249.135" id="Layer_1"
@@ -63,7 +69,7 @@ $(document).ready(function () {
                 } else {
                     $.each(buku, function (index, item) {
                         // Buat tampilan buku sesuai kebutuhan
-                        var bukuHtml = `<div class="group  relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 rounded-lg lg:w-4/5">
+                        let bukuHtml = `<div class="group  relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 rounded-lg lg:w-4/5">
                                         <div class="h-auto w-full md:w-full">
                                             <img class="h-full w-full object-cover  transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125" src="storage/buku/${item.gambar}" alt="" />
                                         </div>
@@ -71,8 +77,8 @@ $(document).ready(function () {
                                                 class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-purple-950/80 group-hover:from-black/70 group-hover:via-black/60  group-hover:to-black/70">
                                             </div>
                                              <div
-                            class="absolute inset-0 flex translate-y-[63%] md:translate-y-[54%] flex-col items-center justify-center px-9 md:px-0 text-center transition-all duration-500 group-hover:translate-y-0">
-                            <h1 class="font-dmserif text-xl md:text-2xl font-bold text-white">${item.judul}</h1>
+                            class="absolute inset-0 flex translate-y-[63%] md:translate-y-[58%] flex-col items-center justify-center  md:px-0 text-center transition-all duration-500 group-hover:translate-y-0">
+                            <h1 class="font-dmserif text-sm md:text-xl font-bold text-white">${item.judul}</h1>
     
                             <div class="flex items-center mt-2">
                                 <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true"
@@ -94,30 +100,54 @@ $(document).ready(function () {
                             </a>
     
                         </div>
-                                    </div>`; // Tambahkan HTML buku di sini
+                                    </div>`;
                         bukuContainer.append(bukuHtml);
                     });
                 }
-                // Tambahkan buku baru sesuai hasil pencarian
             },
         });
     });
 });
+window.onscroll = function () {
+    const headerSticky = document.querySelector("#header-sticky");
+    const peminjaman = document.querySelector(".peminjaman");
+    const bgSticky = document.querySelector(".bg-sticky");
+    const textPeminjaman = document.querySelector(".p");
+    if (window.scrollY > 60) {
+        bgSticky.classList.add("bgg");
+        textPeminjaman.classList.add("opacity-0");
+    } else {
+        bgSticky.classList.remove("bgg");
+        textPeminjaman.classList.remove("opacity-0");
+    }
+    if (window.scrollY > 80) {
+        headerSticky.classList.add("nav-sticky");
+        peminjaman.classList.remove("opacity-0");
+    } else {
+        headerSticky.classList.remove("nav-sticky");
+        peminjaman.classList.add("opacity-0");
+    }
+};
 
 const menu = document.querySelector("#menu");
 const sidebar = document.querySelector(".sidebar");
 const linkMenu = document.querySelectorAll(".link-menu");
-
-// Cek apakah status sidebar sudah tersimpan di localStorage
+const conss = document.querySelectorAll(".conss");
 const sidebarWidth = localStorage.getItem("sidebarWidth");
-
-if (sidebarWidth) {
+const linkItem = localStorage.getItem("conss");
+if (sidebarWidth && linkItem) {
     if (window.innerWidth < 768) {
         localStorage.removeItem("sidebarWidth");
     } else {
         sidebar.classList.add(sidebarWidth);
+        conss.forEach((item) => {
+            item.classList.add(linkItem);
+        });
         if (sidebarWidth === "w-[100px]") {
             sidebar.classList.replace("w-[300px]", "w-[100px]");
+            conss.forEach((item) => {
+                item.classList.replace("w-44", "w-fit");
+            });
             linkMenu.forEach((item) => {
                 item.classList.add("hidden");
             });
@@ -132,17 +162,23 @@ menu.addEventListener("click", function () {
         sidebar.classList.toggle("hidden");
         if (sidebar.classList.contains("w-[300px]")) {
             sidebar.classList.replace("w-[300px]", "w-[100px]");
+            conss.forEach((item) => {
+                item.classList.replace("w-44", "w-fit");
+            });
             linkMenu.forEach((item) => {
                 item.classList.add("hidden");
             });
-            // Simpan status sidebar ke localStorage
+            localStorage.setItem("conss", "w-fit");
             localStorage.setItem("sidebarWidth", "w-[100px]");
         } else {
             sidebar.classList.replace("w-[100px]", "w-[300px]");
+            conss.forEach((item) => {
+                item.classList.replace("w-fit", "w-44");
+            });
             linkMenu.forEach((item) => {
                 item.classList.remove("hidden");
             });
-            // Simpan status sidebar ke localStorage
+            localStorage.setItem("conss", "w-44");
             localStorage.setItem("sidebarWidth", "w-[300px]");
         }
     }

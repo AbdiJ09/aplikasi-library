@@ -2,18 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use App\Models\Peminjaman;
+use App\Models\PeminjamanDetail;
 use Illuminate\Http\Request;
+use PDO;
+use Spatie\FlareClient\View;
 
 class PeminjamanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $peminjaman = Peminjaman::latest()->filter(['search' => $request->input('search'), 'anggota' => $request->input('anggota')])->get();
+        if ($request->ajax()) {
+            return response()->json(['peminjaman' => $peminjaman]);
+        }
+
+        return view('peminjaman', ['peminjaman' => $peminjaman]);
     }
+
 
     /**
      * Show the form for creating a new resource.

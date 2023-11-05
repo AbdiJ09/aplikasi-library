@@ -3,12 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\StatusUser;
+use App\Models\Pengembalian;
+use App\Enums\LevelStatusUser;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use App\Enums\LevelStatusUser;
-use App\Enums\StatusUser;
 
 class User extends Authenticatable
 {
@@ -46,4 +47,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function Pengembalian()
+    {
+        return $this->hasMany(Pengembalian::class);
+    }
+    public function Peminjaman()
+    {
+        return $this->hasMany(Peminjaman::class);
+    }
 }

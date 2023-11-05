@@ -6,6 +6,7 @@ use App\Models\Buku;
 use App\Models\Kategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardBukuController extends Controller
 {
@@ -14,7 +15,7 @@ class DashboardBukuController extends Controller
      */
     public function index()
     {
-        $books = Buku::all();
+        $books = Buku::latest()->paginate(5);
         $jumlahStok = Buku::sum('jumlah_stok');
         $kategories = Kategory::all();
         return view('dashboard.buku.buku', compact('books', 'kategories', 'jumlahStok'));
@@ -32,6 +33,16 @@ class DashboardBukuController extends Controller
      */
     public function store(Request $request)
     {
+        $conss = $request->validate([
+            'kode_buku' => 'required|unique:bukus,kode_buku',
+            'judul' => 'required',
+            'pengarang' => 'required',
+            'penerbit' => 'required',
+            'tahun_terbit' => 'required',
+            'isbn' => 'required',
+            'jumlah_stok' => 'required',
+            'gambar' => 'required|file|mimes:jpeg,png,jpg|max:2048',
+        ]);
         if ($request->file('gambar')) {
             $extension = $request->file('gambar')->getClientOriginalExtension();
             $newName = $request->pengarang . '-' . now()->timestamp . '.' . $extension;
@@ -52,6 +63,9 @@ class DashboardBukuController extends Controller
             'slug' => $slug,
             'gambar' => $newName
         ]);
+        if (!$conss) {
+            return redirect('/dashboard/buku')->withErrors(['error' => 'Data Gagal Ditambahkan']);
+        }
         return redirect('/dashboard/buku')->with('success', 'Buku Berhasil Ditambahkan');
     }
 
@@ -76,7 +90,28 @@ class DashboardBukuController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $rules = [
+            'kode_buku' => 'required',
+            'judul' => 'required',
+            'pengarang' => 'required',
+            'penerbit' => 'required',
+            'tahun_terbit' => 'required',
+            'isbn' => 'required',
+            'jumlah_stok' => 'required',
+            'gambar' => 'file|mimes:jpeg,png,jpg|max:2048',
+        ];
+        $validate = $request->validate($rules);
+        if ($request->file('gambar')) {
+            if ($request->oldImage) {
+                Storage::delete('buku/' . $request->oldImage);
+            }
+            $extension = $request->file('gambar')->getClientOriginalExtension();
+            $newName = $request->judul . '-' . now()->timestamp . '.' . $extension;
+            $request->file('gambar')->storeAs('buku', $newName);
+            $validate['gambar'] = $newName;
+        }
+        Buku::where('id', $id)->update($validate);
+        return redirect()->back()->with('success', 'Anggota Berhasil Diubah');
     }
 
     /**
@@ -84,6 +119,7 @@ class DashboardBukuController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Buku::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Anggota Berhasil Dihapus');
     }
 }

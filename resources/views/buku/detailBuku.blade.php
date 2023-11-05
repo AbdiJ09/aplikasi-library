@@ -17,7 +17,7 @@
                     {{ $book->judul }}</h1>
                 <p class="text-neutral-200 text-center lg:text-start lg:text-2xl lg:underline">{{ $book->penerbit }}</p>
                 <div
-                    class="flex justify-around flex-initial w-80  my-4 bg-gray-600 rounded-lg mx-4 lg:mx-0 p-2 items-center lg:w-3/4">
+                    class="flex justify-around flex-initial w-80  my-4 bg-gradient-to-r from-purple-950 to-fuchsia-950 shadow-lg rounded-lg mx-4 lg:mx-0 p-2 items-center lg:w-3/4">
                     <div class="">
                         <h4 class="text-white text-lg font-semibold text-center">4.5</h4>
                         <h1 class="text-white text-base font-medium ">Rating</h1>
@@ -37,9 +37,10 @@
 
         </div>
 
-        <div class="w-full  bg-gray-700 rounded-2xl p-3 lg:w-[85%] lg:mx-auto lg:px-16">
+        <div
+            class="w-full relative  bg-gradient-to-r from-purple-950 to-fuchsia-950 border border-purple-400 rounded-2xl p-3 lg:w-[85%] lg:mx-auto lg:px-16 tamsis shadow-lg">
             <h1 class="text-white text-2xl tracking-wide font-semibold lg:mt-28 ">Deskripsi</h1>
-            <div class="description">'Buku Bahasa Indonesia SMK/MAK Kelas XII dirancang dengan
+            <div class="description text-slate-300">'Buku Bahasa Indonesia SMK/MAK Kelas XII dirancang dengan
                 berbasis teks dan pengalaman agar belajar bahasa
                 Indonesia semakin meningkatkan kemampuan berbahasa dan bersastra melalui berbagai teks. Model penyajian buku
                 menggunakan teks untuk tujuan-tujuan sosial dan fungsi komunikasi.
@@ -64,28 +65,28 @@
                 <h1 class="my-2 text-white text-2xl tracking-wide font-semibold">Detail</h1>
                 <div class="grid grid-cols-2 lg:grid-cols-3 border lg:border-none rounded-xl p-6 gap-3 mb-10">
                     <div class="">
-                        <p>Penulis</p>
+                        <p class="text-white">Penulis</p>
                         <h4 class="text-white font-medium">{{ $book->penerbit }}</h4>
                     </div>
                     <div class="">
-                        <p>Tahun terbit</p>
+                        <p class="text-white">Tahun terbit</p>
                         <h4 class="text-white font-medium">{{ $book->tahun_terbit }}</h4>
                     </div>
                     <div class="">
-                        <p>Pengarang</p>
+                        <p class="text-white">Pengarang</p>
                         <h4 class="text-white font-medium">{{ $book->pengarang }}</h4>
                     </div>
 
                     <div class="">
-                        <p>Kategory</p>
+                        <p class="text-white">Kategory</p>
                         <h4 class="text-white font-medium">{{ $book->kategory->nama_kategory }}</h4>
                     </div>
                     <div class="">
-                        <p>Stok</p>
+                        <p class="text-white">Stok</p>
                         <h4 class="text-white font-medium">{{ $book->jumlah_stok }}</h4>
                     </div>
                     <div class="">
-                        <p>ISBN</p>
+                        <p class="text-white">ISBN</p>
                         <h4 class="text-white font-medium">{{ $book->isbn }}</h4>
                     </div>
 

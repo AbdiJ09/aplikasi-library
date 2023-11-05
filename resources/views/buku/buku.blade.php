@@ -1,7 +1,7 @@
 @extends('layout.main')
 @section('content')
     <div class=" mt-[3rem] py-5 ">
-        <x-book :buku="$allBooks" />
+        <x-book :buku="$allBooks" title="All Buku" />
         <div class="notFound"></div>
     </div>
 @endsection

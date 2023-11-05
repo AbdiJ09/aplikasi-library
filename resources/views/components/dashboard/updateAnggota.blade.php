@@ -12,43 +12,39 @@
                         Anggota</label>
                     <input type="text" id="kode_anggota"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="55AABH" required name="kode_anggota"
-                        value="{{ old('kode_anggota', $anggota->kode_anggota) }}">
+                        placeholder="55AABH" required name="kode_anggota" value="{{ $anggota->kode_anggota }}">
                 </div>
                 <div>
                     <label for="nama" class="block mb-2 text-sm font-medium text-white ">Nama</label>
                     <input type="text" id="nama"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="John" required name="nama" value="{{ old('nama', $anggota->nama) }}">
+                        placeholder="John" required name="nama" value="{{ $anggota->nama }}">
                 </div>
                 <div>
                     <label for="jenis_kelamin" class="block mb-2 text-sm font-medium text-white ">Kelamin</label>
                     <input type="text" id="jenis_kelamin"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="John" required name="jenis_kelamin"
-                        value="{{ old('jenis_kelamin', $anggota->jenis_kelamin) }}">
+                        placeholder="John" required name="jenis_kelamin" value="{{ $anggota->jenis_kelamin }}">
                 </div>
                 <div>
                     <label for="tempat_lahir" class="block mb-2 text-sm font-medium text-white ">Tempat
                         Lahir</label>
                     <input type="text" id="tempat_lahir"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="John" required name="tempat_lahir"
-                        value="{{ old('tempat_lahir', $anggota->tempat_lahir) }}">
+                        placeholder="John" required name="tempat_lahir" value="{{ $anggota->tempat_lahir }}">
                 </div>
                 <div>
                     <label for="tanggal_lahir" class="block mb-2 text-sm font-medium text-white ">Tanggal
                         lahir</label>
                     <input type="date" id="tanggal_lahir"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="John" required name="tanggal_lahir"
-                        value="{{ old('tanggal_lahir', $anggota->tanggal_lahir) }}">
+                        placeholder="John" required name="tanggal_lahir" value="{{ $anggota->tanggal_lahir }}">
                 </div>
                 <div>
                     <label for="telpon" class="block mb-2 text-sm font-medium text-white ">Telpon</label>
                     <input type="number" id="telpon"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="John" required name="telpon" value="{{ old('telpon', $anggota->telpon) }}">
+                        placeholder="John" required name="telpon" value="{{ $anggota->telpon }}">
                 </div>
                 <div class="lg:col-span-3">
 
@@ -56,14 +52,14 @@
                         class="block mb-2 text-sm font-medium text-white dark:text-white">Alamat</label>
                     <textarea id="alamat" rows="4"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Write your thoughts here..." name="alamat">{{ old('alamat', $anggota->alamat) }}</textarea>
+                        placeholder="Write your thoughts here..." name="alamat">{{ $anggota->alamat }}</textarea>
 
                 </div>
             </div>
             <div class="flex justify-center my-3">
                 <input type="hidden" name="oldFoto" id="oldFoto" value="{{ $anggota->foto }}">
                 <input type="file" class="file-input file-input-bordered file-input-primary w-full max-w-xs"
-                    name="foto" value="{{ old('foto', $anggota->foto) }}" />
+                    name="foto" value="{{ $anggota->foto }}" />
             </div>
             <button class="btn btn-primary w-full my-4" data-modal-target="popup-modal{{ $anggota->id }}"
                 data-modal-toggle="popup-modal{{ $anggota->id }}" type="button">Submit</button>

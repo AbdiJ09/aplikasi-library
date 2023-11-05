@@ -11,8 +11,8 @@
         <section class="relative
                     mx-auto max-w-4xl w-full py-32 px-5 sm:py-48 lg:py-56  overflow-hidden">
             <img src="{{ asset('img/satur.png') }}" alt=""
-                class="absolute top-[50%] -translate-y-1/2 -z-20 left-2/4 -translate-x-2/4">
-            <div class="text-center">
+                class="absolute top-[50%] -translate-y-1/2 -z-10 left-2/4 -translate-x-2/4">
+            <div class="text-center z-50">
                 <h1 class="text-5xl font-bold md:tracking-[3rem] tracking-[0.5rem]  text-white md:text-8xl library">
                     library
                 </h1>

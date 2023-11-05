@@ -10,8 +10,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        Gate::authorize('admin');
-        $anggota = Anggota::all();
-        return view('dashboard.index', compact('anggota'));
+        $anggota = Anggota::latest()->paginate(5);
+        if (request()->has('searchAngota')) {
+            $anggota->where('nama', 'like', '%' . request('searchAnggota') . '%');
+        }
+        return view('dashboard.index', ['anggota' => $anggota])->with('success', 'Data Berhasil');
     }
 }

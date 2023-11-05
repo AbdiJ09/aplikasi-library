@@ -1,6 +1,6 @@
-<header class="bg-black   w-full fixed top-0 left-0 z-50">
+<header class="bg-neutral-200 md:bg-neutral-200 border-b-2 border-neutral-300   w-full fixed top-0 left-0 z-50">
 
-    <div class="flex md:justify-between justify-center py-2 px-5 space-x-3  items-center md:px-20 md:py-4">
+    <div class="flex md:justify-between justify-center py-2 px-5 space-x-3  items-center md:px-20 md:py-2">
         <div class="flex  md:space-x-7 ">
             <button type="button" id="menu"
                 class="hidden md:block items-center p-2 text-sm text-gray-500 rounded-lg  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -12,7 +12,7 @@
                     </path>
                 </svg>
             </button>
-            <a href="#"><img src="/img/logo/logo_tamsis.png" class="w-8" alt=""></a>
+            <a href="#"><img src="/img/logo/logo_tamsis.png" class="w-8 lg:w-10" alt=""></a>
         </div>
         <form class="md:block" method="get" action="/buku" id="form">
             <label for="default-search"
@@ -26,18 +26,18 @@
                     </svg>
                 </div>
                 <input type="search" id="default-search"
-                    class="block w-full  md:w-[40rem] p-2 pl-10 text-sm text-white border border-neutral-700 rounded-full bg-transparent focus:ring-purple-800 focus:border-purple-800 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-800 dark:focus:border-purple-800"
+                    class="block w-full  md:w-[40rem] p-2 pl-10 text-sm text-black border border-neutral-700 rounded-full bg-transparent focus:ring-purple-800 focus:border-purple-800 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-800 dark:focus:border-purple-800"
                     placeholder="Search Mockups, Logos..." name="search" value="{{ request('search') }}">
 
             </div>
         </form>
         <x-hamburgerMenu />
-        <div class="flex space-x-3 text-center items-center ">
+        <div class="flex space-x-4 text-center items-center ">
             <x-navbarMobile />
-            <span class="hidden md:block"><i class="fa-regular fa-bookmark text-xl " style="color:#fff"></i></span>
+            <span class="hidden md:block"><i class="fa-regular fa-bookmark text-2xl " style="color:#000"></i></span>
             <button type="button"
-                class="relative hidden md:inline-flex items-center  px-2 py-1 text-sm font-medium text-center text-white">
-                <i class="fa-regular fa-bell md:text-xl" style="color:#fff"></i>
+                class="relative hidden md:inline-flex items-center mb-1 text-sm font-medium text-center text-white">
+                <i class="fa-regular fa-bell md:text-2xl" style="color:#000"></i>
 
                 <div
                     class="absolute inline-flex items-center justify-center w-6 only:h-6 text-xs font-bold text-white bg-red-500 rounded-full -top-2 -right-2 dark:border-gray-900">
@@ -45,15 +45,13 @@
             </button>
             @if (Auth::check())
                 <div class="dropdown dropdown-end hidden md:block">
-                    <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                    <label tabindex="0" class="">
 
-                        <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                            <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
+                        <svg class="w-7 h-7 text-gray-800 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                        </svg>
 
                     </label>
                     <ul tabindex="0"
@@ -67,8 +65,9 @@
                         <li><a>Settings</a></li>
                         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                         <li>
-                            <form action="{{ route('logout') }}" method="post">
+                            <form action="{{ route('logout') }}">
                                 @csrf
+                                @method('delete')
                                 <button type="submit">Logout</button>
                             </form>
                         </li>
@@ -76,7 +75,7 @@
                 </div>
             @else
                 <button
-                    class="btn bg-purple-800 border-0 text-white rounded-full hover:bg-purple-900 transition duration-300 ease-in hidden md:flex"
+                    class="btn bg-green-500 border-0 text-white rounded-full hover:bg-green-700 transition duration-300 ease-in hidden md:flex"
                     onclick="my_modal_1.showModal()">Login
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">

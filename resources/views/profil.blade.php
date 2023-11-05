@@ -1,8 +1,6 @@
 @extends('layout.main')
 @section('profil')
     <!-- component -->
-
-
     <main class="profile-page">
         <section class="relative block h-500-px">
             <div class="absolute top-0 w-full h-full bg-center bg-cover"
@@ -21,7 +19,7 @@
         </section>
         <section class="relative py-16 bg-blueGray-200">
             <div class="container mx-auto px-4">
-                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+                <div class="relative  min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
                     <div class="px-6">
                         <div class="flex flex-wrap justify-center">
                             <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
@@ -82,55 +80,46 @@
                                         pengetahuan, membantu siswa meraih mimpi dan pencapaian mereka di sekolah Taman
                                         Siswa."
                                     </p>
-                                    <a href="#pablo" class=" text-green-400 text-xl font-medium">Anggota</a>
+                                    <hr class="my-2 border border-gray-800">
+                                    <h1 class="font-bold text-xl uppercase">Petugas</h1>
                                 </div>
-
-                                <div class="swiper mySwiper ">
-                                    <div class="swiper-wrapper">
-                                        @for ($i = 0; $i < 4; $i++)
-                                            <div class="swiper-slide md:p-5">
-                                                <div
-                                                    class="relative flex flex-col rounded-xl bg-neutral-100 bg-clip-border text-gray-700 shadow-xl">
+                                <div class="grid lg:grid-cols-3 grid-cols-1 lg:gap-6">
+                                    @foreach ($petugas as $item)
+                                        <div class=" w-full shadow-xl bg-white rounded-xl py-3 px-0 overflow-hidden my-3">
+                                            <div class="flex justify-between space-x-5 items-center">
+                                                <div class="flex space-x-3">
                                                     <div
-                                                        class="relative mx-4 mt-4  overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
-                                                        <img src="/img/freya.jpg" alt="profile-picture" />
+                                                        class="relative w-14 h-14 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                                        <svg class="absolute w-16 h-16 text-gray-400 -left-1"
+                                                            fill="currentColor" viewBox="0 0 20 20"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd"
+                                                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                                clip-rule="evenodd"></path>
+                                                        </svg>
                                                     </div>
-                                                    <div class="p-6 text-center">
-                                                        <h4
-                                                            class="mb-2 block font-sans md:text-2xl text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                                                            Natalie Paisley
-                                                        </h4>
-                                                        <p
-                                                            class="block bg-gradient-to-tr from-pink-600 to-pink-400 bg-clip-text font-sans text-base font-medium leading-relaxed text-transparent antialiased">
-                                                            Petugas
-                                                        </p>
-                                                    </div>
-                                                    <div class="flex justify-center gap-7 p-6 pt-2">
-                                                        <a href="#facebook"
-                                                            class="block bg-gradient-to-tr from-blue-600 to-blue-400 bg-clip-text font-sans text-xl font-normal leading-relaxed text-transparent antialiased">
-                                                            <i class="fab fa-facebook" aria-hidden="true"></i>
-                                                        </a>
-                                                        <a href="#twitter"
-                                                            class="block bg-gradient-to-tr from-light-blue-600 to-light-blue-400 bg-clip-text font-sans text-xl font-normal leading-relaxed text-transparent antialiased">
-                                                            <i class="fab fa-twitter" aria-hidden="true"></i>
-                                                        </a>
-                                                        <a href="#instagram"
-                                                            class="block bg-gradient-to-tr from-purple-600 to-purple-400 bg-clip-text font-sans text-xl font-normal leading-relaxed text-transparent antialiased">
-                                                            <i class="fab fa-instagram" aria-hidden="true"></i>
-                                                        </a>
+                                                    <div class="space-y-2">
+                                                        <h3 class="text-gray-700 text-start font-bold text-lg">
+                                                            {{ $item->name }}
+                                                        </h3>
+                                                        <button
+                                                            class="badge badge-primary font-bold text-white badge-lg">{{ $item->level }}</button>
                                                     </div>
                                                 </div>
+                                                <span class="text-black text-lg">|</span>
+                                                <div class="text-black">
+                                                    <div class="text-sm">
+                                                        <span
+                                                            class="font-bold lg:text-lg">{{ $item->Peminjaman->count() }}</span>
+                                                        <h5 class="font-medium lg:text-lg text-gray-600">Peminjaman</h5>
+                                                    </div>
+
+                                                </div>
                                             </div>
-                                        @endfor
-
-
-                                    </div>
-                                    <div class="swiper-pagination"></div>
+                                        </div>
+                                    @endforeach
                                 </div>
-
-
                             </div>
-
                         </div>
                     </div>
                 </div>

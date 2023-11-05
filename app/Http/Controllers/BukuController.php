@@ -12,17 +12,13 @@ class BukuController extends Controller
 {
     public function index()
     {
-        $books = Buku::all(); //select * from bukus
-
+        $books = Buku::latest()->take(8)->get();
         return view('home', compact('books'));
     }
     public function AllBuku(Request $request)
     {
 
-        $allBooks = Buku::all();
-        if (request('search')) {
-            $allBooks = Buku::where('judul', 'like', '%' . request('search') . '%')->get();
-        }
+        $allBooks = Buku::latest()->get();
         return view('buku.buku', compact('allBooks'));
     }
     public function detailBuku(string $slug)
@@ -33,11 +29,18 @@ class BukuController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('search');
+        $buku = Buku::query();
 
-        // Lakukan pencarian sesuai dengan query dan dapatkan hasilnya
-        $buku = Buku::where('judul', 'like', '%' . $query . '%')->get();
+        if (!empty($query)) {
+            $buku = $buku->where('judul', 'like', '%' . $query . '%');
+        } else {
+            $buku = $buku->when(empty($query), function ($query) {
+                return $query->latest()->take(8);
+            });
+        }
 
-        // Kembalikan hasil pencarian dalam bentuk JSON
+        $buku = $buku->get();
+
         return response()->json(['buku' => $buku]);
     }
 

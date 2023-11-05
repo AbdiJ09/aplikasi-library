@@ -1,5 +1,5 @@
  <dialog id="my_modal_1" class="modal">
-     <div class="modal-box  rounded-lg w-[22rem] md:w-99 -ms-3 text-start bg-no-repeat bg-cover border border-violet-900 shadow-xl shadow-violet-900"
+     <div class="modal-box bg-black rounded-lg w-[22rem] md:w-99 -ms-3 text-start bg-no-repeat bg-cover border border-violet-900 shadow-xl shadow-violet-900"
          style="background-image: url('/img/bgg.png')">
          <div class="px-6 py-6 lg:px-8">
              <h3 class="mb-4 text-xl font-medium text-white dark:text-white">Sign in to our platform</h3>

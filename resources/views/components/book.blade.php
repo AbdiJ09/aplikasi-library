@@ -1,13 +1,21 @@
 <div class="px-5 pt-5">
-    <h1 class="font-bold text-lg text-white">Buku</h1>
+    <div class="flex items-center justify-between">
+
+        <h1 class="font-bold text-lg text-black">{{ $title }}</h1>
+        @if (Request::is('home'))
+            <a href="{{ route('buku') }}" class="underline decoration-purple-600 text-slate-500 ">Lihat semua</a>
+        @endif
+
+    </div>
     @if (request('search'))
         <h4 class="font-medium text-base text-neutral-400">Search {{ request('search') }}...</h4>
     @endif
+
     <div class="flex items-center justify-center relative overflow-hidden pt-5">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-2 buku">
+        <div class="grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-x-1 gap-y-10 buku w-full grid">
             @foreach ($buku as $item)
                 <div
-                    class="group  relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 rounded-lg lg:w-4/5">
+                    class="group  relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 rounded-xl shadow-lg  shadow-neutral-500 lg:w-4/5">
                     <div class="h-auto w-full md:w-full">
                         <img class="h-full w-full object-cover  transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125"
                             src="storage/buku/{{ $item->gambar }}" alt="" />
@@ -16,8 +24,9 @@
                         class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-purple-950/80 group-hover:from-black/70 group-hover:via-black/60  group-hover:to-black/70">
                     </div>
                     <div
-                        class="absolute inset-0 flex translate-y-[63%] md:translate-y-[54%] flex-col items-center justify-center px-9 md:px-0 text-center transition-all duration-500 group-hover:translate-y-0">
-                        <h1 class="font-dmserif text-xl md:text-2xl font-bold text-white">{{ $item->judul }}</h1>
+                        class="absolute inset-0 flex translate-y-[63%] md:translate-y-[58%] flex-col items-center justify-center  md:px-0 text-center transition-all duration-500 group-hover:translate-y-0">
+                        <h1 class="md:text-xl font-bold text-white ">
+                            {{ $item->judul }}</h1>
 
                         <div class="flex items-center mt-2">
                             <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true"

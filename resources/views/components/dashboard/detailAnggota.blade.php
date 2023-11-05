@@ -2,9 +2,20 @@
                         <div class="modal-box bg-cover bg-center lg:w-full lg:max-w-2xl"
                             style="background-image: url('/img/dashboard/bgg.png'),linear-gradient(rgba(255, 255, 255, 0.801), rgba(121, 29, 226, 0.5))">
                             <div class="flex flex-col space-y-2 justify-center items-center py-3">
-                                <img src="{{ '../storage/anggota/' . $item->foto }}"
-                                    class="w-32 h-32 rounded-full mx-auto border-2 object-cover object-center"
-                                    alt="">
+                                @if ($item->foto)
+                                    <img src="{{ '../storage/anggota/' . $item->foto }}"
+                                        class="w-32 h-32 rounded-full mx-auto border-2 object-cover object-center"
+                                        alt="">
+                                @else
+                                    <div class="relative w-32 h-32   overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 cursor-pointer"
+                                        onclick="my_modal_5{{ $item->id }}.showModal()">
+                                        <svg class=" w-32 h-32 text-gray-400 " fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                @endif
                                 <h1 class="text-white font-semibold text-lg tracking-wide">{{ $item->nama }}</h1>
                             </div>
                             <div class="bg-transparent shadow-2xl p-2 rounded-xl w-full border-2 border-purple-600">
