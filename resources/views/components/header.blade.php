@@ -1,9 +1,9 @@
-<header class="bg-neutral-200 md:bg-neutral-200 border-b-2 border-neutral-300   w-full fixed top-0 left-0 z-50">
-
-    <div class="flex md:justify-between justify-center py-2 px-5 space-x-3  items-center md:px-20 md:py-2">
-        <div class="flex  md:space-x-7 ">
+<header class="bg-gradient-to-r from-neutral-200 via-purple-200 to-neutral-100   w-full fixed top-0 left-0 z-50">
+    <div
+        class="flex md:justify-center lg:justify-between justify-center py-2 px-5 md:px-10 space-x-3 md:space-x-10 md:py-3  items-center lg:px-20 lg:py-2">
+        <div class="flex  lg:space-x-7 lg:-ms-12">
             <button type="button" id="menu"
-                class="hidden md:block items-center p-2 text-sm text-gray-500 rounded-lg  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                class="hidden lg:block items-center p-2 text-sm text-gray-500 rounded-lg  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <span class="sr-only">Open sidebar</span>
                 <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
@@ -12,9 +12,9 @@
                     </path>
                 </svg>
             </button>
-            <a href="#"><img src="/img/logo/logo_tamsis.png" class="w-8 lg:w-10" alt=""></a>
+            <a href="#"><img src="/img/logo/logo_tamsis.png" class="w-8 md:w-10 lg:w-10" alt=""></a>
         </div>
-        <form class="md:block" method="get" action="/buku" id="form">
+        <form class="search-buku" method="get" action="/buku" id="form">
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div class="relative">
@@ -26,7 +26,7 @@
                     </svg>
                 </div>
                 <input type="search" id="default-search"
-                    class="block w-full  md:w-[40rem] p-2 pl-10 text-sm text-black border border-neutral-700 rounded-full bg-transparent focus:ring-purple-800 focus:border-purple-800 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-800 dark:focus:border-purple-800"
+                    class="block w-full md:w-[30rem] lg:w-[40rem] p-2 pl-10 text-sm text-black border border-neutral-700 rounded-full bg-transparent focus:ring-purple-800 focus:border-purple-800 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-800 dark:focus:border-purple-800"
                     placeholder="Search Mockups, Logos..." name="search" value="{{ request('search') }}">
 
             </div>
@@ -34,17 +34,17 @@
         <x-hamburgerMenu />
         <div class="flex space-x-4 text-center items-center ">
             <x-navbarMobile />
-            <span class="hidden md:block"><i class="fa-regular fa-bookmark text-2xl " style="color:#000"></i></span>
+            <span class="hidden lg:block"><i class="fa-regular fa-bookmark text-2xl " style="color:#000"></i></span>
             <button type="button"
-                class="relative hidden md:inline-flex items-center mb-1 text-sm font-medium text-center text-white">
-                <i class="fa-regular fa-bell md:text-2xl" style="color:#000"></i>
+                class="relative hidden lg:inline-flex items-center mb-1 text-sm font-medium text-center text-white">
+                <i class="fa-regular fa-bell lg:text-2xl" style="color:#000"></i>
 
                 <div
                     class="absolute inline-flex items-center justify-center w-6 only:h-6 text-xs font-bold text-white bg-red-500 rounded-full -top-2 -right-2 dark:border-gray-900">
                     8+</div>
             </button>
             @if (Auth::check())
-                <div class="dropdown dropdown-end hidden md:block">
+                <div class="dropdown dropdown-end hidden lg:block">
                     <label tabindex="0" class="">
 
                         <svg class="w-7 h-7 text-gray-800 dark:text-white" aria-hidden="true"
@@ -75,7 +75,7 @@
                 </div>
             @else
                 <button
-                    class="btn bg-green-500 border-0 text-white rounded-full hover:bg-green-700 transition duration-300 ease-in hidden md:flex"
+                    class="btn bg-green-500 border-0 text-white rounded-full hover:bg-green-700 transition duration-300 ease-in hidden lg:flex"
                     onclick="my_modal_1.showModal()">Login
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
@@ -95,14 +95,8 @@
         $("#nav").toggleClass("scale-0 scale-100");
     });
     $(document).ready(function() {
-        $("#form").submit(function(event) {
-            // Mendapatkan nilai dari input search
-            var searchValue = $("#default-search").val().trim();
-
-            // Mengecek apakah input kosong atau panjang stringnya kurang dari 3
-            if (searchValue === '' || searchValue.length < 3) {
-                event.preventDefault(); // Mencegah pengiriman formulir
-            }
+        $(".search-buku").submit(function(event) {
+            event.preventDefault();
         });
     });
 </script>

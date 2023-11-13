@@ -83,9 +83,9 @@
                                     <hr class="my-2 border border-gray-800">
                                     <h1 class="font-bold text-xl uppercase">Petugas</h1>
                                 </div>
-                                <div class="grid lg:grid-cols-3 grid-cols-1 lg:gap-6">
+                                <div class="grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 md:gap-3 lg:gap-6">
                                     @foreach ($petugas as $item)
-                                        <div class=" w-full shadow-xl bg-white rounded-xl py-3 px-0 overflow-hidden my-3">
+                                        <div class=" w-full shadow-xl bg-white rounded-xl py-3 px-2 overflow-hidden my-3">
                                             <div class="flex justify-between space-x-5 items-center">
                                                 <div class="flex space-x-3">
                                                     <div

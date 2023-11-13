@@ -266,9 +266,22 @@
         @foreach ($peminjaman as $peminjamans)
             <div class="w-full p-1 shadow-xl bg-zinc-200 rounded-xl relative my-3 ">
                 <div class="grid grid-cols-5 content-center h-10 justify-items-center">
-                    <img src="{{ '../storage/anggota/' . $peminjamans->Anggota->foto }}"
-                        class="w-8 h-8 absolute top-2/4 -translate-y-2/4 left-2 rounded-full cursor-pointer object-cover object-center"
-                        alt="">
+                    @if ($peminjamans->Anggota->foto)
+                        <img src="{{ '../storage/anggota/' . $peminjamans->Anggota->foto }}"
+                            class="w-8 h-8 absolute top-2/4 -translate-y-2/4 left-2 rounded-full cursor-pointer object-cover object-center"
+                            alt="">
+                    @else
+                        @php
+                            $nama = $peminjamans->Anggota->nama;
+                            $nama_depan = strtok($nama, ' ');
+                            $nama_belakang = strtok('');
+                            $inisial = strtoupper(substr($nama_depan, 0, 1) . substr($nama_belakang, 0, 1));
+                        @endphp
+                        <div
+                            class="absolute left-2 inline-flex items-center justify-center w-8 h-8 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                            <span class="font-medium text-gray-600 dark:text-gray-300">{{ $inisial }}</span>
+                        </div>
+                    @endif
                     <span></span>
                     <h4 class="text-xs text-neutral-700">{{ $peminjamans->tanggal_pinjam }}</h4>
                     <h4 class="text-xs text-neutral-700">{{ $peminjamans->lama_pinjam }} Hari</h4>
@@ -347,21 +360,17 @@
                 </button>
             </a>
         </div>
-        <div class="grid grid-cols-5 justify-items-center content-center mt-3">
+        <div class="grid grid-cols-3 justify-items-center content-center mt-3">
             <h4 class="text-xs text-neutral-700">Name</h4>
-            <h4 class="text-xs text-neutral-700">Username</h4>
             <h4 class="text-xs text-neutral-700">Email</h4>
-            <h4 class="text-xs text-neutral-700">Level</h4>
             <h4 class="text-xs text-neutral-700">Action</h4>
 
         </div>
         @foreach ($petugas as $item)
-            <div class="w-full p-1 shadow-xl bg-zinc-200 rounded-xl relative my-3 ">
-                <div class="grid grid-cols-5 content-center h-10 justify-items-center">
+            <div class="w-full p-1 shadow-xl bg-zinc-200 rounded-xl relative my-3">
+                <div class="grid grid-cols-3 content-center h-10 justify-items-center">
                     <h4 class="text-xs text-neutral-700 text-center mt-2">{{ $item->name }}</h4>
-                    <h4 class="text-xs text-neutral-700 text-center mt-2">{{ $item->username }}</h4>
-                    <h4 class="text-xs text-neutral-700 mt-2">{{ $item->email }}</h4>
-                    <button class="badge text-center mt-2">{{ $item->level }}</button>
+                    <h4 class="text-xs text-neutral-700 text-center mt-2">{{ $item->email }}</h4>
                     <div class="dropdown dropdown-top dropdown-end">
                         <label tabindex="0" class="btn m-1 btn-sm rounded-full">></label>
                         <ul tabindex="0"

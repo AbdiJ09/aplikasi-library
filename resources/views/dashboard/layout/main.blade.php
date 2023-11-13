@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    <link rel="icon" href="/img/logo/logo_tamsis.png" type="image/x-icon">
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/build/assets/app-076f4e81.css">
     <title>Dashboard | Admin</title>
 </head>
 
@@ -61,9 +62,6 @@
             @yield('content')
         </div>
     </div>
-
-    <script src="/build/assets/app-8262aba7.js"></script>
-
 </body>
 
 </html>

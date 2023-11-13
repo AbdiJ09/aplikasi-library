@@ -3,6 +3,7 @@
     <x-notif bottom="bottom-16" />
     <x-home.heroHome />
     <x-book :buku="$books" title="Buku" />
+    <div class="notFound"></div>
     <div class="mt-14 mb-20">
         <h1 class="text-black font-semibold text-xl tracking-wide ms-5">Rekomendasi Buku</h1>
         <div class="swiper rekomendasi-buku">

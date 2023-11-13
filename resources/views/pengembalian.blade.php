@@ -7,7 +7,7 @@
                             class="fa-solid fa-chevron-left text-white transition duration-500 ease-in-out"></i></span></button>
             </a>
             <h1
-                class="opacity-0 peminjaman transition duration-500 text-lg ease-in-out lg:text-4xl tracking-wide text-white font-bold">
+                class="opacity-0 peminjaman transition duration-500 text-lg ease-in-out  lg:text-4xl tracking-wide text-white font-bold">
                 Pengembalian
             </h1>
             <span></span>
@@ -32,84 +32,98 @@
         </div>
     </header>
     <div
-        class="absolute left-0 top-0 w-full h-[12rem] lg:h-[15rem] brightness-90 bg-sticky  bg-[url(../../public/img/banner1.jpg)] bg-cover bg-no-repeat bg-center transition duration-300 ease-in-out">
+        class="absolute left-0 top-0 w-full h-[12rem] lg:h-[15rem] brightness-90 bg-sticky  bg-[url(../../public/img/pjj.jpg)] bg-cover bg-no-repeat bg-center transition duration-300 ease-in-out">
         <h1
-            class="p absolute top-16 left-2/4 text-2xl transition duration-500 delay-300 ease-in-out -translate-x-2/4 lg:text-4xl tracking-wide text-white font-bold text-center">
+            class="p absolute top-16 left-2/4 text-2xl md:text-3xl transition duration-500 delay-300 ease-in-out -translate-x-2/4 lg:text-4xl tracking-wide text-white font-bold text-center uppercase">
             Pengembalian
         </h1>
     </div>
     <div
-        class ="w-full mx-auto z-[20]  relative  my-40 lg:my-52 lg:grid lg:grid-cols-3 lg:gap-4 pengembalianContainer bg-gradient-to-r from-purple-500 to-purple-950 py-5 px-1 lg:p-8 rounded-xl ">
+        class ="w-full mx-auto z-[20]  relative  my-40 lg:my-52 md:grid md:grid-cols-2 md:gap-6 lg:grid lg:grid-cols-3 lg:gap-6 pengembalianContainer bg-gradient-to-r from-purple-950 via-black to-purple-950 py-5 px-1 lg:p-8 rounded-xl ">
         @foreach ($pengembalian as $item)
             <div
-                class="w-fit bg-white relative  shadow-lg rounded-lg py-3 items-center px-3 mb-5 space-y-2 overflow-hidden">
-                <div class="flex justify-between items-center">
-                    <div class="flex flex-col justify-center items-center">
+                class="w-full bg-black/40 shadow-purple-700 relative  shadow-lg rounded-lg py-7 items-center px-3 mb-5 space-y-2 overflow-hidden mx-auto">
+                <div class="flex justify-between items-center space-x-3">
+                    <div class="flex flex-col justify-center items-center space-y-2">
                         <img src="../storage/anggota/{{ $item->Peminjaman->Anggota->foto }}"
-                            class="w-20 h-20 object-cover rounded-full" alt="">
-                        <h3 class="text-black font-bold tracking-wide ">{{ $item->Peminjaman->Anggota->nama }}</h3>
+                            class="w-14 h-14 md:w-20 md:h-20 lg:w-20 lg:h-20 object-cover rounded-full" alt="">
                         @if ($item->telat)
-                            <span class="badge badge-error text-white">{{ $item->Peminjaman->status }}</span>
+                            <span
+                                class=" text-white uppercase text-[8px] md:text-sm bg-error px-1 lg:text-xs rounded-xl">{{ $item->Peminjaman->status }}</span>
                         @else
-                            <span class="badge badge-success">{{ $item->Peminjaman->status }}</span>
+                            <span
+                                class=" text-black uppercase text-[8px] md:text-sm lg:text-xs bg-success px-1 rounded-xl">{{ $item->Peminjaman->status }}</span>
                         @endif
                     </div>
-                    <div class="flex flex-wrap  justify-center space-x-5">
-                        <div class="text-gray-700 font-medium ">
-                            <h5 class="text-xs">Tgl Peminjaman</h5>
-                            <p class="bg-purple-600 rounded-lg p-1 text-gray-200 font-semibold text-center text-xs">
-                                {{ $item->Peminjaman->tanggal_pinjam }}
-                            </p>
+                    <div class="w-full">
+                        <h5 class="font-semibold leading-6 text-lg md:text-2xl lg:text-2xl text-gray-300 -mt-3 ">
+                            {{ $item->Peminjaman->Anggota->nama }}
+                        </h5>
+                        <div class="flex space-x-3 mt-2">
+
+                            <div class="text-sm md:text-lg lg:text-lg text-gray-400">
+                                <p class="text-xs md:text-sm lg:text-base">Tgl Peminjaman</p>
+                                <p class="text-[12px] md:text-sm lg:text-sm font-semibold text-gray-300">
+                                    {{ $item->Peminjaman->tanggal_pinjam }}
+                                </p>
+                            </div>
+                            <div class="text-sm md:text-lg lg:text-lg text-gray-400">
+                                <p class="text-xs md:text-sm lg:text-base">Tgl Pengembalian</p>
+                                <p class="text-[12px] md:text-sm lg:text-sm font-semibold text-gray-300">
+                                    {{ $item->tanggal_kembali }}
+                                </p>
+                            </div>
                         </div>
-                        <div class="text-gray-700 font-medium">
-                            <h5 class="text-xs">Tgl Pengembalian</h5>
-                            <p class="bg-green-500 rounded-lg p-1 text-gray-200 font-semibold text-center text-xs">
-                                {{ $item->tanggal_kembali }}
-                            </p>
+                        <div class="mt-2">
+                            <h6 class="text-gray-300 text-xs md:text-base lg:text-base">keterangan</h6>
+                            <div class="bg-transparent border rounded-lg border-gray-700 p-1 text-gray-400 w-5/6">
+                                @if ($item->telat)
+                                    <p class="text-xs md:text-sm lg:text-sm">Telat mengembalikan Buku</p>
+                                @else
+                                    <p class="text-xs md:text-sm lg:text-sm">Tepat Mengembalikan Buku+</p>
+                                @endif
+                            </div>
                         </div>
-                        <div class="bg-gray-600 rounded-lg p-2 font-medium mt-3 lg:w-64">
-                            <h1 class="text-gray-300 text-base">Keterangan:</h1>
-                            @if ($item->telat)
-                                <h5 class="text-sm text-gray-100 font-normal">Telat dalam Pengembalian buku</h5>
-                            @else
-                                <h5 class="text-sm text-gray-100 font-normal">Pengembalian Tepat Waktu</h5>
-                            @endif
-                        </div>
+
+                    </div>
+                    <div
+                        class="absolute -right-6 -top-[4.4rem] bg-white shadow-md shadow-purple-600 rounded-full h-28 w-28 lg:w-28 lg:h-28 overflow-hidden">
+                        <p class="text-black text-[8px] lg:text-[10px] mt-[4.5rem]   ms-5 font-bold flex flex-col">
+                            Peminjaman<span
+                                class="text-lg lg:text-2xl ms-4 -mt-1">{{ $item->Peminjaman->lama_pinjam }}H</span></p>
                     </div>
                 </div>
             </div>
         @endforeach
-    </div>
-    <script type="module">
-        $(document).ready(function() {
-            $(".pengembalianSearch").on("input", function() {
-                const request = $('.pengembalianSearch').attr("name")
-                const anggota = $('#anggota').val().trim();
-                const query = $(this).val();
-                let url = ''
-                if (anggota === '') {
-                    url = "/pengembalian?" + request + "=" + encodeURIComponent(query);
-                } else {
-                    url =
-                        `/pengembalian?anggota=${anggota}&${request}=${encodeURIComponent(query)}`;
+        <script type="module">
+            $(document).ready(function() {
+                $(".pengembalianSearch").on("input", function() {
+                    const request = $('.pengembalianSearch').attr("name")
+                    const anggota = $('#anggota').val().trim();
+                    const query = $(this).val();
+                    let url = ''
+                    if (anggota === '') {
+                        url = "/pengembalian?" + request + "=" + encodeURIComponent(query);
+                    } else {
+                        url =
+                            `/pengembalian?anggota=${anggota}&${request}=${encodeURIComponent(query)}`;
 
-                }
-                history.replaceState(null, null, url);
-                $.ajax({
-                    type: "get",
-                    url: url,
-                    data: {
-                        query: query,
-                    },
-                    dataType: "json",
-                    success: function(data) {
-                        let pengembalian = data.pengembalian;
-                        console.log(pengembalian);
-                        let pengembalianContainer = $(".pengembalianContainer");
-                        pengembalianContainer.empty()
-                        if (pengembalian.length === 0) {
-                            pengembalianContainer.append(
-                                `  <div class="flex justify-center items-center flex-col  w-full lg:w-[80rem] lg:ms-6    space-y-2 ">
+                    }
+                    history.replaceState(null, null, url);
+                    $.ajax({
+                        type: "get",
+                        url: url,
+                        data: {
+                            query: query,
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            let pengembalian = data.pengembalian;
+                            let pengembalianContainer = $(".pengembalianContainer");
+                            pengembalianContainer.empty()
+                            if (pengembalian.length === 0) {
+                                pengembalianContainer.append(
+                                    `  <div class="flex justify-center items-center flex-col  w-full lg:w-full  lg:ms-2/4  space-y-2 ">
                             <span class="text-5xl">😥</span>
                             <h1 class="text-white font-bold tracking-wider text-3xl text-center lg:text-5xl">Peminjaman Tidak Ditemukan</h1>
                             <p class="text-center text-gray-200 font-medium">Kami tidak menemukan peminjaman yang sesuai dengan kata kunci
@@ -120,56 +134,67 @@
                                 style="box-shadow: 0 4px 0 5px black">Hapus
                                 Pencarian</button>
                         </div>`
-                            )
-                            $("#hapusPencarianBtn").on("click", function() {
-                                const url = new URL(window.location.href);
-                                url.searchParams.delete("search");
+                                )
+                                $("#hapusPencarianBtn").on("click", function() {
+                                    const url = new URL(window.location.href);
+                                    url.searchParams.delete("search");
 
-                                // Memuat ulang halaman dengan URL yang sudah diubah
-                                window.location.href = url.toString();
-                            });
-                        } else {
+                                    // Memuat ulang halaman dengan URL yang sudah diubah
+                                    window.location.href = url.toString();
+                                });
+                            } else {
 
-                            $.each(pengembalian, function(key, value) {
-                                console.log(value);
-                                pengembalianContainer.append(
-                                    ` <div
-                class="w-fit bg-white relative  shadow-lg rounded-lg py-3 items-center px-3 mb-5 space-y-2 overflow-hidden">
-                <div class="flex justify-between items-center">
-                    <div class="flex flex-col justify-center items-center">
+                                $.each(pengembalian, function(key, value) {
+                                    pengembalianContainer.append(
+                                        ` <div
+                class="w-full bg-black/40 shadow-purple-700 relative  shadow-lg rounded-lg py-7 items-center px-3 mb-5 space-y-2 overflow-hidden mx-auto">
+                <div class="flex justify-between items-center space-x-3">
+                    <div class="flex flex-col justify-center items-center space-y-2">
                         <img src="../storage/anggota/${value.peminjaman.anggota.foto}"
-                            class="w-20 h-20 object-cover rounded-full" alt="">
-                        <h3 class="text-black font-bold tracking-wide ">${value.peminjaman.anggota.nama}</h3>
-                        ${value.telat ? `<span class='badge badge-error text-white'>${value.peminjaman.status}</span>` : `<span class='badge badge-success'>${value.peminjaman.status}</span>`}
+                            class="w-14 h-14 lg:w-20 lg:h-20 object-cover rounded-full" alt="">
+                            ${value.telat ? `<span class=" text-white uppercase text-[8px] bg-error px-1 lg:text-xs rounded-xl">${value.peminjaman.status}</span>` : ` <span class=" text-black uppercase text-[8px] lg:text-xs bg-success px-1 rounded-xl">${value.peminjaman.status}</span>`}
+                    </div>
+                    <div class="w-full">
+                        <h5 class="font-semibold leading-6 text-lg lg:text-2xl text-gray-300 -mt-3 ">
+                            ${value.peminjaman.anggota.nama}
+                        </h5>
+                        <div class="flex space-x-3 mt-2">
+
+                            <div class="text-sm lg:text-lg text-gray-400">
+                                <p class="text-xs lg:text-base">Tgl Peminjaman</p>
+                                <p class="text-[12px] lg:text-sm font-semibold text-gray-300">
+                                    ${value.peminjaman.tanggal_pinjam}
+                                </p>
+                            </div>
+                            <div class="text-sm lg:text-lg text-gray-400">
+                                <p class="text-xs lg:text-base">Tgl Pengembalian</p>
+                                <p class="text-[12px] lg:text-sm font-semibold text-gray-300">${value.tanggal_kembali}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <h6 class="text-gray-300 text-xs lg:text-base">keterangan</h6>
+                            <div class="bg-transparent border rounded-lg border-gray-700 p-1 text-gray-400 w-5/6">
+                                ${value.telat ? `<p class="text-xs lg:text-sm">Telat mengembalikan Buku</p>` : `<p class="text-xs lg:text-sm">Tepat Mengembalikan Buku</p>`}
+                            </div>
+                        </div>
 
                     </div>
-                    <div class="flex flex-wrap  justify-center space-x-5">
-                        <div class="text-gray-700 font-medium ">
-                            <h5 class="text-xs">Tgl Peminjaman</h5>
-                            <p class="bg-purple-600 rounded-lg p-1 text-gray-200 font-semibold text-center text-xs">
-                                ${value.peminjaman.tanggal_pinjam}
-                            </p>
-                        </div>
-                        <div class="text-gray-700 font-medium">
-                            <h5 class="text-xs">Tgl Pengembalian</h5>
-                            <p class="bg-green-500 rounded-lg p-1 text-gray-200 font-semibold text-center text-xs">
-                                ${value.tanggal_kembali}
-                            </p>
-                        </div>
-                        <div class="bg-gray-600 rounded-lg p-2 font-medium mt-3 lg:w-64">
-                            <h1 class="text-gray-300 text-base">Keterangan:</h1>
-                            ${value.telat ? "<h5 class='text-sm text-gray-100 font-normal'>Telat dalam Pengembalian buku</h5>" : "<h5 class='text-sm text-gray-100 font-normal'>Pengembalian Tepat Waktu</h5>"}
-                        </div>
+                    <div
+                        class="absolute -right-6 -top-[4.4rem] bg-white shadow-md shadow-purple-600 rounded-full h-28 w-28 lg:w-36 lg:h-36 overflow-hidden">
+                        <p class="text-black text-[8px] lg:text-xs mt-[4.5rem]   ms-7 font-bold flex flex-col">
+                            Peminjaman<span
+                                class="text-lg lg:text-3xl ms-2 -mt-1">${value.peminjaman.lama_pinjam}H</span></p>
                     </div>
                 </div>
             </div>`
-                                )
-                            })
+                                    )
+                                })
 
-                        }
-                    },
+                            }
+                        },
+                    });
                 });
             });
-        });
-    </script>
-@endsection
+        </script>
+    @endsection

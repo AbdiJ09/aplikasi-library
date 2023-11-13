@@ -33,15 +33,20 @@
     </header>
     <div
         class="absolute left-0 top-0 w-full h-[12rem] lg:h-[15rem] brightness-90 bg-sticky   bg-[url(../../public/img/pjj.jpg)] bg-cover bg-no-repeat bg-center  transition duration-300 ease-in-out">
-        <h1
-            class="absolute left-2/4  -translate-x-2/4 top-20 text-2xl lg:text-3xl font-bold uppercase tracking-wider transition duration-500 delay-300 ease-in-out p text-white">
-            Peminjaman</h1>
+        @foreach ($peminjaman as $anggota)
+            @if (request('anggota') === $anggota->Anggota->kode_anggota)
+                <h1
+                    class="absolute flex flex-col  left-2/4 w-full text-center  -translate-x-2/4 top-20 text-lg lg:text-3xl font-bold uppercase tracking-wider transition duration-500 delay-300 ease-in-out p text-white">
+                    Peminjaman <span class="lg:text-5xl text-2xl">{{ $anggota->Anggota->nama }}</span></h1>
+            @else
+                <h1
+                    class="absolute left-2/4 text-center  -translate-x-2/4 top-20 text-2xl lg:text-5xl font-bold uppercase tracking-wider transition duration-500 delay-300 ease-in-out p text-white">
+                    Peminjaman</h1>
+            @endif
+        @endforeach
     </div>
     <div
-        class ="w-full mx-auto z-[20]  relative  my-40 lg:my-52 lg:grid lg:grid-cols-3 lg:gap-4 peminjaman-container bg-gradient-to-r from-purple-950 via-black to-purple-950 p-5 lg:p-8 rounded-xl overflow-hidden">
-        <img src="/img/Asset 1.png" alt="" class="fixed top-1/3 w-1/3 right-0  -z-10">
-        <img src="/img/satur.png" alt="" class="fixed top-36 w-1/3 left-0  -z-10">
-        <img src="/img/starr.png" alt="" class="fixed animate-pulse bg-cover bg-center left-2/4 -translate-x-2/4">
+        class ="w-full mx-auto z-[20]  relative  my-40 lg:my-52 md:grid md:grid-cols-2 md:gap-6 lg:grid lg:grid-cols-3 lg:gap-4 peminjaman-container bg-gradient-to-r from-purple-950 via-black to-purple-950 p-5 lg:p-8 rounded-xl overflow-hidden">
         @foreach ($peminjaman as $item)
             @if (request('anggota'))
                 <a href="/peminjaman" class="absolute left-8 top-0 lg:top-3">
@@ -68,7 +73,7 @@
                                 Tgl Pinjam : {{ $item->tanggal_pinjam }}
                             </p>
                         </div>
-                        <span class = "badge bg-white border-none badge-md">
+                        <span class = "badge bg-white border-none badge-md uppercase font-bold">
                             {{ $item->status }}
                         </span>
                     </div>
@@ -127,7 +132,7 @@
                         peminjamanContainer.empty()
                         if (peminjaman.length === 0) {
                             peminjamanContainer.append(
-                                `  <div class="flex justify-center items-center flex-col  w-full lg:w-[80rem] lg:ms-6    space-y-2 ">
+                                `  <div class="flex justify-center items-center flex-col  w-full lg:w-full     space-y-2 ">
                             <span class="text-5xl">😥</span>
                             <h1 class="text-white font-bold tracking-wider text-3xl text-center lg:text-5xl">Peminjaman Tidak Ditemukan</h1>
                             <p class="text-center text-gray-200 font-medium">Kami tidak menemukan peminjaman yang sesuai dengan kata kunci

@@ -17,7 +17,7 @@
                     {{ $book->judul }}</h1>
                 <p class="text-neutral-200 text-center lg:text-start lg:text-2xl lg:underline">{{ $book->penerbit }}</p>
                 <div
-                    class="flex justify-around flex-initial w-80  my-4 bg-gradient-to-r from-purple-950 to-fuchsia-950 shadow-lg rounded-lg mx-4 lg:mx-0 p-2 items-center lg:w-3/4">
+                    class="flex justify-around flex-initial  w-96 md:w-[30rem]  my-4 bg-gradient-to-r from-purple-950 to-fuchsia-950 shadow-lg rounded-lg mx-4 lg:mx-0 p-2 items-center lg:w-3/4">
                     <div class="">
                         <h4 class="text-white text-lg font-semibold text-center">4.5</h4>
                         <h1 class="text-white text-base font-medium ">Rating</h1>

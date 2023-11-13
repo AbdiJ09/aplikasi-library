@@ -1,4 +1,4 @@
-  <div class="w-[300px] hidden  md:z-0 md:block sidebar md:relative transition-all">
+  <div class="w-[300px] hidden  lg:z-0 lg:block sidebar lg:relative transition-all">
       <ul
           class="fixed py-28 px-8 left-0 flex flex-col z-40 space-y-3 items-center bg-black md:bg-transparent  h-screen
           [&>li>a:hover]:bg-purple-500

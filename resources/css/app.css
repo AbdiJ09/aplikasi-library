@@ -70,7 +70,7 @@ body {
     }
 }
 .nav-hover {
-    @apply text-[11px] md:text-sm  text-white font-medium after:content-[''] after:bg-white after:w-0 after:h-1 after:absolute relative after:left-0 after:-bottom-1 hover:after:w-full after:rounded-md after:transition-all;
+    @apply text-[11px] md:text-lg  text-white font-medium after:content-[''] after:bg-white after:w-0 after:h-1 after:absolute relative after:left-0 after:-bottom-1 hover:after:w-full after:rounded-md after:transition-all;
 }
 @keyframes pulse {
     0%,
