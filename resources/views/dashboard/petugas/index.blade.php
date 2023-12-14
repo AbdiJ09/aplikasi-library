@@ -23,7 +23,7 @@
         @endif
         <h1 class="text-white"><i class="fa-solid fa-table-columns"></i> Page /
             {{ Request::is('dashboard/petugas') ? 'Petugas' : '' }}</h1>
-        <form action="{{ Request::is('dashboard') ? route('dashboard') : route('anggota.index') }}">
+        <form action="{{ Request::is('dashboard') ? route('dashboard') : route('petugas.index') }}">
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div class="relative">
@@ -36,7 +36,7 @@
                 </div>
                 <input type="search" id="default-search"
                     class="block w-2/4 p-1 pl-10 text-sm my-3 text-gray-900 border border-gray-300 rounded-full bg-zinc-300 focus:ring-violet-500 focus:border-violet-500 dark:bg-gray-700 dark:border-gray-600 placeholder-gray-800 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
-                    placeholder="Cari anggota..." name="searchAnggota" value="{{ request('searchAnggota') }}">
+                    placeholder="Cari petugas..." name="searchPetugas" value="{{ request('searchPetugas') }}">
 
             </div>
         </form>

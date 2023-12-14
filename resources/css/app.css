@@ -133,7 +133,7 @@ h1.library {
     align-items: center;
 }
 
-.input {
+.inputSearch {
     width: 40px;
     height: 40px;
     border-radius: 10px;
@@ -145,16 +145,16 @@ h1.library {
     transition: all 0.5s ease-in-out;
 }
 
-.input::placeholder {
+.inputSearch::placeholder {
     color: transparent;
 }
 
-.input:focus::placeholder {
+.inputSearch:focus::placeholder {
     color: rgb(131, 128, 128);
 }
 
-.input:focus,
-.input:not(:placeholder-shown) {
+.inputSearch:focus,
+.inputSearch:not(:placeholder-shown) {
     background-color: #fff;
     border: 1px solid rgb(98, 0, 255);
     width: 290px;
@@ -175,14 +175,22 @@ h1.library {
     border: 1px solid rgb(98, 0, 255);
 }
 
-.input:hover + .icon {
+.inputSearch:hover + .icon {
     transform: rotate(360deg);
     transition: 0.2s ease-in-out;
 }
 
-.input:focus + .icon,
-.input:not(:placeholder-shown) + .icon {
+.inputSearch:focus + .icon,
+.inputSearch:not(:placeholder-shown) + .icon {
     z-index: 0;
     background-color: transparent;
     border: none;
+}
+.import {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer !important;
+}
+.fillter * {
+    @apply bg-black;
 }

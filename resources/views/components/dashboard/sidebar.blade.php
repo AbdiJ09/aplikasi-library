@@ -1,6 +1,6 @@
   <div class="w-[300px] hidden  md:z-0 md:block sidebar md:relative transition-all">
       <ul
-          class="fixed py-28 px-8 left-0 flex flex-col z-40 space-y-3 items-center bg-black md:bg-transparent  rounded-xl h-screen">
+          class="fixed py-28 px-8 left-0 flex flex-col z-40 space-y-3 items-center bg-gray-800 md:bg-transparent h-screen">
           <li>
 
               <a href="{{ route('dashboard') }}"
@@ -31,7 +31,7 @@
                   <span class="ml-5 text-white link-menu">Anggota</span>
               </a>
           </li>
-          @if (Auth::user()->level == 'admin')
+          @can('admin')
               <li>
                   <a href="{{ route('petugas.index') }}"
                       class="flex items-center p-2 w-44 text-gray-900 rounded-lg dark:text-white   group">
@@ -45,7 +45,8 @@
                       <span class="ml-5 text-white link-menu">Petugas</span>
                   </a>
               </li>
-          @endif
+          @endcan
+
           <li>
 
               <a href="/dashboard/buku"

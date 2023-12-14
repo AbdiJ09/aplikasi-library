@@ -24,7 +24,6 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-
       @if (Request::is('peminjaman') || Request::is('pengembalian'))
     <style>
         :root{
@@ -42,11 +41,11 @@
         @hasSection('detailBuku')
             @yield('detailBuku')
         @else
-            <x-header />
-
-            {{-- header khusus desktop --}}
+            <x-header/>
             @if (Route::currentRouteName() === 'profil')
                 @yield('profil')
+                @elseif(Route::currentRouteName() === 'profile')
+                @yield('profile')
             @else
                 <div class="flex bg-gradient-to-r from-neutral-200 via-purple-200 to-neutral-100">
                     <x-sidebar link1="Home" link2="Profil" link3="Buku" link4="Peminjaman" link5="pengembalian"
@@ -61,7 +60,6 @@
         <x-header-bottom /> @endif
 
     {{-- header khusus mobile --}}
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
         const profil = () => {

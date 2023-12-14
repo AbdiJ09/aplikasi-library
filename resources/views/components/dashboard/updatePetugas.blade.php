@@ -7,26 +7,27 @@
                @method('put')
                <div class="grid grid-cols-1 lg:grid-cols-1 gap-3">
                    <div>
-                       <label for="nama" class="block mb-2 text-sm font-medium text-white ">Nama</label>
-                       <input type="text" id="nama"
+                       <label for="update_name" class="block mb-2 text-sm font-medium text-white ">Nama</label>
+                       <input type="text" id="update_name"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="jono" required name="name" value="{{ $item->name }}">
                    </div>
                    <div>
-                       <label for="username" class="block mb-2 text-sm font-medium text-white ">Username</label>
-                       <input type="text" id="username"
+                       <label for="update_username" class="block mb-2 text-sm font-medium text-white ">Username</label>
+                       <input type="text" id="update_username"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="jono123" required name="username" value="{{ $item->username }}">
                    </div>
                    <div>
-                       <label for="email" class="block mb-2 text-sm font-medium text-white ">Email</label>
-                       <input type="email" id="email"
+                       <label for="update_email" class="block mb-2 text-sm font-medium text-white ">Email</label>
+                       <input type="email" id="update_email"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="John@gmail.com" required name="email" value="{{ $item->email }}">
                    </div>
                    <div>
                        <label for="level" class="block mb-2 text-sm font-medium text-white">Level</label>
-                       <select class="select select-bordered w-full max-w-xs bg-gray-50 p-2.5" name="level">
+                       <select id="level" class="select select-bordered w-full max-w-xs bg-gray-50 p-2.5"
+                           name="level">
                            <option disabled>Select Level</option>
                            <option value="petugas" @if ($item->level === 'petugas') selected @endif>Petugas</option>
                            <option value="admin" @if ($item->level === 'admin') selected @endif>Admin</option>

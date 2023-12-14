@@ -21,16 +21,10 @@
                            class="mb-6 bg-gray-100 border border-gray-300 h-12 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            value="{{ date('Y-m-d') }}" readonly name="tanggal_pinjam">
                    </div>
-                   <div>
-                       <label for="lama_pinjam" class="block mb-2 text-sm font-medium text-white ">Lama pinjam</label>
-                       <input type="text" id="lama_pinjam"
-                           class="bg-gray-50 border border-gray-300 h-12 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           required name="lama_pinjam">
-                   </div>
-
                    <div class="w-full">
                        <label for="buku_id" class="block mb-2 text-sm font-medium text-white">Buku</label>
-                       <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch"
+                       <button id="dropdownSearchButton" data-dropdown-placement="bottom"
+                           data-dropdown-toggle="dropdownSearch"
                            class="inline-flex items-center px-4 py-2 text-sm font-medium w-full text-center text-black rounded-lg bg-white h-12"
                            type="button">Buku <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true"
                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -39,7 +33,7 @@
                            </svg></button>
                        <div id="dropdownSearch" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
                            <div class="p-3">
-                               <label for="input-group-search" class="sr-only">Search</label>
+                               <label for="peminjaman-search" class="sr-only">Search</label>
                                <div class="relative">
                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -48,29 +42,29 @@
                                                stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                        </svg>
                                    </div>
-                                   <input type="text" id="input-group-search"
+                                   <input type="text" id="peminjaman-search"
                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                       placeholder="Search Buku">
+                                       placeholder="Search Buku" name="listBuku">
                                </div>
                            </div>
-                           <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200"
+                           <ul class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200 buku-list"
                                aria-labelledby="dropdownSearchButton">
                                @foreach ($buku as $item)
                                    <li>
                                        <div
                                            class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                            @if ($item->jumlah_stok > 0)
-                                               <input id="checkbox-item-11" type="checkbox" name="buku_id[]"
-                                                   value="{{ $item->id }}"
+                                               <input id="checkbox-item-{{ $item->id }}" type="checkbox"
+                                                   name="buku_id[]" value="{{ $item->id }}"
                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                               <label for="checkbox-item-11"
+                                               <label for="checkbox-item-{{ $item->id }}"
                                                    class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ $item->judul }}</label>
                                            @else
-                                               <input id="checkbox-item-11" type="checkbox" name="buku_id[]"
-                                                   value="{{ $item->id }}"
+                                               <input id="checkbox-item-{{ $item->id }}" type="checkbox"
+                                                   name="buku_id[]" value="{{ $item->id }}"
                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                                    disabled>
-                                               <label for="checkbox-item-11"
+                                               <label for="checkbox-item-{{ $item->id }}"
                                                    class="w-full ml-2 text-sm font-medium text-gray-400 rounded dark:text-gray-300">{{ $item->judul }}</label>
                                            @endif
 
@@ -79,19 +73,15 @@
                                @endforeach
 
                            </ul>
-                           <a href="#"
-                               class="flex items-center p-3 text-sm font-medium text-red-600 border-t border-gray-200 rounded-b-lg bg-gray-50 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-red-500 hover:underline">
-                               <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                   fill="currentColor" viewBox="0 0 20 18">
-                                   <path
-                                       d="M6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Zm11-3h-6a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2Z" />
-                               </svg>
-                               Delete user
-                           </a>
                        </div>
                    </div>
+                   <div>
+                       <label for="lama_pinjam" class="block mb-2 text-sm font-medium text-white ">Lama pinjam</label>
+                       <input type="text" id="lama_pinjam"
+                           class="bg-gray-50 border border-gray-300 h-12 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           required name="lama_pinjam">
+                   </div>
 
-                   <!-- Dropdown menu -->
 
                    <div>
                        <label for="jumlah" class="block mb-2 text-sm font-medium text-white ">Jumlah</label>
@@ -121,3 +111,4 @@
            </div>
        </div>
    </dialog>
+   @vite('resources/js/dashboardPeminjaman.js')

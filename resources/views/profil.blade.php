@@ -44,17 +44,17 @@
                                 <div class="flex justify-center py-4 lg:pt-4 pt-8">
                                     <div class="mr-4 p-3 text-center">
                                         <span
-                                            class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">22</span><span
+                                            class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{ $petugas->count() }}</span><span
                                             class="text-sm text-blueGray-400">Petugas</span>
                                     </div>
                                     <div class="mr-4 p-3 text-center">
                                         <span
-                                            class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">1</span><span
+                                            class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{ $admin }}</span><span
                                             class="text-sm text-blueGray-400">Admin</span>
                                     </div>
                                     <div class="lg:mr-4 p-3 text-center">
                                         <span
-                                            class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">200++</span><span
+                                            class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{ $buku }}</span><span
                                             class="text-sm text-blueGray-400">Buku</span>
                                     </div>
                                 </div>

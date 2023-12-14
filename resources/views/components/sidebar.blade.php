@@ -6,7 +6,7 @@
           <li>
 
               <a href="{{ route('home') }}"
-                  class="flex items-center p-2 w-44 conss absolute left-8 text-gray-900 rounded-lg dark:text-white   group">
+                  class="flex items-center p-2 w-44 conss transition ease-in-out duration-300  absolute left-8 text-gray-900 rounded-lg dark:text-white   group">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                       @if (Request::is('home')) fill="currentColor" @else stroke="currentColor" @endif
                       class="w-6 h-6 text-black group-hover:text-white">
@@ -23,7 +23,7 @@
           <li>
 
               <a href="{{ route('profil') }}"
-                  class="flex items-center p-2 w-44 conss absolute left-8 mt-10 text-gray-900 rounded-lg dark:text-white  group">
+                  class="flex items-center p-2 w-44 conss transition ease-in-out duration-300 absolute left-8 mt-10 text-gray-900 rounded-lg dark:text-white  group">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="w-6 h-6 text-black group-hover:text-white">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -36,7 +36,7 @@
           <li>
 
               <a href="{{ route('buku') }}"
-                  class="flex items-center p-2 w-44 conss absolute left-8 mt-20 text-gray-900 rounded-lg dark:text-white  group">
+                  class="flex items-center p-2 w-44 conss transition ease-in-out duration-300 absolute left-8 mt-20 text-gray-900 rounded-lg dark:text-white  group">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="w-6 h-6 text-black  group-hover:text-white">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -50,7 +50,7 @@
           <li>
 
               <a href="{{ route('peminjaman') }}"
-                  class="flex items-center p-2 w-44 conss absolute left-8 mt-[7.5rem] text-gray-900 rounded-lg dark:text-white  group">
+                  class="flex items-center p-2 w-44 conss transition ease-in-out duration-300 absolute left-8 mt-[7.5rem] text-gray-900 rounded-lg dark:text-white  group">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="w-6 h-6  group-hover:text-white text-black">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -65,7 +65,7 @@
           <li>
 
               <a href="{{ route('pengembalian') }}"
-                  class="flex items-center p-2 w-44 conss absolute left-8 mt-40 text-gray-900 rounded-lg dark:text-white  group">
+                  class="flex items-center p-2 w-44 conss transition ease-in-out duration-300 absolute left-8 mt-40 text-gray-900 rounded-lg dark:text-white  group">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="w-6 h-6  group-hover:text-white text-black">
                       <path stroke-linecap="round" stroke-linejoin="round"

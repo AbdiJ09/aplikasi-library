@@ -1,5 +1,5 @@
    <dialog id="update_buku{{ $buku->id }}" class="modal">
-       <div class="modal-box w-11/12 max-w-5xl lg:overflow-hidden">
+       <div class="modal-box w-11/12 max-w-5xl lg:overflow-auto">
            <h3 class="font-bold text-xl text-center text-white uppercase tracking-wide">Update Buku</h3>
            <hr class="border-neutral-500 my-2 border-dashed">
            <form action="{{ route('buku.update', $buku->id) }}" method="post" enctype="multipart/form-data">
@@ -64,6 +64,13 @@
                            placeholder="John" required name="tahun_terbit"
                            value="{{ old('tahun_terbit', $buku->tahun_terbit) }}">
                    </div>
+               </div>
+               <div class="my-3 text-white">
+                   <label for="deskripsi" class="block mb-2 text-sm font-medium text-white ">Deskripsi</label>
+                   <textarea id="deskripsi" name="deskripsi_buku" rows="4"
+                       class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       placeholder="Deskripsi buku...">{{ old('deskripsi_buku', $buku->deskripsi_buku) }}</textarea>
+
                </div>
                <div class="flex justify-center my-3">
                    <input type="hidden" name="oldImage" value="{{ $buku->gambar }}" id="">

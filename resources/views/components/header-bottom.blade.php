@@ -1,52 +1,127 @@
    <header
-       class="fixed bottom-0 left-0 w-full z-50 md:h-20 bg-neutral-200 border-t-2 border-neutral-300 py-1 rounded-lg lg:hidden">
+       class="fixed bottom-0 left-0 w-full z-50 md:h-20 bg-white border-t-2 border-neutral-200 py-1 rounded-lg lg:hidden
+       {{ Route::currentRouteName() == 'peminjaman' || Route::currentRouteName() == 'pengembalian' || Route::currentRouteName() == 'profile' ? 'hidden' : '' }}
+       ">
        <div class="flex justify-center items-center">
-           <ul class="flex space-x-14 md:space-x-20 items-center mt-1 ">
-               <li><a href="{{ route('home') }}"><i class="fa-solid fa-house text-3xl md:text-4xl"
-                           style="color: #000"></i></a></li>
+           <ul class="flex space-x-14 md:space-x-20 items-center mt-1 justify-center">
+               <li><a href="{{ route('home') }}" class="flex flex-col items-center justify-center"><i
+                           class="fa-solid fa-house text-2xl md:text-4xl" style="color: #000"></i><span
+                           class="font-medium text-xs">Home</span></a></li>
                <li>
-                   <button type="button"
-                       class="relative inline-flex items-center px-2 text-sm font-medium text-center text-white">
-                       <i class="fa-solid fa-bell text-3xl  md:text-4xl" style="color:#000"></i>
-
-                       <div
-                           class="absolute inline-flex items-center justify-center w-7 only:h-6 text-xs font-bold text-white bg-red-500 rounded-full -top-2 -right-3 dark:border-gray-900">
-                           8+</div>
-                   </button>
+                   <a href="" class="flex flex-col items-center justify-center">
+                       <i class="fa-solid fa-book text-2xl md:text-4xl"></i>
+                       <span class="font-medium text-xs">My Book</span>
+                   </a>
                </li>
-               <li><a href=""><i class="fa-solid fa-bookmark text-3xl  md:text-4xl" style="color:#000"></i></a>
+               <li><a href="" class="flex flex-col items-center justify-center"><i
+                           class="fa-solid fa-bookmark text-2xl  md:text-4xl" style="color:#000"></i>
+                       <span class="font-medium text-xs">Bookmark</span>
+                   </a>
                </li>
                <li>
                    @if (Auth::check())
-                       <div class="dropdown dropdown-top dropdown-end ">
-                           <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                               <div
-                                   class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                   <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor"
-                                       viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                       <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                           clip-rule="evenodd"></path>
-                                   </svg>
-                               </div>
+                       @if (auth()->user()->level == 'user')
 
-                           </label>
-                           <ul tabindex="0"
-                               class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                               <li>
-                                   <a class="justify-between">
-                                       Profile
-                                   </a>
-                               </li>
-                               <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                               <li>
-                                   <form action="{{ route('logout') }}">
-                                       @csrf
-                                       @method('delete')
-                                       <button type="submit">Logout</button>
-                                   </form>
-                               </li>
-                           </ul>
-                       </div>
+                           <a href="{{ route('profile') }}" class="flex flex-col items-center justify-center ">
+
+                               @if (auth()->user()->level === 'user' && auth()->user()->anggota->foto)
+                                   <img src="{{ '../storage/anggota/' . $peminjamans->Anggota->foto }}"
+                                       class="w-10 h-10  rounded-full cursor-pointer object-cover object-center"
+                                       alt="">
+                               @else
+                                   @php
+                                       $nama = auth()->user()->name;
+                                       $nama_depan = strtok($nama, ' ');
+                                       $nama_belakang = strtok('');
+                                       $inisial = strtoupper(substr($nama_depan, 0, 1) . substr($nama_belakang, 0, 1));
+                                   @endphp
+                                   <div
+                                       class="inline-flex -mt-2 items-center justify-center w-9 h-9 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                       <span
+                                           class="font-medium -mt-1 text-gray-600 dark:text-gray-300 text-2xl">{{ $inisial }}</span>
+                                   </div>
+                               @endif
+                               <span class="font-medium text-xs">Anda</span>
+                           </a>
+                       @else
+                           <div class="dropdown dropdown-top dropdown-end w-10">
+                               <div tabindex="0" role="button" class="btn m-1">
+                                   @if (auth()->check() && auth()->user()->level === 'user' && auth()->user()->anggota->foto)
+                                       <img src="{{ '../storage/anggota/' . auth()->user()->anggota->foto }}"
+                                           class="w-10 h-10  rounded-full cursor-pointer object-cover object-center"
+                                           alt="">
+                                   @else
+                                       @php
+                                           $nama = auth()->user()->name;
+                                           $nama_depan = strtok($nama, ' ');
+                                           $nama_belakang = strtok('');
+                                           $inisial = strtoupper(substr($nama_depan, 0, 1) . substr($nama_belakang, 0, 1));
+                                       @endphp
+                                       <div class="flex flex-col items-center">
+
+                                           <div
+                                               class="inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 shadow-lg rounded-full dark:bg-gray-600">
+                                               <span
+                                                   class="font-medium text-gray-600 dark:text-gray-300">{{ $inisial }}</span>
+                                           </div>
+                                           <span class="text-xs font-medium">Anda</span>
+                                       </div>
+                                   @endif
+                               </div>
+                               <ul tabindex="0"
+                                   class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                   <li @class([
+                                       'w-full',
+                                       'bg-gradient-to-r',
+                                       'from-purple-600',
+                                       'to-purple-900',
+                                       'rounded-md',
+                                       'flex',
+                                       'relative',
+                                       'p-2',
+                                       'overflow-hidden',
+                                   ])>
+                                       <div class="flex">
+                                           <div class="">
+                                               @if (auth()->user()->level === 'user' && auth()->user()->anggota->foto)
+                                                   <img src="{{ '../storage/anggota/' . $peminjamans->Anggota->foto }}"
+                                                       class="w-20 h-20  rounded-full cursor-pointer object-cover object-center"
+                                                       alt="">
+                                               @else
+                                                   @php
+                                                       $nama = auth()->user()->name;
+                                                       $nama_depan = strtok($nama, ' ');
+                                                       $nama_belakang = strtok('');
+                                                       $inisial = strtoupper(substr($nama_depan, 0, 1) . substr($nama_belakang, 0, 1));
+                                                   @endphp
+                                                   <div
+                                                       class="inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                                       <span
+                                                           class="font-medium text-gray-600 dark:text-gray-300 text-2xl">{{ $inisial }}</span>
+                                                   </div>
+                                               @endif
+                                           </div>
+                                           <div class="">
+                                               <h1 class="uppercase text-white font-bold text-xl">
+                                                   {{ auth()->user()->name }}</h1>
+                                               <h3 class="text-white font-medium text-sm">{{ auth()->user()->email }}
+                                               </h3>
+                                           </div>
+                                       </div>
+                                   </li>
+                                   <li><a
+                                           href="{{ auth()->user()->level === 'user' ? '' : route('dashboard') }}">{{ auth()->user()->level === 'user' ? 'My Book' : 'Dashboard' }}</a>
+                                   </li>
+                                   <li>
+                                       <form action="{{ route('logout') }}">
+                                           @csrf
+                                           @method('delete')
+                                           <button type="submit">Logout</button>
+                                       </form>
+                                   </li>
+                               </ul>
+                           </div>
+                       @endif
                    @else
                        <button class="text-black" onclick="my_modal_1.showModal()">
                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

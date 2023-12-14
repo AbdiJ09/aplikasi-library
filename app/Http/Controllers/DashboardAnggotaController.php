@@ -16,11 +16,11 @@ class DashboardAnggotaController extends Controller
      */
     public function index()
     {
-        $anggota = Anggota::latest()->paginate(5);
-        if (request()->has('searchAngota')) {
+        $anggota = Anggota::latest();
+        if (request()->has('searchAnggota')) {
             $anggota->where('nama', 'like', '%' . request('searchAnggota') . '%');
         }
-        return view('dashboard.anggota', ['anggota' => $anggota]);
+        return view('dashboard.anggota', ['anggota' => $anggota->paginate(5)]);
     }
 
 

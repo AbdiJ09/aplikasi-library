@@ -6,26 +6,26 @@
                @csrf
                <div class="grid grid-cols-1 lg:grid-cols-1 gap-3">
                    <div>
-                       <label for="nama" class="block mb-2 text-sm font-medium text-white ">Nama</label>
-                       <input type="text" id="nama"
+                       <label for="add_name" class="block mb-2 text-sm font-medium text-white ">Nama</label>
+                       <input type="text" id="add_name"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="jono" required name="name">
                    </div>
                    <div>
-                       <label for="username" class="block mb-2 text-sm font-medium text-white ">Username</label>
-                       <input type="text" id="username"
+                       <label for="add_username" class="block mb-2 text-sm font-medium text-white ">Username</label>
+                       <input type="text" id="add_username"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="jono123" required name="username">
                    </div>
                    <div>
-                       <label for="email" class="block mb-2 text-sm font-medium text-white ">Email</label>
-                       <input type="email" id="email"
+                       <label for="add_email" class="block mb-2 text-sm font-medium text-white ">Email</label>
+                       <input type="email" id="add_email"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="John@gmail.com" required name="email">
                    </div>
                    <div>
-                       <label for="password" class="block mb-2 text-sm font-medium text-white ">Password</label>
-                       <input type="password" id="password"
+                       <label for="add_password" class="block mb-2 text-sm font-medium text-white ">Password</label>
+                       <input type="password" id="add_password"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="John_123" required name="password">
                    </div>

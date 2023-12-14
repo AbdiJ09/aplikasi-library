@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\BukuImport;
 use App\Models\Buku;
 use App\Models\Kategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
 class DashboardBukuController extends Controller
@@ -15,10 +17,13 @@ class DashboardBukuController extends Controller
      */
     public function index()
     {
-        $books = Buku::latest()->paginate(5);
+        $books = Buku::latest();
         $jumlahStok = Buku::sum('jumlah_stok');
         $kategories = Kategory::all();
-        return view('dashboard.buku.buku', compact('books', 'kategories', 'jumlahStok'));
+        if (request()->has('searchBuku')) {
+            $books->where('judul', 'like', '%' . request('searchBuku') . '%');
+        }
+        return view('dashboard.buku.buku', ['books' => $books->paginate(5)], compact('kategories', 'jumlahStok'));
     }
 
     /**
@@ -32,6 +37,7 @@ class DashboardBukuController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
+
     {
         $conss = $request->validate([
             'kode_buku' => 'required|unique:bukus,kode_buku',
@@ -61,7 +67,8 @@ class DashboardBukuController extends Controller
             'jumlah_stok' => $request->jumlah_stok,
             'isbn' => $request->isbn,
             'slug' => $slug,
-            'gambar' => $newName
+            'gambar' => $newName,
+            'deskripsi_buku' => $request->deskripsi_buku,
         ]);
         if (!$conss) {
             return redirect('/dashboard/buku')->withErrors(['error' => 'Data Gagal Ditambahkan']);
@@ -99,6 +106,7 @@ class DashboardBukuController extends Controller
             'isbn' => 'required',
             'jumlah_stok' => 'required',
             'gambar' => 'file|mimes:jpeg,png,jpg|max:2048',
+            'deskripsi_buku' => 'required',
         ];
         $validate = $request->validate($rules);
         if ($request->file('gambar')) {
@@ -111,7 +119,7 @@ class DashboardBukuController extends Controller
             $validate['gambar'] = $newName;
         }
         Buku::where('id', $id)->update($validate);
-        return redirect()->back()->with('success', 'Anggota Berhasil Diubah');
+        return redirect()->back()->with('success', 'Buku Berhasil Diubah');
     }
 
     /**
@@ -120,6 +128,11 @@ class DashboardBukuController extends Controller
     public function destroy(string $id)
     {
         Buku::where('id', $id)->delete();
-        return redirect()->back()->with('success', 'Anggota Berhasil Dihapus');
+        return redirect()->back()->with('success', 'Buku Berhasil Dihapus');
+    }
+    public function import()
+    {
+        Excel::import(new BukuImport, request()->file('file'));
+        return redirect()->back();
     }
 }

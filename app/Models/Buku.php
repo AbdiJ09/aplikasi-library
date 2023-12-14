@@ -11,7 +11,6 @@ class Buku extends Model
 {
     use HasFactory;
 
-    protected $table = 'bukus';
 
     protected $guarded = [];
 
@@ -22,5 +21,12 @@ class Buku extends Model
     public function PeminjamanDetail()
     {
         return $this->hasMany(PeminjamanDetail::class, 'buku_id');
+    }
+
+    public function scopeFillter($query, array $filters)
+    {
+        $query->when($filters['query'] ?? false, function ($query, $search) {
+            return $query->where('judul', 'like', '%' . $search . '%');
+        });
     }
 }

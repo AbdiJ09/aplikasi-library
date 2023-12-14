@@ -7,7 +7,8 @@
 
             <h1 class="text-white mb-10"><i class="fa-solid fa-table-columns"></i> Page /
                 {{ Request::is('dashboard/peminjaman') ? 'Peminjaman' : '' }}</h1>
-            <x-dashboard.table :peminjaman="$peminjaman" :anggota="$anggota" :buku="$buku" />
+            <x-dashboard.table :peminjaman="$matchingPeminjaman" :anggota="$anggota" :buku="$buku" />
         </div>
     </div>
+    @vite(['resources/js/peminjaman.js'])
 @endsection

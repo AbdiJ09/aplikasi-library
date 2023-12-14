@@ -13,8 +13,11 @@ class DashboardPetugasController extends Controller
      */
     public function index()
     {
-        $petugas = User::where('level', 'petugas')->get();
-        return view('dashboard.petugas.index', compact('petugas'));
+        $petugas = User::where('level', 'petugas')->latest();
+        if (request()->has('searchPetugas')) {
+            $petugas->where('name', 'like', '%' . request('searchPetugas') . '%');
+        }
+        return view('dashboard.petugas.index', ['petugas' => $petugas->paginate(5)]);
     }
 
     /**

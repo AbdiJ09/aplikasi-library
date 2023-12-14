@@ -81,7 +81,7 @@
                         <h3 class="text-center tracking-wide text-neutral-700  text-[10px] lg:text-xl">
                             Wanita</h3>
                         <div class="flex justify-center items-center space-x-2 lg:space-x-4">
-                            <i class="fa-solid fa-file-arrow-down lg:text-xl text-neutral-700"></i>
+                            <i class="fa-solid fa-venus text-black lg:text-xl"></i>
                             <span class="font-bold text-neutral-700">|</span>
                             <h3 class="lg:text-xl text-neutral-700">
                                 {{ $wanitaAnggota ? $wanitaAnggota->count() : 0 }}

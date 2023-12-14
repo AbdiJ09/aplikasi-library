@@ -21,7 +21,7 @@
                    <div>
                        <label for="gender" class="block mb-2 text-sm font-medium text-white ">Gender</label>
 
-                       <select class="select select-primary w-full max-w-xs" name="jenis_kelamin[]">
+                       <select class="select select-primary w-full max-w-xs" id="gender" name="jenis_kelamin[]">
                            <option disabled selected>Jenis Kelamin</option>
                            <option value="pria">Pria</option>
                            <option value="wanita">Wanita</option>
@@ -85,13 +85,13 @@
                    <div>
                        <label for="kode_anggota" class="block mb-2 text-sm font-medium text-white ">Kode
                            Anggota</label>
-                       <input type="text" id="kode_anggota"
+                       <input type="text" 
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="55AABH" required name="kode_anggota[]">
                    </div>
                    <div>
                        <label for="nama" class="block mb-2 text-sm font-medium text-white ">Nama</label>
-                       <input type="text" id="nama"
+                       <input type="text" 
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="John" required name="nama[]">
                    </div>
@@ -107,20 +107,20 @@
                    <div>
                        <label for="tempat_lahir" class="block mb-2 text-sm font-medium text-white ">Tempat
                            Lahir</label>
-                       <input type="text" id="tempat_lahir"
+                       <input type="text" 
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="John" required name="tempat_lahir[]">
                    </div>
                    <div>
                        <label for="tanggal_lahir" class="block mb-2 text-sm font-medium text-white ">Tanggal
                            lahir</label>
-                       <input type="date" id="tanggal_lahir"
+                       <input type="date" 
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="John" required name="tanggal_lahir[]">
                    </div>
                    <div>
                        <label for="telpon" class="block mb-2 text-sm font-medium text-white ">Telpon</label>
-                       <input type="number" id="telpon"
+                       <input type="number" 
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="John" required name="telpon[]">
                    </div>
@@ -128,7 +128,7 @@
 
                        <label for="alamat"
                            class="block mb-2 text-sm font-medium text-white dark:text-white">Alamat</label>
-                       <textarea id="alamat" rows="4"
+                       <textarea rows="4"
                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="Write your thoughts here..." name="alamat[]"></textarea>
 

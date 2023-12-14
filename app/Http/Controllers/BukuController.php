@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Exports\BukuExport;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
@@ -23,8 +24,9 @@ class BukuController extends Controller
     }
     public function detailBuku(string $slug)
     {
-        $book = Buku::where('slug', $slug)->first();
-        return view('buku.detailBuku', compact('book'));
+        $book = Buku::with('PeminjamanDetail')->where('slug', $slug)->first();
+        $peminjaman = Peminjaman::where('user_id', auth()->user()->id)->get();
+        return view('buku.detailBuku', compact('book', 'peminjaman'));
     }
     public function search(Request $request)
     {

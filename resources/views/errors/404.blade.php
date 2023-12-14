@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-    <link rel="stylesheet" href="/build/assets/app-076f4e81.css">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <title>404 Not Found</title>
 </head>
@@ -199,7 +198,7 @@
                     <p class="text-sm md:text-base text-yellow-300 p-2 mb-4">The stuff you were looking for doesn't
                         exist
                     </p>
-                    <a href="/"
+                    <a href="{{ redirect()->back()->getTargetUrl() }}"
                         class="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">
                         Retry</a>
                 </div>

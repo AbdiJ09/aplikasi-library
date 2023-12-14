@@ -62,7 +62,12 @@
                 text-purple-500 underline mt-2" onclick="toggleDescription()"
                 id="selengkapnya">Selengkapnya</button>
             <div class="Detail">
-                <h1 class="my-2 text-white text-2xl tracking-wide font-semibold">Detail</h1>
+                <div class="flex justify-between items-center lg:justify-start lg:gap-4">
+                    <h1 class="my-2 text-white text-2xl tracking-wide font-semibold">Detail</h1>
+                    @if (Auth::check())
+                        <x-SiswaPinjamBuku :buku="$book" :peminjaman="$peminjaman" />
+                    @endif
+                </div>
                 <div class="grid grid-cols-2 lg:grid-cols-3 border lg:border-none rounded-xl p-6 gap-3 mb-10">
                     <div class="">
                         <p class="text-white">Penulis</p>
@@ -97,8 +102,8 @@
     </section>
     <script>
         function toggleDescription() {
-            var description = document.querySelector('.description');
-            var button = document.getElementById('selengkapnya');
+            const description = document.querySelector('.description');
+            const button = document.getElementById('selengkapnya');
 
             if (description.classList.contains('expanded')) {
                 description.classList.remove('expanded');

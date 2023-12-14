@@ -2,12 +2,6 @@
 @section('landingPage')
     <div class="w-full  landing bg-cover bg-bottom flex flex-col justify-center  items-center  h-screen overflow-hidden"
         style="background-image: url('../img/bgg.png')">
-        <header class="absolute top-0 left-0 w-full px-8 md:px-48 py-6">
-            <div class="flex justify-between">
-                <a href="#" class="logo text-white tracking-[.2rem] text-xl">ZULY</a>
-            </div>
-
-        </header>
         <section class="relative
                     mx-auto max-w-4xl w-full py-32 px-5 sm:py-48 lg:py-56  overflow-hidden">
             <img src="{{ asset('img/satur.png') }}" alt=""

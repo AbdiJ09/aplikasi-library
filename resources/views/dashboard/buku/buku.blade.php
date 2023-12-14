@@ -38,7 +38,7 @@
                     </div>
                     <input type="search" id="default-search"
                         class="block w-2/4 p-1 pl-10 text-sm my-3 text-gray-900 border border-gray-300 rounded-full bg-zinc-300 focus:ring-violet-500 focus:border-violet-500 dark:bg-gray-700 dark:border-gray-600 placeholder-gray-800 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
-                        placeholder="Cari buku..." required>
+                        placeholder="Cari buku..." name="searchBuku" value="{{ request('searchBuku') }}">
 
                 </div>
             </form>
@@ -81,7 +81,6 @@
                 </div>
             </div>
             <x-dashboard.table :books="$books" :kategories="$kategories" />
-
             <x-dashboard.addBuku :kategories="$kategories" />
         </div>
     </div>

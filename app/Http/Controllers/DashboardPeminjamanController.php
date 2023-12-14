@@ -16,12 +16,35 @@ class DashboardPeminjamanController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        $peminjaman = Peminjaman::latest()->get();
+        $cekPeminjaman = Peminjaman::all();
+
+        $matchingPeminjaman = [];
+        if (request()->fillter == "") {
+            $matchingPeminjaman = $cekPeminjaman;
+        } elseif (request()->fillter == "byAnggota") {
+            foreach ($cekPeminjaman as $pem) {
+                if ($pem->Anggota->user_id == $pem->user_id) {
+                    $matchingPeminjaman[] = $pem;
+                }
+            }
+        } elseif (request()->fillter == "byPetugas") {
+            foreach ($cekPeminjaman as $pem) {
+                if ($pem->Anggota->user_id != $pem->user_id) {
+                    $matchingPeminjaman[] = $pem;
+                }
+            }
+        } else {
+            $matchingPeminjaman = $cekPeminjaman;
+        }
         $anggota = Anggota::all();
-        $buku = Buku::all();
-        return view('dashboard.peminjaman.index', compact('peminjaman', 'anggota', 'buku'));
+        $buku = Buku::latest()->fillter(request(['query']))->get();
+        if (request()->ajax()) {
+            return response()->json(['buku' => $buku]);
+        }
+        return view('dashboard.peminjaman.index', compact('matchingPeminjaman', 'anggota', 'buku'));
     }
 
     /**
@@ -37,10 +60,10 @@ class DashboardPeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        $existingPeminjaman = Peminjaman::where('anggota_id', $request->anggota_id)->first();
-        if ($existingPeminjaman) {
-            return redirect()->back()->with('error', 'Anggota sudah melakukan peminjaman sebelumnya.');
-        }
+        // $existingPeminjaman = Peminjaman::where('anggota_id', $request->anggota_id)->first();
+        // if ($existingPeminjaman) {
+        //     return redirect()->back()->with('error', 'Anggota sudah melakukan peminjaman sebelumnya.');
+        // }
 
         $peminjaman = Peminjaman::create([
             'anggota_id' => $request->anggota_id,

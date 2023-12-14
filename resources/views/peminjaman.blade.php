@@ -14,7 +14,8 @@
             <div class="absolute right-5">
                 <div class="input-container">
                     <input type="hidden" name="anggota" value="{{ request('anggota') }}" id="anggota">
-                    <input placeholder="Search something..." class="input peminjamanSearch" name="search" type="text">
+                    <input placeholder="Search something..." class="inputSearch peminjamanSearch" name="search"
+                        type="text">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
                         <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
                         <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
@@ -49,7 +50,7 @@
         class ="w-full mx-auto z-[20]  relative  my-40 lg:my-52 md:grid md:grid-cols-2 md:gap-6 lg:grid lg:grid-cols-3 lg:gap-4 peminjaman-container bg-gradient-to-r from-purple-950 via-black to-purple-950 p-5 lg:p-8 rounded-xl overflow-hidden">
         @foreach ($peminjaman as $item)
             @if (request('anggota'))
-                <a href="/peminjaman" class="absolute left-8 top-0 lg:top-3">
+                <a href="{{ redirect()->back()->getTargetUrl() }}" class="absolute left-8 top-0 lg:top-3">
                     <button class="underline text-white tracking-wide font-medium my-2 lg:my-0">Kembali</button>
                 </a>
             @endif
@@ -63,7 +64,7 @@
                             {{ $i->Buku->judul }} </h1>
                         <a href = "peminjaman?anggota={{ $item->Anggota->kode_anggota }}">
 
-                            <h4 class = "text-purple-600 font-bold text-lg tracking-wide"
+                            <h4 class = "text-purple-600 font-semibold underline underline-offset-2 decoration-purple-500 text-lg tracking-wide"
                                 style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5)">
                                 {{ $item->Anggota->nama }}
                             </h4>
@@ -82,148 +83,5 @@
         @endforeach
 
     </div>
-    <script script type="module">
-        $("#btn-peminjaman").on("click", function() {
-            $(".peminjaman").toggleClass("h-[4.8rem]");
-            $("#btn-peminjaman").toggleClass("rotate-180");
-
-            const toggleHeader = localStorage.getItem("toggleHeader");
-            if (toggleHeader === 'h-[4.8rem]') {
-                localStorage.removeItem("toggleHeader");
-            } else {
-                localStorage.setItem("toggleHeader", 'h-[4.8rem]');
-            }
-        });
-
-        const toggleHeader = localStorage.getItem("toggleHeader");
-        if (toggleHeader === 'h-[4.8rem]') {
-            $(".peminjaman").addClass("h-[4.8rem]");
-            $("#btn-peminjaman").addClass("rotate-180");
-        }
-    </script>
-    <script type="module">
-        $(document).ready(function() {
-            $('.formPeminjaman').on('submit', function(e) {
-                e.preventDefault();
-            })
-            $(".peminjamanSearch").on("input", function() {
-                const request = $('.peminjamanSearch').attr("name")
-                const anggota = $('#anggota').val().trim();
-                const query = $(this).val();
-                let url = ''
-                if (anggota === '') {
-                    url = "/peminjaman?" + request + "=" + encodeURIComponent(query);
-                } else {
-                    url =
-                        `/peminjaman?anggota=${anggota}&${request}=${encodeURIComponent(query)}`;
-
-                }
-                history.replaceState(null, null, url);
-                $.ajax({
-                    type: "get",
-                    url: url,
-                    data: {
-                        q: query,
-                    },
-                    dataType: "json",
-                    success: function(data) {
-                        let peminjaman = data.peminjaman;
-                        let peminjamanContainer = $(".peminjaman-container");
-                        peminjamanContainer.empty()
-                        if (peminjaman.length === 0) {
-                            peminjamanContainer.append(
-                                `  <div class="flex justify-center items-center flex-col  w-full lg:w-full     space-y-2 ">
-                            <span class="text-5xl">😥</span>
-                            <h1 class="text-white font-bold tracking-wider text-3xl text-center lg:text-5xl">Peminjaman Tidak Ditemukan</h1>
-                            <p class="text-center text-gray-200 font-medium">Kami tidak menemukan peminjaman yang sesuai dengan kata kunci
-                                yang anda
-                                cari...</p>
-                            <button
-                                class="bg-white rounded-xl p-2 font-bold border-none active:scale-75 transition duration-300 ease-in-out" id="hapusPencarianBtn"
-                                style="box-shadow: 0 4px 0 5px #480777">Hapus
-                                Pencarian</button>
-                        </div>`
-                            )
-                            $("#hapusPencarianBtn").on("click", function() {
-                                const url = new URL(window.location.href);
-                                url.searchParams.delete("search");
-
-                                // Memuat ulang halaman dengan URL yang sudah diubah
-                                window.location.href = url.toString();
-                            });
-                        } else {
-
-                            $.each(peminjaman, function(key, value) {
-                                let detail;
-
-                                if (query && query.trim() !== '') {
-                                    detail = value.peminjaman_detail.filter(function(
-                                        detail) {
-                                        return detail.buku.judul.toLowerCase()
-                                            .includes(query.toLowerCase());
-                                    });
-                                } else {
-                                    detail = value.peminjaman_detail;
-                                }
-                                if (detail) {
-                                    if (Array.isArray(detail)) {
-                                        $.each(detail, function(index, buku) {
-                                            const gambar = buku.buku.gambar ?
-                                                "../storage/buku/" + buku.buku
-                                                .gambar : "";
-                                            peminjamanContainer.append(`
-                                         <img src="/img/Asset 1.png" alt="" class="fixed top-1/3 w-1/3 right-0  -z-10">
-                                        <img src="/img/satur.png" alt="" class="fixed top-36 w-1/3 left-0  -z-10">
-                                        <img src="/img/starr.png" alt="" class="fixed animate-pulse bg-cover bg">
-
-                                                    <div class ="w-full bg-black/40 shadow-purple-700 relative  shadow-xl rounded-lg  h-44 flex m-auto items-center px-3 mb-5 mt-3 overflow-hidden py-2">
-                                                        <img class="w-20 rounded-lg border border-purple-500" src="${gambar}" class="object-cover object-center" alt />
-                                                        <div class="px-3 space-y-3">
-                                                            <span class="font-semibold text-white ">${buku.buku.judul}</span>
-                                                            <a href="peminjaman?anggota=${value.anggota.id}">
-                                                                <h4 class = "text-purple-600 font-bold text-lg tracking-wide"
-                                                                style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5)">${value.anggota.nama}</h4>
-                                                            </a>
-                                                            <div class="w-fit bg-gradient-to-r from-purple-500 to-purple-800 p-1 rounded-lg">
-                                                            <p class="text-white font-medium">Tgl Pinjam : ${value.tanggal_pinjam}</p>
-                                                                </div>
-
-                                                            <span class="badge bg-white border-none badge-md">${value.status}</button>
-                                                        </div>
-                                                    </div>
-                                                `);
-
-                                        });
-                                    } else {
-                                        const gambar = detail.buku.gambar ?
-                                            "../storage/buku/" + detail.buku.gambar :
-                                            "";
-                                        peminjamanContainer.append(`
-                                                            <img src="/img/Asset 1.png" alt="" class="fixed top-1/3 w-1/3 right-0  -z-10">
-                                        <img src="/img/satur.png" alt="" class="fixed top-36 w-1/3 left-0  -z-10">
-                                        <img src="/img/starr.png" alt="" class="fixed animate-pulse bg-cover bg">
-                                                    <div class ="w-full bg-black/40 shadow-purple-700 relative  shadow-xl rounded-lg  h-44 flex m-auto items-center px-3 mb-5 mt-3 overflow-hidden py-2">
-                                                        <img class="w-20 rounded-lg border border-purple-500" src="${gambar}" class="object-cover object-center" alt />
-                                                        <div class="px-3 space-y-3">
-                                                            <span class="font-semibold text-white">${detail.buku.judul}</span>
-                                                            <a href="peminjaman?anggota=${value.anggota.kode_anggota}">
-                                                                <h4 class = "text-purple-600 font-bold text-lg tracking-wide"
-                                                             style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5)">${value.anggota.nama}</h4>
-                                                            </a>
-                                                            <div class="w-fit bg-gradient-to-r from-purple-500 to-purple-800 p-1 rounded-lg">
-                                                            <p class="text-white font-medium">Tgl Pinjam : ${value.tanggal_pinjam}</p>
-                                                                </div>
-                                                            <span class="badge bg-white border-none badge-md">${value.status}</span>
-                                                        </div>
-                                                    </div>
-                                                `);
-                                    }
-                                }
-                            });
-                        }
-                    },
-                });
-            });
-        });
-    </script>
+    @vite('resources/js/peminjaman.js')
 @endsection
