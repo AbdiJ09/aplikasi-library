@@ -37,6 +37,48 @@
 
  </div>
 
+ <script>
+     function updateStatus(peminjamanId) {
+         const newStatus = "dipinjam";
+         $(".notifSuccessStatus").html("");
+         $("#status_verifikasi" + peminjamanId).val(newStatus);
+
+         $.ajax({
+             url: `{{ route('peminjaman.update', ':id') }}`.replace(':id', peminjamanId),
+             type: "PATCH",
+             data: {
+                 status: newStatus,
+                 _token: '{{ csrf_token() }}'
+             },
+             success: function(response) {
+                 $(".notifSuccessStatus").html(
+                     `
+                        <div id="alert-border-3" class="flex items-center rounded-lg p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
+                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <div class="ms-3 text-sm font-medium">
+                        ${response.message}
+                        </div>
+                        <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700"  data-dismiss-target="#alert-border-3" aria-label="Close">
+                        <span class="sr-only">Dismiss</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        </button>
+                    </div>
+                    `
+                 )
+             },
+             error: function(error) {
+                 console.error('Gagal mengubah status', error);
+             }
+         });
+     }
+ </script>
+ <div class="notifSuccessStatus absolute top-10 left-0">
+
+ </div>
  @foreach ($peminjaman as $peminjamans)
      <div class="w-full p-1 shadow-xl bg-zinc-200 rounded-xl relative my-3 ">
          <div class="grid grid-cols-5 content-center h-10 justify-items-center">
@@ -59,7 +101,14 @@
              <span></span>
              <h4 class="text-xs text-neutral-700">{{ $peminjamans->tanggal_pinjam }}</h4>
              <h4 class="text-xs text-neutral-700">{{ $peminjamans->lama_pinjam }} Hari</h4>
-             <h4 class="text-xs text-neutral-700">{{ $peminjamans->status }}</h4>
+             @if ($peminjamans->status == 'verifikasi')
+                 <input type="text" name="status" data-status-id="{{ $peminjamans->id }}"
+                     id="status_verifikasi{{ $peminjamans->id }}" value="{{ $peminjamans->status }}"
+                     class="badge bg-warning text-white border-0 cursor-pointer w-20" readonly
+                     onclick="updateStatus({{ $peminjamans->id }})">
+             @else
+                 <h4 class="text-white badge bg-purple-500 border-0">{{ $peminjamans->status }}</h4>
+             @endif
              <div class="dropdown dropdown-top dropdown-end absolute right-[1.1rem] lg:right-[5.2rem]">
                  <label tabindex="0" class="btn m-1 btn-sm rounded-full">></label>
                  <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">

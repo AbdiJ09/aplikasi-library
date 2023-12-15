@@ -19,12 +19,17 @@ class Pengembalian extends Model
     }
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['search'] ?? false, function ($query, $anggota) {
-            return $query->whereHas('Peminjaman.Anggota', function ($query) use ($anggota) {
-                $query->where('nama', 'like', '%' . $anggota . '%');
-            });
+        $query->when($filters['search'], function ($query, $anggota) {
+            if ($anggota && strlen($anggota)) {
+                return $query->whereHas('Peminjaman.Anggota', function ($query) use ($anggota) {
+                    $query->where('nama', 'like', '%' . $anggota . '%');
+                });
+            }
         });
     }
+
+
+
     public function User()
     {
         return $this->belongsTo(User::class, 'user_id');

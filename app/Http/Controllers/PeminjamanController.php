@@ -19,7 +19,7 @@ class PeminjamanController extends Controller
      */
     public function index(Request $request)
     {
-        $peminjaman = Peminjaman::latest()->filter(['search' => $request->input('search'), 'anggota' => $request->input('anggota')])->get();
+        $peminjaman = Peminjaman::where('status', 'dipinjam')->latest()->filter(['search' => $request->input('search'), 'anggota' => $request->input('anggota')])->get();
         if ($request->ajax()) {
             return response()->json(['peminjaman' => $peminjaman]);
         }
@@ -41,7 +41,7 @@ class PeminjamanController extends Controller
                 'lama_pinjam' => $request->lama_pinjam,
                 'tanggal_pinjam' => $request->tanggal_pinjam,
                 'keterangan' => $request->keterangan,
-                'status' => 'dipinjam',
+                'status' => 'verifikasi',
                 'user_id' => auth()->user()->id
             ]);
             $peminjamanDetail = PeminjamanDetail::create([

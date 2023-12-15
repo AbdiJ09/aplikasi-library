@@ -21,14 +21,12 @@ class Peminjaman extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->whereHas('PeminjamanDetail', function ($query) use ($search) {
-                $query->whereHas('Buku', function ($query) use ($search) {
-                    $query->where('judul', 'like', '%' . $search . '%');
-                });
+            return $query->whereHas('Anggota', function ($query) use ($search) {
+                $query->where('nama', 'like', '%' . $search . '%');
             });
         });
         $query->when($filters['anggota'] ?? false, function ($query, $anggota) {
-            return $query->whereHas('anggota', function ($query) use ($anggota) {
+            return $query->whereHas('Anggota', function ($query) use ($anggota) {
                 $query->where('kode_anggota', 'like', '%' . $anggota . '%');
             });
         });

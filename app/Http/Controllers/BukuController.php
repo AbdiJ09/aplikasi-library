@@ -19,14 +19,13 @@ class BukuController extends Controller
     public function AllBuku(Request $request)
     {
 
-        $allBooks = Buku::latest()->get();
+        $allBooks = Buku::latest()->paginate(8);
         return view('buku.buku', compact('allBooks'));
     }
     public function detailBuku(string $slug)
     {
         $book = Buku::with('PeminjamanDetail')->where('slug', $slug)->first();
-        if(auth()->check())
-        {
+        if (auth()->check()) {
             $peminjaman = Peminjaman::where('user_id', auth()->user()->id)->get();
             return view('buku.detailBuku', compact('book', 'peminjaman'));
         }

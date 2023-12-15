@@ -99,7 +99,11 @@ class DashboardPeminjamanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $peminjaman = Peminjaman::find($id);
+        $peminjaman = Peminjaman::findOrFail($id);
+        if ($request->status) {
+            $peminjaman->update(['status' => $request->status]);
+            return response()->json(['message' => 'Status berhasil diubah', 'status' => $request->status]);
+        }
 
         if ($peminjaman) {
             $peminjaman->update([

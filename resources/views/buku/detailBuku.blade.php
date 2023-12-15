@@ -38,7 +38,7 @@
         </div>
 
         <div
-            class="w-full relative  bg-gradient-to-r from-purple-950 to-fuchsia-950 border border-purple-400 rounded-2xl mb-6 p-3 lg:w-[85%] lg:mx-auto lg:px-16 tamsis shadow-lg">
+            class="w-full relative  bg-gradient-to-r from-purple-950 to-fuchsia-950 border border-purple-400 rounded-2xl mb-0 lg:mb-6 p-3 lg:w-[85%] lg:mx-auto lg:px-16 tamsis shadow-lg">
             <h1 class="text-white text-2xl tracking-wide font-semibold lg:mt-28 ">Deskripsi</h1>
             <div class="description text-slate-300">
                 {{ $book->deskripsi_buku }}

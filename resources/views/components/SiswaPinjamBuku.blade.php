@@ -12,7 +12,9 @@
 @endphp
 
 @if ($isBookBorrowed)
-    <button class="bg-purple-500 text-white rounded-lg py-2 px-3 font-medium uppercase my-2">Di Pinjam</button>
+    <button
+        class="bg-transparent border border-purple-500 text-white rounded-lg py-2 px-3 font-medium uppercase mb-7 w-full ">Di
+        Pinjam</button>
 @else
     <button class="bg-purple-500 text-white rounded-lg py-2 px-3 font-medium uppercase mb-7 w-full"
         onclick="toggleModalPinjam.showModal()">Pinjam sekarang</button>
@@ -42,7 +44,8 @@
                     <button type="submit" class="btn">Pinjam</button>
             </form>
             <form method="dialog">
-                <button class="absolute top-1 right-1 rounded-full text-white px-3 py-1 text-xl hover:bg-gray-400/40">x</button>
+                <button
+                    class="absolute top-1 right-1 rounded-full text-white px-3 py-1 text-xl hover:bg-gray-400/40">x</button>
             </form>
         </div>
         </div>

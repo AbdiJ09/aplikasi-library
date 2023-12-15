@@ -3,9 +3,16 @@ $(function () {
         const request = $(".pengembalianSearch").attr("name");
         const query = $(this).val();
         let url = "";
-
+        const urlParams = new URLSearchParams(window.location.search);
+        const fillter = urlParams.get("fillter");
         url = "/pengembalian?" + request + "=" + encodeURIComponent(query);
-
+        if (fillter === "belum-dikembalikan") {
+            url =
+                "/pengembalian?fillter=belum-dikembalikan&" +
+                request +
+                "=" +
+                encodeURIComponent(query);
+        }
         history.replaceState(null, null, url);
         $.ajax({
             type: "get",
@@ -15,10 +22,16 @@ $(function () {
             },
             dataType: "json",
             success: function (data) {
-                let pengembalian = data.pengembalian;
+                let pengembalian = data;
                 let pengembalianContainer = $(".pengembalianContainer");
                 pengembalianContainer.empty();
-                if (pengembalian.length === 0) {
+                if (
+                    (pengembalian &&
+                        pengembalian.tidakDikembalikan &&
+                        pengembalian.tidakDikembalikan.length === 0) ||
+                    (pengembalian.pengembalian &&
+                        pengembalian.pengembalian.length === 0)
+                ) {
                     pengembalianContainer.removeClass("lg:grid-cols-3");
                     pengembalianContainer.addClass("lg:grid-cols-1");
                     pengembalianContainer.append(
@@ -56,83 +69,178 @@ $(function () {
                                 </select>
                             </form>
                     `);
-                    $.each(pengembalian, function (key, value) {
-                        let nama = value.peminjaman.anggota.nama;
-                        let nama_depan = nama.split(" ")[0];
-                        let nama_belakang = nama.split(" ")[1] || "";
-                        let inisial = (
-                            nama_depan.charAt(0) + nama_belakang.charAt(0)
-                        ).toUpperCase();
-                        pengembalianContainer.append(
-                            ` 
-                            <div class="w-full bg-black/40 shadow-purple-700 relative  shadow-lg rounded-lg py-7 items-center px-3 mb-5 space-y-2 overflow-hidden mx-auto">
-                                        <div class="flex justify-between items-center space-x-3">
-                                            <div class="flex flex-col justify-center items-center space-y-2">
-                                     ${
-                                         value.peminjaman.anggota.foto
-                                             ? `
-                                                                                                                                                                    <img src="../storage/anggota/${value.peminjaman.anggota.foto}"
-                                                                                                                                                                        class="w-14 h-14 lg:w-20 lg:h-20 object-cover rounded-full" alt="">`
-                                             : `<div
-                                                                                                                                                                    class="inline-flex items-center justify-center w-14  h-14 md:w-20 md:h-20 lg:w-20 lg:h-20 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                                                                                                                                                    <span
-                                                                                                                                                                        class="font-medium text-gray-600 dark:text-gray-300 text-4xl">${inisial}</span>
-                                                                                                                                                                </div>`
-                                     }
-
-                            ${
-                                value.telat
-                                    ? `<span class=" text-white uppercase text-[8px] bg-error px-1 lg:text-xs rounded-xl">${value.peminjaman.status}</span>`
-                                    : ` <span class=" text-black uppercase text-[8px] lg:text-xs bg-success px-1 rounded-xl">${value.peminjaman.status}</span>`
-                            }
-                    </div>
-                    <div class="w-full">
-                        <h5 class="font-semibold leading-6 text-lg lg:text-2xl text-gray-300 -mt-3 ">
-                            ${value.peminjaman.anggota.nama}
-                        </h5>
-                        <div class="flex space-x-3 mt-2">
-
-                            <div class="text-sm lg:text-lg text-gray-400">
-                                <p class="text-xs lg:text-base">Tgl Peminjaman</p>
-                                <p class="text-[12px] lg:text-sm font-semibold text-gray-300">
-                                    ${value.peminjaman.tanggal_pinjam}
-                                </p>
-                            </div>
-                            <div class="text-sm lg:text-lg text-gray-400">
-                                <p class="text-xs lg:text-base">Tgl Pengembalian</p>
-                                <p class="text-[12px] lg:text-sm font-semibold text-gray-300">${
-                                    value.tanggal_kembali
-                                }
-                                </p>
-                            </div>
-                        </div>
-                        <div class="mt-2">
-                            <h6 class="text-gray-300 text-xs lg:text-base">keterangan</h6>
-                            <div class="bg-transparent border rounded-lg border-gray-700 p-1 text-gray-400 w-5/6">
+                    if (pengembalian.pengembalian) {
+                        $.each(
+                            pengembalian.pengembalian,
+                            function (key, value) {
+                                let nama = value.peminjaman.anggota.nama;
+                                let nama_depan = nama.split(" ")[0];
+                                let nama_belakang = nama.split(" ")[1] || "";
+                                let inisial = (
+                                    nama_depan.charAt(0) +
+                                    nama_belakang.charAt(0)
+                                ).toUpperCase();
+                                pengembalianContainer.append(
+                                    `
+                                <div class="w-full bg-black/40 shadow-purple-700 relative  shadow-lg rounded-lg py-7 items-center px-3 mb-5 space-y-2 overflow-hidden mx-auto">
+                                            <div class="flex justify-between items-center space-x-3">
+                                                <div class="flex flex-col justify-center items-center space-y-2">
+                                         ${
+                                             value.peminjaman.anggota.foto
+                                                 ? `
+                                                                                                                                                                        <img src="../storage/anggota/${value.peminjaman.anggota.foto}"
+                                                                                                                                                                            class="w-14 h-14 lg:w-20 lg:h-20 object-cover rounded-full" alt="">`
+                                                 : `<div
+                                                                                                                                                                        class="inline-flex items-center justify-center w-14  h-14 md:w-20 md:h-20 lg:w-20 lg:h-20 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                                                                                                                                                        <span
+                                                                                                                                                                            class="font-medium text-gray-600 dark:text-gray-300 text-4xl">${inisial}</span>
+                                                                                                                                                                    </div>`
+                                         }
+    
                                 ${
                                     value.telat
-                                        ? `<p class="text-xs lg:text-sm">Telat mengembalikan Buku</p>`
-                                        : `<p class="text-xs lg:text-sm">Tepat Mengembalikan Buku</p>`
+                                        ? `<span class=" text-white uppercase text-[8px] bg-error px-1 lg:text-xs rounded-xl">${value.peminjaman.status}</span>`
+                                        : ` <span class=" text-black uppercase text-[8px] lg:text-xs bg-success px-1 rounded-xl">${value.peminjaman.status}</span>`
                                 }
-                            </div>
                         </div>
-
+                        <div class="w-full">
+                            <h5 class="font-semibold leading-6 text-lg lg:text-2xl text-gray-300 -mt-3 ">
+                                ${value.peminjaman.anggota.nama}
+                            </h5>
+                            <div class="flex space-x-3 mt-2">
+    
+                                <div class="text-sm lg:text-lg text-gray-400">
+                                    <p class="text-xs lg:text-base">Tgl Peminjaman</p>
+                                    <p class="text-[12px] lg:text-sm font-semibold text-gray-300">
+                                        ${value.peminjaman.tanggal_pinjam}
+                                    </p>
+                                </div>
+                                <div class="text-sm lg:text-lg text-gray-400">
+                                    <p class="text-xs lg:text-base">Tgl Pengembalian</p>
+                                    <p class="text-[12px] lg:text-sm font-semibold text-gray-300">${
+                                        value.tanggal_kembali
+                                    }
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <h6 class="text-gray-300 text-xs lg:text-base">keterangan</h6>
+                                <div class="bg-transparent border rounded-lg border-gray-700 p-1 text-gray-400 w-5/6">
+                                    ${
+                                        value.telat
+                                            ? `<p class="text-xs lg:text-sm">Telat mengembalikan Buku</p>`
+                                            : `<p class="text-xs lg:text-sm">Tepat Mengembalikan Buku</p>`
+                                    }
+                                </div>
+                            </div>
+    
+                        </div>
+                         <div
+                            class="absolute -right-6 -top-[4.4rem] bg-white shadow-md shadow-purple-600 rounded-full h-28 w-28 lg:w-28 lg:h-28 overflow-hidden">
+                            <p class="text-black text-[8px] lg:text-[10px] mt-[4.5rem]   ms-5 font-bold flex flex-col">
+                                Peminjaman<span
+                                    class="text-lg lg:text-2xl ms-4 -mt-1">${
+                                        value.peminjaman.lama_pinjam
+                                    }H</span></p>
+                        </div>
                     </div>
-                     <div
-                        class="absolute -right-6 -top-[4.4rem] bg-white shadow-md shadow-purple-600 rounded-full h-28 w-28 lg:w-28 lg:h-28 overflow-hidden">
-                        <p class="text-black text-[8px] lg:text-[10px] mt-[4.5rem]   ms-5 font-bold flex flex-col">
-                            Peminjaman<span
-                                class="text-lg lg:text-2xl ms-4 -mt-1">${
-                                    value.peminjaman.lama_pinjam
-                                }H</span></p>
-                    </div>
-                </div>
-            </div>`,
+                </div>`,
+                                );
+                                $('select[name="fillter"]').on(
+                                    "change",
+                                    function () {
+                                        $("#formPengembalian").trigger(
+                                            "submit",
+                                        );
+                                    },
+                                );
+                            },
                         );
-                        $('select[name="fillter"]').on("change", function () {
-                            $("#formPengembalian").trigger("submit");
-                        });
-                    });
+                    } else if (pengembalian.tidakDikembalikan) {
+                        $.each(
+                            pengembalian.tidakDikembalikan,
+                            function (key, value) {
+                                let nama = value.anggota.nama;
+                                let nama_depan = nama.split(" ")[0];
+                                let nama_belakang = nama.split(" ")[1] || "";
+                                let inisial = (
+                                    nama_depan.charAt(0) +
+                                    nama_belakang.charAt(0)
+                                ).toUpperCase();
+                                pengembalianContainer.append(
+                                    `
+                                <div class="w-full bg-black/40 shadow-purple-700 relative  shadow-lg rounded-lg py-7 items-center px-3 mb-5 space-y-2 overflow-hidden mx-auto">
+                                            <div class="flex justify-between items-center space-x-3">
+                                                <div class="flex flex-col justify-center items-center space-y-2">
+                                         ${
+                                             value.anggota.foto
+                                                 ? `
+                                                                                                                                                                        <img src="../storage/anggota/${value.anggota.foto}"
+                                                                                                                                                                            class="w-14 h-14 lg:w-20 lg:h-20 object-cover rounded-full" alt="">`
+                                                 : `<div
+                                                                                                                                                                        class="inline-flex items-center justify-center w-14  h-14 md:w-20 md:h-20 lg:w-20 lg:h-20 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                                                                                                                                                        <span
+                                                                                                                                                                            class="font-medium text-gray-600 dark:text-gray-300 text-4xl">${inisial}</span>
+                                                                                                                                                                    </div>`
+                                         }
+    
+                               
+                                        <span class=" text-black uppercase text-[8px] lg:text-xs bg-error text-center font-medium px-1 rounded-xl">Balikin ganteng/cantik</span>
+                         </div>
+                        <div class="w-full">
+                            <h5 class="font-semibold leading-6 text-lg lg:text-2xl text-gray-300 -mt-3 ">
+                                ${value.anggota.nama}
+                            </h5>
+                            <div class="flex space-x-3 mt-2">
+    
+                                <div class="text-sm lg:text-lg text-gray-400">
+                                    <p class="text-xs lg:text-base">Tgl Peminjaman</p>
+                                    <p class="text-[12px] lg:text-sm font-semibold text-gray-300">
+                                        ${value.tanggal_pinjam}
+                                    </p>
+                                </div>
+                                <div class="text-sm lg:text-lg text-gray-400">
+                                    <p class="text-xs lg:text-base">Tgl Pengembalian</p>
+                                    <p class="text-[12px] lg:text-sm font-semibold text-gray-300">${
+                                        value.tanggal_kembali
+                                    }
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <h6 class="text-gray-300 text-xs lg:text-base">keterangan</h6>
+                                <div class="bg-transparent border rounded-lg border-gray-700 p-1 text-gray-400 w-5/6">
+                                    ${
+                                        value.telat
+                                            ? `<p class="text-xs lg:text-sm">Telat mengembalikan Buku</p>`
+                                            : `<p class="text-xs lg:text-sm">Tepat Mengembalikan Buku</p>`
+                                    }
+                                </div>
+                            </div>
+    
+                        </div>
+                         <div
+                            class="absolute -right-6 -top-[4.4rem] bg-white shadow-md shadow-purple-600 rounded-full h-28 w-28 lg:w-28 lg:h-28 overflow-hidden">
+                            <p class="text-black text-[8px] lg:text-[10px] mt-[4.5rem]   ms-5 font-bold flex flex-col">
+                                Peminjaman<span
+                                    class="text-lg lg:text-2xl ms-4 -mt-1">${
+                                        value.lama_pinjam
+                                    }H</span></p>
+                        </div>
+                    </div>
+                </div>`,
+                                );
+                                $('select[name="fillter"]').on(
+                                    "change",
+                                    function () {
+                                        $("#formPengembalian").trigger(
+                                            "submit",
+                                        );
+                                    },
+                                );
+                            },
+                        );
+                    }
                 }
             },
         });

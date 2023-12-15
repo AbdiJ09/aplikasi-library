@@ -1,6 +1,6 @@
    <header
        class="fixed bottom-0 left-0 w-full z-50 md:h-20 bg-white border-t-2 border-neutral-200 py-1 rounded-lg lg:hidden
-       {{ Route::currentRouteName() == 'peminjaman' || Route::currentRouteName() == 'pengembalian' || Route::currentRouteName() == 'profile' ? 'hidden' : '' }}
+       {{ Route::currentRouteName() == 'peminjaman' || Route::currentRouteName() == 'pengembalian' || Route::currentRouteName() == 'profile' || Route::currentRouteName() == 'detail-buku' || Route::currentRouteName() == 'profil' ? 'hidden' : '' }}
        ">
        <div class="flex justify-center items-center">
            <ul class="flex space-x-14 md:space-x-20 items-center mt-1 justify-center">
