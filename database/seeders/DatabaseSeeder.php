@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Anggota;
 use App\Enums\StatusUser;
 use Illuminate\Database\Seeder;
+use Database\Seeders\CategorySeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -30,5 +31,7 @@ class DatabaseSeeder extends Seeder
                 'user_id' => $user->id
             ]);
         }
+
+        $this->call(CategorySeeder::class);
     }
 }

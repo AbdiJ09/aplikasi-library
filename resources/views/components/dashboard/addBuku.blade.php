@@ -1,5 +1,5 @@
    <dialog id="my_modal_5" class="modal">
-       <div class="modal-box w-11/12 max-w-5xl lg:overflow-hidden">
+       <div class="modal-box w-11/12 max-w-5xl lg:overflow-auto">
            <h3 class="font-bold text-xl text-center text-white uppercase tracking-wide">Tambah Buku</h3>
            <hr class="border-neutral-500 my-2 border-dashed">
            <form action="{{ route('buku.store') }}" method="post" enctype="multipart/form-data">
@@ -21,7 +21,7 @@
                    <div>
                        <label for="kategory_id" class="block mb-2 text-sm font-medium text-white ">Kategori</label>
                        <select
-                           class="border-gray-300 w-full bg-gray-50 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                           class="border-gray-300 capitalize w-full bg-gray-50 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                            name="kategory_id" id="kategory_id">
                            <option disabled selected>Pilih Kategory</option>
                            @foreach ($kategories as $item)
@@ -60,6 +60,12 @@
                            placeholder="John" required name="tahun_terbit">
                    </div>
                </div>
+               <div class="my-3 text-white">
+                    <label for="deskripsi" class="block mb-2 text-sm font-medium text-white ">Deskripsi</label>
+                    <textarea id="deskripsi" name="deskripsi_buku" rows="4"
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Deskripsi buku..."></textarea>
+                </div>
                <div class="flex justify-center my-3">
                    <input type="file" class="file-input file-input-bordered file-input-primary w-full max-w-xs"
                        name="gambar" />

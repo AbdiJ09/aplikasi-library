@@ -25,8 +25,12 @@ class BukuController extends Controller
     public function detailBuku(string $slug)
     {
         $book = Buku::with('PeminjamanDetail')->where('slug', $slug)->first();
-        $peminjaman = Peminjaman::where('user_id', auth()->user()->id)->get();
-        return view('buku.detailBuku', compact('book', 'peminjaman'));
+        if(auth()->check())
+        {
+            $peminjaman = Peminjaman::where('user_id', auth()->user()->id)->get();
+            return view('buku.detailBuku', compact('book', 'peminjaman'));
+        }
+        return view('buku.detailBuku', compact('book'));
     }
     public function search(Request $request)
     {

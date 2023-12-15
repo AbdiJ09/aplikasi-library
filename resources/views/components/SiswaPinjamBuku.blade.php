@@ -14,9 +14,8 @@
 @if ($isBookBorrowed)
     <button class="bg-purple-500 text-white rounded-lg py-2 px-3 font-medium uppercase my-2">Di Pinjam</button>
 @else
-    <span class="hidden lg:block text-white font-bold text-xl">|</span>
-    <button class="bg-purple-500 text-white rounded-lg py-2 px-3 font-medium uppercase  my-2"
-        onclick="toggleModalPinjam.showModal()">Pinjam</button>
+    <button class="bg-purple-500 text-white rounded-lg py-2 px-3 font-medium uppercase mb-7 w-full"
+        onclick="toggleModalPinjam.showModal()">Pinjam sekarang</button>
     <dialog id="toggleModalPinjam" class="modal">
         <div
             class="modal-box w-11/12 max-w-3xl bg-gradient-to-r from-purple-600 via-purple-800 to-purple-700 text-white">
@@ -31,19 +30,19 @@
                     </div>
                     <div class="flex flex-col my-2">
                         <label for="lama_pinjam" class="font-medium text-lg">Lama Pinjam:</label>
-                        <input type="number" name="lama_pinjam" placeholder="Type here" id="lama_pinjam"
+                        <input type="number" name="lama_pinjam" id="lama_pinjam"
                             class="input input-bordered input-primary text-black w-full max-w-xs" required />
                     </div>
-                    <div class="flex flex-col my-2">
-                        <label for="keterangan" class="font-medium text-lg">Keterangan:</label>
-                        <textarea name="keterangan" class="text-black rounded-lg border-0 w-full" id="keterangan" required></textarea>
-                    </div>
+                </div>
+                <div class="my-2">
+                    <label for="keterangan" class="font-medium text-lg">Keterangan:</label>
+                    <textarea name="keterangan" rows="5" class="text-black rounded-lg border-0 w-full" id="keterangan" required></textarea>
                 </div>
                 <div class="modal-action">
                     <button type="submit" class="btn">Pinjam</button>
             </form>
             <form method="dialog">
-                <button class="btn btn-ghost">Close</button>
+                <button class="absolute top-1 right-1 rounded-full text-white px-3 py-1 text-xl hover:bg-gray-400/40">x</button>
             </form>
         </div>
         </div>

@@ -15,7 +15,7 @@
                     class="group  relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 rounded-xl shadow-lg  shadow-neutral-500 lg:w-4/5">
                     <div class="h-full w-full">
                         <img class="h-full w-full object-cover  transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125"
-                            src="storage/buku/{{ $item->gambar }}" alt="" />
+                            src="{{ asset('storage/buku/'.$item->gambar) }}" alt="" />
                     </div>
                     <div
                         class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70 group-hover:from-black/70 group-hover:via-black/60  group-hover:to-black/70 ">
