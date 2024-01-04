@@ -26,7 +26,10 @@
               <div class="dropdown dropdown-top dropdown-end">
                   <label tabindex="0" class="btn m-1 btn-sm rounded-full">></label>
                   <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                      <li onclick="update_petugas.showModal()"><a>Update</a></li>
+                      <li onclick="update_pengembalian{{ $data->id }}.showModal()">
+                          <a>Update</a>
+                      </li>
+                      <x-dashboard.updatePengembalian :data="$data" :peminjaman="$peminjaman" />
                       <li><button type="button" data-modal-target="delete_petugas"
                               data-modal-toggle="delete_petugas">Delete</button></li>
                       <li onclick="detail_buku.showModal()"><a>Detail</a></li>

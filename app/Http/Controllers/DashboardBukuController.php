@@ -47,7 +47,7 @@ class DashboardBukuController extends Controller
             'tahun_terbit' => 'required',
             'isbn' => 'required',
             'jumlah_stok' => 'required',
-            'gambar' => 'required|file|mimes:jpeg,png,jpg|max:2048',
+            'gambar' => 'required|file|mimes:jpeg,png,jpg|max:1024',
         ]);
         if ($request->file('gambar')) {
             $extension = $request->file('gambar')->getClientOriginalExtension();
@@ -105,7 +105,7 @@ class DashboardBukuController extends Controller
             'tahun_terbit' => 'required',
             'isbn' => 'required',
             'jumlah_stok' => 'required',
-            'gambar' => 'file|mimes:jpeg,png,jpg|max:2048',
+            'gambar' => 'file|mimes:jpeg,png,jpg|max:1024',
             'deskripsi_buku' => 'required',
         ];
         $validate = $request->validate($rules);

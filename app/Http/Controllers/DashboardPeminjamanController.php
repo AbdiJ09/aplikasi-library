@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Events\PeminjamanCreated;
-use App\Events\PeminjamanCreatedListener;
 use App\Events\PeminjamanUpdated;
 use App\Models\Anggota;
 use App\Models\Buku;
+use App\Models\Buku_kelas;
 use App\Models\Peminjaman;
-use App\Models\PeminjamanDetail;
 use Illuminate\Http\Request;
 
 class DashboardPeminjamanController extends Controller
@@ -19,28 +18,22 @@ class DashboardPeminjamanController extends Controller
 
     public function index()
     {
-        $cekPeminjaman = Peminjaman::all();
-
+        $cekPeminjaman = Peminjaman::with(['Anggota', 'PeminjamanDetail' => ['buku', 'peminjaman'],])->get();
         $matchingPeminjaman = [];
-        if (request()->fillter == "") {
-            $matchingPeminjaman = $cekPeminjaman;
-        } elseif (request()->fillter == "byAnggota") {
-            foreach ($cekPeminjaman as $pem) {
-                if ($pem->Anggota->user_id == $pem->user_id) {
-                    $matchingPeminjaman[] = $pem;
-                }
-            }
+        if (request()->fillter == "byAnggota") {
+            $matchingPeminjaman = $cekPeminjaman->filter(function ($pem) {
+                return $pem->Anggota->user_id == $pem->user_id;
+            });
         } elseif (request()->fillter == "byPetugas") {
-            foreach ($cekPeminjaman as $pem) {
-                if ($pem->Anggota->user_id != $pem->user_id) {
-                    $matchingPeminjaman[] = $pem;
-                }
-            }
+            $matchingPeminjaman = $cekPeminjaman->filter(function ($pem) {
+                return $pem->Anggota->user_id != $pem->user_id;
+            });
         } else {
             $matchingPeminjaman = $cekPeminjaman;
         }
-        $anggota = Anggota::all();
-        $buku = Buku::latest()->fillter(request(['query']))->get();
+
+        $anggota = Anggota::select('id', 'nama')->get();
+        $buku = Buku_kelas::with(['kelas', 'jurusan', 'buku'])->limit(20)->get();
         if (request()->ajax()) {
             return response()->json(['buku' => $buku]);
         }
@@ -71,7 +64,7 @@ class DashboardPeminjamanController extends Controller
             'lama_pinjam' => $request->lama_pinjam,
             'status' => 'dipinjam',
             'keterangan' => $request->keterangan,
-            'user_id' => auth()->user()->id,
+            'petugas_id' => auth()->user()->id,
         ]);
         $bukuId = $request->buku_id;
         PeminjamanCreated::dispatch($peminjaman, $bukuId);
@@ -101,7 +94,7 @@ class DashboardPeminjamanController extends Controller
     {
         $peminjaman = Peminjaman::findOrFail($id);
         if ($request->status) {
-            $peminjaman->update(['status' => $request->status]);
+            $peminjaman->update(['status' => $request->status, 'petugas_id' => auth()->user()->id]);
             return response()->json(['message' => 'Status berhasil diubah', 'status' => $request->status]);
         }
 

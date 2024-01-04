@@ -5,6 +5,7 @@ export default {
         "./resources/**/*.js",
         "./resources/**/*.vue",
         "./node_modules/flowbite/**/*.js",
+        "./vendor/robsontenorio/mary/src/View/Components/**/*.php",
     ],
     theme: {
         extend: {
@@ -18,7 +19,7 @@ export default {
     },
     plugins: [require("flowbite/plugin"), require("daisyui")],
     daisyui: {
-        themes: ["light", "dark"],
+        themes: "light",
         base: true,
         styled: true,
         utils: true,

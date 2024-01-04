@@ -75,6 +75,7 @@
        </div>
    </dialog>
    <script>
+    document.addEventListener('livewire:navigated', () => {
        const tambahAnggota = document.querySelector('#addAnggota')
        tambahAnggota.addEventListener('click', () => {
            const anggota = document.querySelector('#anggota-form')
@@ -148,4 +149,5 @@
            const anggotaDiv = button.parentNode
            form.removeChild(anggotaDiv)
        }
+    })
    </script>

@@ -3,8 +3,8 @@
           class="fixed py-28 px-8 left-0 flex flex-col z-40 space-y-3 items-center bg-gray-800 md:bg-transparent h-screen">
           <li>
 
-              <a href="{{ route('dashboard') }}"
-                  class="flex items-center p-2 w-44  text-gray-900 rounded-lg dark:text-white   group">
+              <a href="{{ route('dashboard') }}" wire:navigate
+                  class="flex items-center p-2 w-44 navBar  text-gray-900 rounded-lg dark:text-white   group">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                       @if (Request::is('home')) fill="currentColor" @else stroke="currentColor" @endif
                       class="w-6 h-6 text-white">
@@ -20,8 +20,8 @@
           </li>
           <li>
 
-              <a href="{{ route('anggota.index') }}"
-                  class="flex items-center p-2 w-44 text-gray-900 rounded-lg dark:text-white   group">
+              <a href="{{ route('anggota.index') }}" wire:navigate
+                  class="flex items-center p-2 w-44 navBar text-gray-900 rounded-lg dark:text-white   group">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="w-6 h-6 text-white">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -33,8 +33,8 @@
           </li>
           @can('admin')
               <li>
-                  <a href="{{ route('petugas.index') }}"
-                      class="flex items-center p-2 w-44 text-gray-900 rounded-lg dark:text-white   group">
+                  <a href="{{ route('petugas.index') }}" wire:navigate
+                      class="flex items-center p-2 w-44 navBar text-gray-900 rounded-lg dark:text-white   group">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                           stroke="currentColor" class="w-6 h-6 text-white">
                           <path stroke-linecap="round" stroke-linejoin="round"
@@ -48,9 +48,8 @@
           @endcan
 
           <li>
-
-              <a href="/dashboard/buku"
-                  class="flex items-center p-2 w-44 text-gray-900 rounded-lg dark:text-white   group">
+              <a href="/dashboard/buku" wire:navigate
+                  class="flex items-center p-2 w-44 navBar text-gray-900 rounded-lg dark:text-white   group">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="w-6 h-6 text-white">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -60,8 +59,31 @@
               </a>
           </li>
           <li>
-              <a href="{{ route('peminjaman.index') }}"
-                  class="flex items-center p-2 w-44 text-gray-900 rounded-lg dark:text-white   group">
+              <a href="/dashboard/buku-kelas" wire:navigate
+                  class="flex items-center p-2 w-44 navBar text-gray-900 rounded-lg dark:text-white   group">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor" class="w-6 h-6 text-white">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3" />
+                  </svg>
+                  <span class="ml-5 text-white link-menu">Buku kelas</span>
+              </a>
+          </li>
+          <li>
+              <a href="/dashboard/kategori"wire:navigate
+                  class="flex items-center p-2 w-44 navBar text-gray-900 rounded-lg dark:text-white   group">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor" class="w-6 h-6 text-white">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                  </svg>
+
+                  <span class="ml-5 text-white link-menu">Kategori</span>
+              </a>
+          </li>
+          <li>
+              <a href="{{ route('peminjaman.index') }}"wire:navigate
+                  class="flex items-center p-2 w-44 navBar text-gray-900 rounded-lg dark:text-white   group">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="w-6 h-6 text-white">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -71,8 +93,8 @@
               </a>
           </li>
           <li>
-              <a href="{{ route('pengembalian.index') }}"
-                  class="flex items-center p-2 w-44 text-gray-900 rounded-lg dark:text-white   group">
+              <a href="{{ route('pengembalian.index') }}" wire:navigate
+                  class="flex items-center p-2 w-44 navBar text-gray-900 rounded-lg dark:text-white   group">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="w-6 h-6 text-white">
                       <path stroke-linecap="round" stroke-linejoin="round"

@@ -13,7 +13,7 @@ class BukuController extends Controller
 {
     public function index()
     {
-        $books = Buku::latest()->take(8)->get();
+        $books = Buku::latest()->limit(8)->get();
         return view('home', compact('books'));
     }
     public function AllBuku(Request $request)
@@ -53,5 +53,14 @@ class BukuController extends Controller
     public function export()
     {
         return Excel::download(new BukuExport, 'buku.xlsx');
+    }
+    public function show()
+    {
+        if (request('q')) {
+            $buku = Buku::where('judul', 'like', '%' . request('q') . '%')->get();
+            return view('showBuku', [
+                'buku' => $buku
+            ]);
+        }
     }
 }

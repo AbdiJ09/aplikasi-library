@@ -1,3 +1,5 @@
+import jQuery from "jquery";
+window.$ = jQuery;
 $(function () {
     $(".pengembalianSearch").on("input", function () {
         const request = $(".pengembalianSearch").attr("name");

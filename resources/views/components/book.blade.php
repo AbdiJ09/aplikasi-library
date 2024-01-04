@@ -25,11 +25,10 @@
                         <h1 class="md:text-xl font-bold text-white ">
                             {{ $item->judul }}</h1>
 
-                        <a href="/book/{{ $item->slug }}">
-
+                        <a href="/book/{{ $item->slug }}" wire:navigate>
                             <button
-                                class="rounded-full bg-neutral-900 py-2 px-3.5 font-com text-sm capitalize text-white shadow shadow-black/60 mt-2">See
-                                More</button>
+                                class="rounded-full bg-neutral-900 py-2 px-3.5 font-com text-sm capitalize text-white shadow shadow-black/60 mt-2">Detail
+                                buku</button>
                         </a>
 
                     </div>

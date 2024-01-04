@@ -14,7 +14,7 @@ class PeminjamanDetail extends Model
 
     public function buku()
     {
-        return $this->belongsTo(Buku::class, 'buku_id');
+        return $this->belongsTo(Buku::class, 'bukus_id');
     }
     public function peminjaman()
     {

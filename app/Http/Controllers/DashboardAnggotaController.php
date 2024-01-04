@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Anggota;
 use Illuminate\Http\Request;
 use App\Exports\AnggotaExport;
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
@@ -58,7 +59,7 @@ class DashboardAnggotaController extends Controller
                 $request->file('foto')[$key]->storeAs('anggota', $newName);
             }
 
-            Anggota::create([
+            $anggota = Anggota::create([
                 'kode_anggota' => $value,
                 'nama' => $dataAnggota['nama'][$key],
                 'jenis_kelamin' => $dataAnggota['jenis_kelamin'][$key],
@@ -67,6 +68,16 @@ class DashboardAnggotaController extends Controller
                 'telpon' => $dataAnggota['telpon'][$key],
                 'alamat' => $dataAnggota['alamat'][$key],
                 'foto' => $newName,
+            ]);
+            User::create([
+                "name" => $anggota->nama,
+                "username" => $anggota->kode_anggota,
+                "password" => bcrypt('password'),
+                "level" => 'user',
+                'email' => $anggota->kode_anggota . '@gmail.com',
+            ]);
+            $anggota->update([
+                'user_id' => User::where('username', $anggota->kode_anggota)->first()->id
             ]);
         }
 
@@ -127,7 +138,8 @@ class DashboardAnggotaController extends Controller
      */
     public function destroy($id)
     {
-        Anggota::where('id', $id)->delete();
+        $anggota = Anggota::find($id);
+        $anggota->delete();
         return redirect()->back()->with('success', 'Anggota Berhasil Dihapus');
     }
 }

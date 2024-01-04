@@ -13,10 +13,10 @@
 
 @if ($isBookBorrowed)
     <button
-        class="bg-transparent border border-purple-500 text-white rounded-lg py-2 px-3 font-medium uppercase mb-7 w-full ">Di
+        class="bg-transparent border border-slate-200 text-white rounded-lg py-2 px-3 font-medium uppercase mb-7 w-full ">Di
         Pinjam</button>
 @else
-    <button class="bg-purple-500 text-white rounded-lg py-2 px-3 font-medium uppercase mb-7 w-full"
+    <button class="bg-slate-200 text-black rounded-lg py-2 px-3 font-medium uppercase mb-7 w-full"
         onclick="toggleModalPinjam.showModal()">Pinjam sekarang</button>
     <dialog id="toggleModalPinjam" class="modal">
         <div
@@ -28,7 +28,8 @@
                     <div class="flex flex-col my-2">
                         <label for="tanggal_pinjam" class="font-medium text-lg">Tanggal Pinjam:</label>
                         <input type="date" name="tanggal_pinjam" placeholder="Type here" id="tanggal_pinjam"
-                            class="input input-bordered input-primary text-black w-full max-w-xs" required />
+                            class="input input-bordered input-primary text-black w-full max-w-xs" required
+                            value="{{ date('Y-m-d') }}" readonly />
                     </div>
                     <div class="flex flex-col my-2">
                         <label for="lama_pinjam" class="font-medium text-lg">Lama Pinjam:</label>

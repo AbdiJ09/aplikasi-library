@@ -20,7 +20,7 @@
                                 <i class="fa-solid fa-repeat lg:text-xl text-neutral-700"></i>
                             </div>
                             <div class="bg-neutral-700 w-[2px] h-6"></div>
-                            <h3 class="lg:text-xl text-neutral-700">19</h3>
+                            <h3 class="lg:text-xl text-neutral-700">{{ $result->count() }}</h3>
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,7 @@ class Peminjaman extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $with = ['PeminjamanDetail.Buku', 'Anggota'];
+    // protected $with = ['PeminjamanDetail.Buku', 'Anggota'];
     public function Anggota()
     {
         return $this->belongsTo(Anggota::class);

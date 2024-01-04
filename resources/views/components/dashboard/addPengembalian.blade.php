@@ -15,7 +15,7 @@
                             <option
                                 value="{{ date('Y-m-d', strtotime($item->tanggal_pinjam . '+' . $item->lama_pinjam . ' days')) }}"
                                 data-peminjaman-id="{{ $item->id }}">
-                                {{ $item->Anggota->nama }}</option>
+                                {{ !$item->user_id && $item->petugas_id ? $item->Anggota->nama : $item->Anggota->nama . ' (personal)' }}
                         @endforeach
                     </select>
                 </div>
@@ -42,7 +42,7 @@
     </div>
 </dialog>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('livewire:navigated', () => {
         const selectElement = document.querySelector('#pengembalian');
         const tanggalKembali = document.querySelector('#tanggal_kembali');
         const form = document.querySelector('#pengembalian-form');
@@ -62,17 +62,17 @@
                 const inputTelat = document.createElement('input');
                 inputTelat.type = 'hidden';
                 inputTelat.name = 'telat';
-                alert("anda telat mengumpulkan buku")
+                alert("siswa telat mengumpulkan buku")
                 inputTelat.value = 1;
                 form.appendChild(inputTelat);
             } else {
                 console.log('Anda ga telat')
             }
         });
-    });
+    })
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener("livewire:navigated", () => {
         const selectElement = document.getElementById('pengembalian');
         const hiddenInput = document.createElement('input');
         hiddenInput.type = 'hidden';
@@ -86,6 +86,5 @@
 
         const form = document.querySelector('#pengembalian-form');
         form.appendChild(hiddenInput);
-
-    });
+    })
 </script>

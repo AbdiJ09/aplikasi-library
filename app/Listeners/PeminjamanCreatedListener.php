@@ -26,17 +26,14 @@ class PeminjamanCreatedListener
         $peminjaman = $event->peminjaman;
         $bukuId = $event->bukuId;
 
-        $buku = Buku::whereIn('id', $bukuId)
-            ->where('jumlah_stok', '>', 0)->get();
-        foreach ($buku as $book) {
-            $book->jumlah_stok -= 1;
-            $book->save();
-
-            $peminjamanDetail = new PeminjamanDetail;
-            $peminjamanDetail->peminjaman_id = $peminjaman->id;
-            $peminjamanDetail->buku_id = $book->id;
-            $peminjamanDetail->jumlah = 1;
-            $peminjamanDetail->save();
-        }
+        Buku::whereIn('id', $bukuId)
+            ->where('jumlah_stok', '>', 0)
+            ->each(function ($book) use ($peminjaman) {
+                $book->decrement('jumlah_stok');
+                $peminjaman->peminjamanDetail()->create([
+                    'bukus_id' => $book->id,
+                    'jumlah' => 1,
+                ]);
+            });
     }
 }

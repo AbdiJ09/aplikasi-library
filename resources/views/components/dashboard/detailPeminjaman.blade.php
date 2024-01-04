@@ -28,16 +28,15 @@
             <h4 class="text-xs text-neutral-700 font-bold">Status</h4>
 
         </div>
-
         @foreach ($peminjaman->PeminjamanDetail as $item)
-            @if ($item->Peminjaman->anggota_id === $peminjaman->anggota_id)
+            @if ($item->peminjaman->anggota_id === $peminjaman->anggota_id)
                 <div class="w-full p-1 shadow-xl bg-zinc-200 rounded-xl relative my-3">
                     <div class="grid grid-cols-4 content-center h-10 justify-items-center">
-                        <img src="{{ '../storage/buku/' . $item->Buku->gambar }}"
+                        <img src="{{ '../storage/buku/' . $item->buku->gambar }}"
                             class="w-8 h-8 absolute top-2/4 -translate-y-2/4 left-2 rounded-full cursor-pointer object-cover object-center"
                             alt="">
                         <span></span>
-                        <h4 class="text-xs text-neutral-700">{{ $item->Buku->judul }}</h4>
+                        <h4 class="text-xs text-neutral-700">{{ $item->buku->judul }}</h4>
                         <h4 class="text-xs text-neutral-700">{{ $peminjaman->lama_pinjam }}</h4>
                         <h4 class="text-xs text-neutral-700">{{ $peminjaman->status }}</h4>
                     </div>

@@ -10,5 +10,4 @@
             <x-dashboard.table :peminjaman="$matchingPeminjaman" :anggota="$anggota" :buku="$buku" />
         </div>
     </div>
-    @vite(['resources/js/peminjaman.js'])
 @endsection

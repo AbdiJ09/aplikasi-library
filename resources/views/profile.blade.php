@@ -1,5 +1,5 @@
-@extends('layout.main')
-@section('profile')
+@extends('layouts.profile')
+@section('content')
     <header class="w-full absolute top-0 left-0 bg-transparent z-50">
         <svg xmlns="http://www.w3.org/2000/svg" class="absolute -z-30" viewBox="0 0 1440 320">
             <path class="fill-purple-500" fill-opacity="1"
@@ -24,7 +24,7 @@
         class="relative pt-24 h-screen overflow-hidden bg-black/80 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-52 before:bg-cover before:bg-center before:bg-no-repeat  before:bg-[url('/public/img/starr.png')]">
         <div class="flex justify-center flex-col items-center">
             @if (auth()->user()->level === 'user' && auth()->user()->anggota->foto)
-                <img src="{{ '../storage/anggota/' . $peminjamans->Anggota->foto }}"
+                <img src="{{ '../storage/anggota/' . auth()->user()->anggota->foto }}"
                     class="w-20 h-20  rounded-full cursor-pointer object-cover object-center" alt="">
             @else
                 @php

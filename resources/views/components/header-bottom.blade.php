@@ -1,21 +1,21 @@
    <header
-       class="fixed bottom-0 left-0 w-full z-50 md:h-20 bg-white border-t-2 border-neutral-200 py-1 rounded-lg lg:hidden
+       class="fixed bottom-0 left-0 w-full z-40 md:h-20 bg-white border-t-2 border-neutral-200 py-1 rounded-lg lg:hidden
        {{ Route::currentRouteName() == 'peminjaman' || Route::currentRouteName() == 'pengembalian' || Route::currentRouteName() == 'profile' || Route::currentRouteName() == 'detail-buku' || Route::currentRouteName() == 'profil' ? 'hidden' : '' }}
        ">
        <div class="flex justify-center items-center">
            <ul class="flex space-x-14 md:space-x-20 items-center mt-1 justify-center">
-               <li><a href="{{ route('home') }}" class="flex flex-col items-center justify-center"><i
+               <li><a href="{{ route('home') }}" wire:navigate class="flex flex-col items-center justify-center"><i
                            class="fa-solid fa-house text-2xl md:text-4xl" style="color: #000"></i><span
-                           class="font-medium text-xs">Home</span></a></li>
+                           class="font-medium text-xs text-black">Home</span></a></li>
                <li>
                    <a href="" class="flex flex-col items-center justify-center">
-                       <i class="fa-solid fa-book text-2xl md:text-4xl"></i>
-                       <span class="font-medium text-xs">My Book</span>
+                       <i class="fa-solid fa-book text-2xl md:text-4xl" style="color:#000"></i>
+                       <span class="font-medium text-xs text-black">My Book</span>
                    </a>
                </li>
                <li><a href="" class="flex flex-col items-center justify-center"><i
                            class="fa-solid fa-bookmark text-2xl  md:text-4xl" style="color:#000"></i>
-                       <span class="font-medium text-xs">Bookmark</span>
+                       <span class="font-medium text-xs text-black">Bookmark</span>
                    </a>
                </li>
                <li>
@@ -25,7 +25,7 @@
                            <a href="{{ route('profile') }}" class="flex flex-col items-center justify-center ">
 
                                @if (auth()->user()->level === 'user' && auth()->user()->anggota->foto)
-                                   <img src="{{ '../storage/anggota/' . $peminjamans->Anggota->foto }}"
+                                   <img src="{{ '../storage/anggota/' . autH()->user()->anggota->foto }}"
                                        class="w-10 h-10  rounded-full cursor-pointer object-cover object-center"
                                        alt="">
                                @else
@@ -45,7 +45,7 @@
                            </a>
                        @else
                            <div class="dropdown dropdown-top dropdown-end w-10">
-                               <div tabindex="0" role="button" class="btn m-1">
+                               <div tabindex="0" role="button">
                                    @if (auth()->check() && auth()->user()->level === 'user' && auth()->user()->anggota->foto)
                                        <img src="{{ '../storage/anggota/' . auth()->user()->anggota->foto }}"
                                            class="w-10 h-10  rounded-full cursor-pointer object-cover object-center"
@@ -60,11 +60,11 @@
                                        <div class="flex flex-col items-center">
 
                                            <div
-                                               class="inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 shadow-lg rounded-full dark:bg-gray-600">
+                                               class="inline-flex -mt-14 -ms-10 items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 shadow-md shadow-black/20 rounded-full">
                                                <span
                                                    class="font-medium text-gray-600 dark:text-gray-300">{{ $inisial }}</span>
                                            </div>
-                                           <span class="text-xs font-medium">Anda</span>
+                                           <span class="text-xs font-medium -ms-10 -mt-1 text-black">Anda</span>
                                        </div>
                                    @endif
                                </div>

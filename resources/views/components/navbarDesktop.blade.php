@@ -33,8 +33,8 @@
                  <div class="flex">
                      <div class="">
                          @if (auth()->user()->level === 'user' && auth()->user()->anggota->foto)
-                             <img src="{{ '../storage/anggota/' . $peminjamans->Anggota->foto }}"
-                                 class="w-20 h-20  rounded-full cursor-pointer object-cover object-center"
+                             <img src="{{ '../storage/anggota/' . auth()->user()->anggota->foto }}"
+                                 class="w-12 h-12  rounded-full   cursor-pointer object-cover object-center"
                                  alt="">
                          @else
                              @php
@@ -72,7 +72,7 @@
  @else
      <button
          class="px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-900 border-0 text-white rounded-full hover:bg-green-700 transition duration-300 ease-in hidden lg:flex"
-         onclick="my_modal_1.showModal()">Login
+         onclick="modalLogin.showModal()">Login
          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
              stroke="currentColor" class="w-6 h-6">
              <path stroke-linecap="round" stroke-linejoin="round" d=" M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5

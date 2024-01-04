@@ -4,7 +4,7 @@
      <button class="bg-purple-900 p-2 rounded-lg w-10 text-center text-white" onclick="add_peminjaman.showModal()">
          <span><i class="fa-solid fa-plus"></i></span>
      </button>
-     <x-dashboard.addPeminjaman :anggota="$anggota" :buku="$buku" />
+     <livewire:Peminjaman.create-peminjaman :anggota="$anggota" :buku="$buku" />
      <a href="/buku-export">
 
          <button class="bg-green-600 p-2 rounded-lg w-10 text-center text-white">
@@ -36,49 +36,7 @@
      <h4 class="text-xs text-neutral-700">Action</h4>
 
  </div>
-
- <script>
-     function updateStatus(peminjamanId) {
-         const newStatus = "dipinjam";
-         $(".notifSuccessStatus").html("");
-         $("#status_verifikasi" + peminjamanId).val(newStatus);
-
-         $.ajax({
-             url: `{{ route('peminjaman.update', ':id') }}`.replace(':id', peminjamanId),
-             type: "PATCH",
-             data: {
-                 status: newStatus,
-                 _token: '{{ csrf_token() }}'
-             },
-             success: function(response) {
-                 $(".notifSuccessStatus").html(
-                     `
-                        <div id="alert-border-3" class="flex items-center rounded-lg p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
-                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                        </svg>
-                        <div class="ms-3 text-sm font-medium">
-                        ${response.message}
-                        </div>
-                        <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700"  data-dismiss-target="#alert-border-3" aria-label="Close">
-                        <span class="sr-only">Dismiss</span>
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                        </svg>
-                        </button>
-                    </div>
-                    `
-                 )
-             },
-             error: function(error) {
-                 console.error('Gagal mengubah status', error);
-             }
-         });
-     }
- </script>
- <div class="notifSuccessStatus absolute top-10 left-0">
-
- </div>
+ <div class="notifSuccessStatus absolute top-10 left-0"></div>
  @foreach ($peminjaman as $peminjamans)
      <div class="w-full p-1 shadow-xl bg-zinc-200 rounded-xl relative my-3 ">
          <div class="grid grid-cols-5 content-center h-10 justify-items-center">
@@ -104,8 +62,7 @@
              @if ($peminjamans->status == 'verifikasi')
                  <input type="text" name="status" data-status-id="{{ $peminjamans->id }}"
                      id="status_verifikasi{{ $peminjamans->id }}" value="{{ $peminjamans->status }}"
-                     class="badge bg-warning text-white border-0 cursor-pointer w-20" readonly
-                     onclick="updateStatus({{ $peminjamans->id }})">
+                     class="badge bg-warning text-white border-0 cursor-pointer w-20" readonly>
              @else
                  <h4 class="text-white badge bg-purple-500 border-0">{{ $peminjamans->status }}</h4>
              @endif
@@ -131,8 +88,7 @@
                                  viewBox="0 0 14 14">
                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                      stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                             </svg>
-                             <span class="sr-only">Close modal</span>
+                                 <span class="sr-only">Close modal</span>
                          </button>
                          <div class="p-6 text-center">
                              <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true"
@@ -144,7 +100,6 @@
                                  Are you sure you want to delete this Peminjaman?</h3>
                              <form action="{{ route('peminjaman.destroy', $peminjamans->id) }}" class="inline-block"
                                  method="post">
-
                                  <button data-modal-hide="delete_peminjaman{{ $peminjamans->id }}" type="submit"
                                      class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
                                      @csrf
@@ -161,4 +116,7 @@
              </div>
          </div>
      </div>
+     @push('scripts')
+         @vite('resources/js/dashboardPeminjaman.js')
+     @endpush
  @endforeach
