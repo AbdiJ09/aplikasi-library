@@ -1,10 +1,10 @@
 <div>
     <div class="my-3 grid grid-cols-1 lg:grid-cols-3 gap-5 justify-items-center p-4">
         @foreach ($namaKelas as $kelass)
-            <x-buku.jurusan :kelass="$kelass" />
+            <x-buku.jurusan wire:key="{{ $kelass->id }}" :kelass="$kelass" />
         @endforeach
     </div>
-    @if ($showSuccessAlert)
+    @if ($showSuccessAlert && session()->has('success'))
         <div id="alert-success"
             class="flex items-center p-4 mb-4 text-green-800 rounded-lg w-2/4 bg-green-50 dark:bg-gray-800 dark:text-green-400"
             role="alert">
@@ -37,6 +37,10 @@
                 <span><i class="fa-solid fa-plus"></i></span>
             </button>
             <livewire:modal-add-buku-kelas />
+            <button @click="update_buku_kelas.showModal()" type="button"
+                class="bg-purple-900 p-2 rounded-lg w-10 text-center text-white"><span><i
+                        class="fa-solid fa-pencil"></i></span></button>
+            <livewire:update-buku-kelas />
             <a href="/buku-export">
 
                 <button class="bg-green-600 p-2 rounded-lg w-10 text-center text-white">
@@ -58,7 +62,7 @@
             <h4 class="text-xs text-neutral-700">Action</h4>
         </div>
         @foreach ($bookss as $item)
-            <x-buku.kelas :item="$item" />
+            <x-buku.kelas wire:key="{{ $item->id }}" :item="$item" />
         @endforeach
     </div>
 </div>

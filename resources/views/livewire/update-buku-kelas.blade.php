@@ -1,21 +1,26 @@
 <div>
-    <dialog id="update_buku_kelas{{ $item->id }}" class="modal">
+    <dialog id="update_buku_kelas" class="modal" wire:ignore.self>
         <div class="modal-box relative">
             <form wire:submit='save'>
                 <div class="my-2 flex flex-col">
-                    <label for="kelas" class="my-2 font-medium text-white text-lg">Kelas :</label>
-                    <select class="select select-bordered w-full bg-white text-black" wire:model='kelasId'>
-                        <option disabled selected>Who shot first?</option>
+                    <label for="kelas" class="my-2 font-medium text-white text-lg">Kelas : </label>
+                    <select class="select select-bordered w-full bg-white text-black" wire:model.live='kelasId'>
+                        <option value="">Pilih Kelas</option>
                         @foreach ($listKelas as $kelas)
-                            <option value="{{ $kelas->id }}">{{ $kelas->nama }}</option>
+                            <option value="{{ $kelas->id }}">
+                                {{ $kelas->nama }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
                 <div class="my-2 flex flex-col">
                     <label for="kelas" class="my-2 font-medium text-white text-lg">Jurusan :</label>
-                    <select class="select select-bordered w-full bg-white text-black" wire:model='jurusanId'>
+                    <select class="select select-bordered w-full bg-white text-black" wire:model.live='jurusanId'>
+                        <option value="">Pilih Jurusan</option>
+
                         @foreach ($listJurusan as $jurusan)
-                            <option value="{{ $jurusan->id }}">{{ $jurusan->nama }}</option>
+                            <option value="{{ $jurusan->id }}">
+                                {{ $jurusan->nama }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -26,21 +31,24 @@
                 @error('bukuIds')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
-                <dialog id="showBuku" class="modal">
+                <dialog id="showBuku" class="modal" wire:ignore.self>
                     <div class="modal-box max-w-3xl bg-black">
                         <div class="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-5 lg:gap-3 justify-items-center">
                             @foreach ($books as $item)
                                 <div class="flex items-center p-2">
                                     @if ($item->jumlah_stok > 0)
-                                        <div
-                                            class="relative bg-purple-600 overflow-hidden flex justify-center items-center px-2 rounded-lg h-20 w-36 md:w-40">
-                                            <input id="checkbox-item-{{ $item->id }}" wire:model='bukuIds'
-                                                type="checkbox" value="{{ $item->id }}"
-                                                class="w-4 h-4 text-fuchsia-700 bg-white absolute left-0 top-0  border-0 rounded-br-full focus:ring-fuchsia-500">
-                                            <label for="checkbox-item-{{ $item->id }}"
-                                                class="w-full ml-2 text-sm font-medium text-white rounded flex items-center h-full ">
-                                                {{ $item->judul }}
-                                            </label>
+                                        <div class="flex items-center p-2">
+                                            <div
+                                                class="{{ $item->jumlah_stok > 0 ? 'bg-purple-600' : 'bg-gray-500' }} relative overflow-hidden flex justify-center items-center px-2 rounded-lg h-20 w-36 md:w-40">
+                                                <input id="checkbox-items-{{ $item->id }}"
+                                                    wire:click="toggleBook('{{ $item->id }}')" type="checkbox"
+                                                    {{ in_array($item->id, $bukuIds) ? 'checked' : '' }}
+                                                    class="w-4 h-4 text-fuchsia-700 bg-white absolute left-0 top-0  border-0 rounded-br-full focus:ring-fuchsia-500">
+                                                <label for="checkbox-items-{{ $item->id }}"
+                                                    class="w-full ml-2 text-sm font-medium text-white rounded flex items-center h-full ">
+                                                    {{ $item->judul }}
+                                                </label>
+                                            </div>
                                         </div>
                                     @else
                                         <div
@@ -64,10 +72,9 @@
                     </div>
                 </dialog>
                 <div class="modal-action">
-                    <button type="submit"
-                        class="btn bg-purple-800 text-white border-0 hover:bg-purple-900">Save</button>
-                    <button class="btn" type="button"
-                        x-on:click='update_buku_kelas{{ $item->id }}.close()'>Close</button>
+                    <button type="submit" class="btn bg-purple-800 text-white border-0 hover:bg-purple-900">Save and
+                        Update</button>
+                    <button class="btn" type="button" x-on:click='update_buku_kelas.close()'>Close</button>
                 </div>
             </form>
         </div>

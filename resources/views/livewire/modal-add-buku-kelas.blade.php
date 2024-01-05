@@ -19,13 +19,13 @@
                         @endforeach
                     </select>
                 </div>
-                <button type="button" x-on:click='showBuku.showModal()'
+                <button type="button" x-on:click='showBooks.showModal()'
                     class="bg-purple-600 w-full mx-auto block rounded-lg border-0 p-2 my-4 text-white">Pilih Buku <span
                         x-text='$wire.bukuIds.length > 0 ? "(" + $wire.bukuIds.length + ")" : ""'></span></button>
                 @error('bukuIds')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
-                <dialog id="showBuku" class="modal">
+                <dialog id="showBooks" class="modal">
                     <div class="modal-box max-w-3xl bg-black">
                         <div class="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-5 lg:gap-3 justify-items-center">
                             @foreach ($books as $item)
@@ -58,7 +58,7 @@
                         </div>
                         <div class="modal-action">
                             <button class="btn bg-purple-500 text-white border-0 hover:bg-purple-600"" type="button"
-                                x-on:click='showBuku.close()'>Save</button>
+                                x-on:click='showBooks.close()'>Save</button>
                         </div>
                     </div>
                 </dialog>

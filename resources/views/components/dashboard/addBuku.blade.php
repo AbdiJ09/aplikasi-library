@@ -16,12 +16,12 @@
                        <label for="judul" class="block mb-2 text-sm font-medium text-white ">Judul</label>
                        <input type="text" id="judul"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="John" required name="judul">
+                           placeholder="Judul buku..." required name="judul">
                    </div>
                    <div>
                        <label for="kategory_id" class="block mb-2 text-sm font-medium text-white ">Kategori</label>
                        <select
-                           class="border-gray-300 capitalize w-full bg-gray-50 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                           class="border-gray-300 capitalize w-full bg-gray-50 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                            name="kategory_id" id="kategory_id">
                            <option disabled selected>Pilih Kategory</option>
                            @foreach ($kategories as $item)
@@ -33,39 +33,39 @@
                        <label for="penerbit" class="block mb-2 text-sm font-medium text-white ">Penerbit</label>
                        <input type="text" id="penerbit"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="John" required name="penerbit">
+                           placeholder="Nama penerbit" required name="penerbit">
                    </div>
                    <div>
                        <label for="pengarang" class="block mb-2 text-sm font-medium text-white ">Pengarang</label>
                        <input type="text" id="pengarang"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="John" required name="pengarang">
+                           placeholder="Nama pengarang" required name="pengarang">
                    </div>
                    <div>
                        <label for="isbn" class="block mb-2 text-sm font-medium text-white ">ISBN</label>
                        <input type="text" id="isbn"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="John" required name="isbn">
+                           placeholder="No ISBN" required name="isbn">
                    </div>
                    <div>
                        <label for="jumlah_stok" class="block mb-2 text-sm font-medium text-white ">Stok</label>
                        <input type="number" id="jumlah_stok"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="John" required name="jumlah_stok">
+                           placeholder="Stok" required name="jumlah_stok">
                    </div>
                    <div>
                        <label for="tahun_terbit" class="block mb-2 text-sm font-medium text-white ">Tahun Terbit</label>
                        <input type="number" id="tahun_terbit"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="John" required name="tahun_terbit">
+                           placeholder="Tahun" required name="tahun_terbit">
                    </div>
                </div>
                <div class="my-3 text-white">
-                    <label for="deskripsi" class="block mb-2 text-sm font-medium text-white ">Deskripsi</label>
-                    <textarea id="deskripsi" name="deskripsi_buku" rows="4"
-                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Deskripsi buku..."></textarea>
-                </div>
+                   <label for="deskripsi" class="block mb-2 text-sm font-medium text-white ">Deskripsi</label>
+                   <textarea id="deskripsi" name="deskripsi_buku" rows="4"
+                       class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       placeholder="Deskripsi buku..."></textarea>
+               </div>
                <div class="flex justify-center my-3">
                    <input type="file" class="file-input file-input-bordered file-input-primary w-full max-w-xs"
                        name="gambar" />

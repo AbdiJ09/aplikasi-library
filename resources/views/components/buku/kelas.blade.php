@@ -12,10 +12,9 @@
                 <li>
                     <button type="button" x-on:click='update_buku_kelas{{ $item->id }}.showModal()'>Update</button>
                 </li>
-                <livewire:update-buku-kelas :item="$item">
-                    <li><button type="button" data-modal-target="delete_buku{{ $item->id }}"
-                            data-modal-toggle="delete_buku{{ $item->id }}">Delete</button></li>
-                    <li onclick="detail_buku{{ $item->id }}.showModal()"><a>Detail</a></li>
+                <li><button type="button" data-modal-target="delete_buku{{ $item->id }}"
+                        data-modal-toggle="delete_buku{{ $item->id }}">Delete</button></li>
+                <li onclick="detail_buku{{ $item->id }}.showModal()"><a>Detail</a></li>
             </ul>
         </div>
         <div id="delete_buku{{ $item->id }}" tabindex="-1"
