@@ -9,12 +9,13 @@
         <div class="dropdown dropdown-top dropdown-end ">
             <label tabindex="0" class="btn m-1 btn-sm rounded-full">></label>
             <ul tabindex="0" class="dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box w-52">
-                <li onclick="update_buku{{ $item->id }}.showModal()"><a>Update</a></li>
-                {{--
-                <x-dashboard.updateBuku :buku="$item" :kategories="$kategories" /> --}}
-                <li><button type="button" data-modal-target="delete_buku{{ $item->id }}"
-                        data-modal-toggle="delete_buku{{ $item->id }}">Delete</button></li>
-                <li onclick="detail_buku{{ $item->id }}.showModal()"><a>Detail</a></li>
+                <li>
+                    <button type="button" x-on:click='update_buku_kelas{{ $item->id }}.showModal()'>Update</button>
+                </li>
+                <livewire:update-buku-kelas :item="$item">
+                    <li><button type="button" data-modal-target="delete_buku{{ $item->id }}"
+                            data-modal-toggle="delete_buku{{ $item->id }}">Delete</button></li>
+                    <li onclick="detail_buku{{ $item->id }}.showModal()"><a>Detail</a></li>
             </ul>
         </div>
         <div id="delete_buku{{ $item->id }}" tabindex="-1"
