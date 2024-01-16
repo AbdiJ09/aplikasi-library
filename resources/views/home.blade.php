@@ -1,6 +1,5 @@
 @extends('layout.main')
 @section('content')
-    <x-notif bottom="bottom-10" />
     <x-home.heroHome />
     <x-book :buku="$books" title="Buku" />
     <div class="notFound"></div>

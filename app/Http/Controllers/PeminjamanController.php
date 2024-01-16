@@ -46,7 +46,7 @@ class PeminjamanController extends Controller
             ]);
             $peminjamanDetail = PeminjamanDetail::create([
                 'peminjaman_id' => $peminjaman->id,
-                'buku_id' => $buku->id,
+                'bukus_id' => $buku->id,
                 'jumlah' => 1
             ]);
             return redirect()->back()->with('success', 'Buku Berhasil');

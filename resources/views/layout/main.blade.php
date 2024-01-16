@@ -25,6 +25,7 @@
 
 <body class="bg-slate-200">
     <x-headerr />
+    <x-notif bottom="bottom-10" />
     <div class="flex bg-transparent">
         <x-sidebar />
         <div class="relative w-full px-5 py-2 mx-auto overflow-x-hidden">

@@ -1,11 +1,7 @@
   <div class="flex items-center space-x-2">
       <h1 class="text-neutral-700 text-xl font-semibold  tracking-widest">Data Pengembalian
       </h1>
-      <button class="bg-purple-900 p-2 rounded-lg w-10 text-center text-white" onclick="add_pengembalian.showModal()">
-          <span>
-              <i class="fa-solid fa-repeat lg:text-xl "></i>
-          </span>
-      </button>
+
       <x-dashboard.addPengembalian :peminjaman="$peminjaman" />
       <a href="/buku-export">
           <button class="bg-green-600 p-2 rounded-lg w-10 text-center text-white">

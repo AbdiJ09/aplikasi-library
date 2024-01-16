@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light">
 
 <head>
     <meta charset="utf-8">
@@ -17,10 +17,10 @@
     @vite(['resources/css/app.css', 'resources/js/peminjaman.js'])
     <style>
         :root {
-            background: linear-gradient(to right, #3b0764, #000000 50%, #3b0764);
+            background-color: #e2e8f0
         }
-        </style>
-    <title>{{ $title ?? 'Page Title' }}</title>
+    </style>
+    <title>{{ $title ?? 'Tamsis' }}</title>
     @livewireStyles
 </head>
 

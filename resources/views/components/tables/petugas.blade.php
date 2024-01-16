@@ -4,11 +4,6 @@
            <span><i class="fa-solid fa-plus"></i></span>
        </button>
        <x-dashboard.addPetugas />
-       <a href="/buku-export">
-           <button class="bg-green-600 p-2 rounded-lg w-10 text-center text-white">
-               <span><i class="fa-solid fa-file-export"></i></span>
-           </button>
-       </a>
    </div>
    <div class="grid grid-cols-3 justify-items-center content-center mt-3">
        <h4 class="text-xs text-neutral-700">Name</h4>

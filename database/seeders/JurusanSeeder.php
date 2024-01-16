@@ -22,6 +22,15 @@ class JurusanSeeder extends Seeder
             ],
             [
                 'nama' => 'TITL',
+            ],
+            [
+                'nama' => 'TBSM',
+            ],
+            [
+                'nama' => 'TKR',
+            ],
+            [
+                'nama' => "TP",
             ]
         ];
         foreach ($jurusan as $value) {

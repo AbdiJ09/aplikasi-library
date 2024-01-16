@@ -49,31 +49,37 @@
                             <div class="" x-data="{ selectAll: false }">
                                 <button type="button" class="my-3" x-on:click="selectAll = !selectAll"
                                     wire:click='setAll' x-text="selectAll ? 'Unselect All' : 'Select All'"></button>
+                                <button type='button' wire:click='AllBooks' class="float-right">Semua buku</button>
                                 <div
                                     class="grid grid-cols-2 lg:grid-cols-3 md:grid-cols-3 gap-5 lg:gap-3 justify-items-center my-3">
                                     @foreach ($buku as $item)
                                         <div class="flex items-center p-2">
-                                            @if ($item->buku->jumlah_stok > 0)
+                                            @if ($setAllBooks ? $item->jumlah_stok > 0 : $item->buku->jumlah_stok > 0)
                                                 <div
                                                     class="relative bg-transparent shadow-lg overflow-hidden flex justify-center items-center px-2 rounded-lg h-20 w-36 md:w-48">
-                                                    <input id="checkbox-item-{{ $item->buku->id }}"
+                                                    <input
+                                                        id="checkbox-item-{{ $setAllBooks ? $item->id : $item->buku->id }}"
                                                         :checked='selectAll' wire:model='bukuIds' type="checkbox"
-                                                        value="{{ $item->buku->id }}"
+                                                        value="{{ $setAllBooks ? $item->id : $item->buku->id }}"
                                                         class="w-5 h-5 text-green-500 bg-white absolute left-0 top-0  border-0 rounded-br-full focus:ring-green-600">
-                                                    <label for="checkbox-item-{{ $item->buku->id }}"
+                                                    <label
+                                                        for="checkbox-item-{{ $setAllBooks ? $item->id : $item->buku->id }}"
                                                         class="w-full ml-2 text-sm font-medium text-white rounded flex items-center h-full ">
-                                                        {{ $item->buku->judul }}
+                                                        {{ $setAllBooks ? $item->judul : $item->buku->judul }}
                                                     </label>
                                                 </div>
                                             @else
                                                 <div
                                                     class="relative bg-gray-500 overflow-hidden flex justify-center items-center px-2 rounded-lg h-20 w-36 md:w-48">
-                                                    <input id="checkbox-item-{{ $item->id }}" wire:model='bukuIds'
-                                                        type="checkbox" value="{{ $item->id }}" disabled
+                                                    <input
+                                                        id="checkbox-item-{{ $setAllBooks ? $item->id : $item->id }}"
+                                                        wire:model='bukuIds' type="checkbox"
+                                                        value="{{ $setAllBooks ? $item->id : $item->id }}" disabled
                                                         class="w-4 h-4 text-fuchsia-700 bg-white absolute left-0 top-0  border-0 rounded-br-full focus:ring-fuchsia-500">
-                                                    <label for="checkbox-item-{{ $item->id }}"
+                                                    <label
+                                                        for="checkbox-item-{{ $setAllBooks ? $item->id : $item->id }}"
                                                         class="w-full ml-2 text-sm font-medium text-white rounded">
-                                                        {{ $item->buku->judul }}
+                                                        {{ $setAllBooks ? $item->judul : $item->buku->judul }}
                                                     </label>
                                                 </div>
                                             @endif

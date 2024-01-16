@@ -49,7 +49,6 @@ class BukuController extends Controller
         return response()->json(['buku' => $buku]);
     }
 
-
     public function export()
     {
         return Excel::download(new BukuExport, 'buku.xlsx');

@@ -41,18 +41,6 @@
                 class="bg-purple-900 p-2 rounded-lg w-10 text-center text-white"><span><i
                         class="fa-solid fa-pencil"></i></span></button>
             <livewire:update-buku-kelas />
-            <a href="/buku-export">
-
-                <button class="bg-green-600 p-2 rounded-lg w-10 text-center text-white">
-                    <span><i class="fa-solid fa-file-export"></i></span>
-                </button>
-            </a>
-            <form action="{{ route('buku-import') }}" method="post" enctype="multipart/form-data" id="import-buku">
-                @csrf
-                <input class="import w-10" name="file" type="file" onchange="importBuku()">
-                <button class="bg-green-600 p-2 rounded-lg w-10 text-center text-white"><i
-                        class="fa-solid fa-file-import"></i></button>
-            </form>
         </div>
         <div class="grid grid-cols-5 justify-items-center content-center mt-3">
             <span></span>

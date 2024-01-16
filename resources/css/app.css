@@ -120,13 +120,13 @@ h1.library {
   @apply absolute left-0 top-0 h-full w-full bg-gradient-to-bl  from-purple-700 to-zinc-800 content-[""];
 }
 .bg-sticky::before {
-  @apply absolute left-0 top-0 h-72 w-full bg-gradient-to-r from-purple-950 via-black to-purple-950 opacity-30 brightness-0 transition-all delay-300 duration-700 ease-out content-[''];
+  @apply absolute left-0 top-0 h-72 w-full bg-gradient-to-tr from-[#a33da7] from-20% to-[#57298d] transition-all delay-300 duration-700 ease-out content-[''];
 }
 .bg-sticky::before.bgg {
   @apply opacity-100 brightness-100 transition-all delay-300 duration-700 ease-out;
 }
 #header-sticky.nav-sticky {
-  @apply bg-gradient-to-r from-purple-950 via-black to-purple-950;
+  @apply bg-white;
 }
 .p {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);

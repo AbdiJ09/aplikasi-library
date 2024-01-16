@@ -11,7 +11,7 @@
     </div>
     <div x-show="listVisible" x-on:click.outside="listVisible = false" x-cloak class="bg-transparent w-full">
         <div class="bg-purple-700 rounded-t-lg w-full p-2">
-            <ul class="flex items-center justify-center gap-4">
+            <ul class="flex items-center justify-center gap-2 flex-wrap">
                 @foreach ($kelass->jurusanKelas as $jurusanss)
                     <li><button wire:click='setkelas({{ $jurusanss->id }}, {{ $kelass->id }})'
                             class="text-white font-bold hover:bg-white hover:text-black rounded-lg transition duration-300 ease-in w-full text-lg text-start p-1">{{ $jurusanss->nama }}</button>

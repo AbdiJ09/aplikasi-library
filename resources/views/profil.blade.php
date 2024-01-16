@@ -72,7 +72,7 @@
                                     <hr class="border-gray-200 mb-3">
                                     <h1 class="font-bold text-xl uppercase">Petugas</h1>
                                 </div>
-                                <div class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-x-8">
+                                <div class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-8">
                                     @foreach ($petugas as $item)
                                         <a href="/petugas/{{ $item->username }}" wire:navigate>
                                             <div

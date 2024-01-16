@@ -5,19 +5,6 @@
          <span><i class="fa-solid fa-plus"></i></span>
      </button>
      <livewire:Peminjaman.create-peminjaman :anggota="$anggota" :buku="$buku" />
-     <a href="/buku-export">
-
-         <button class="bg-green-600 p-2 rounded-lg w-10 text-center text-white">
-             <span><i class="fa-solid fa-file-export"1e></i></span>
-         </button>
-     </a>
-     <form action="{{ route('peminjaman-import') }}" method="post" enctype="multipart/form-data" id="import">
-         @csrf
-         <input class="import w-10" name="file" type="file" onchange="submitForm()">
-         <button class="bg-green-600 p-2 rounded-lg w-10 text-center text-white"><i
-                 class="fa-solid fa-file-import"></i></button>
-     </form>
-
      <form action="{{ route('peminjaman.index') }}" id="formPeminjaman">
          <select name="fillter"
              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

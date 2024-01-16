@@ -2,7 +2,7 @@
     $isBookBorrowed = false;
     $arrayData = $peminjaman->toArray();
     foreach ($buku->PeminjamanDetail as $item) {
-        if ($item->buku_id === $buku->id && in_array($item->peminjaman_id, array_column($arrayData, 'id'))) {
+        if ($item->bukus_id === $buku->id && in_array($item->peminjaman_id, array_column($arrayData, 'id'))) {
             $isBookBorrowed = true;
             break;
         }

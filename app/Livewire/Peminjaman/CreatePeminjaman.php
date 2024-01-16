@@ -8,6 +8,7 @@ use Livewire\Component;
 use App\Models\Buku_kelas;
 use App\Models\Peminjaman;
 use App\Events\PeminjamanCreated;
+use App\Models\Buku;
 
 class CreatePeminjaman extends Component
 {
@@ -23,6 +24,7 @@ class CreatePeminjaman extends Component
     public $bukuIds = [];
     public $selectAll = false;
     public $query;
+    public $setAllBooks = false;
 
 
     public function setAll()
@@ -87,7 +89,7 @@ class CreatePeminjaman extends Component
         $this->kelasId = $this->kelasId ?? $this->listKelas->first()->id;
         $this->listJurusan = Jurusan::select('id', 'nama')->get();
         $this->jurusanId = $this->jurusanId ?? $this->listJurusan->first()->id;
-        $this->buku = Buku_kelas::with(['buku'])->whereHas('buku', function ($q) {
+        $this->buku = $this->setAllBooks ? Buku::where('judul', 'like', '%' . $this->query . '%')->get() : Buku_kelas::with(['buku'])->whereHas('buku', function ($q) {
             $q->where('judul', 'like', '%' . $this->query . '%');
         })->where('kelas_id', $this->kelasId)->where('jurusan_id', $this->jurusanId)->get();
     }
@@ -95,5 +97,9 @@ class CreatePeminjaman extends Component
     {
         $this->loadBukuKelasJurusan();
         return view('livewire.peminjaman.create-peminjaman');
+    }
+    public function AllBooks()
+    {
+        $this->setAllBooks = !$this->setAllBooks;
     }
 }

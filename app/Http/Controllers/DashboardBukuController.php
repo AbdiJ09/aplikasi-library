@@ -37,7 +37,6 @@ class DashboardBukuController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-
     {
         $conss = $request->validate([
             'kode_buku' => 'required|unique:bukus,kode_buku',
@@ -49,12 +48,12 @@ class DashboardBukuController extends Controller
             'jumlah_stok' => 'required',
             'gambar' => 'required|file|mimes:jpeg,png,jpg|max:1024',
         ]);
+
         if ($request->file('gambar')) {
             $extension = $request->file('gambar')->getClientOriginalExtension();
             $newName = $request->pengarang . '-' . now()->timestamp . '.' . $extension;
             $request->file('gambar')->storeAs('buku', $newName);
         }
-
         $slug = Str::slug($request->judul);
 
         Buku::create([
