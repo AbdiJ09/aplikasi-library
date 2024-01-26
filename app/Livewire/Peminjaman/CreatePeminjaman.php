@@ -35,7 +35,7 @@ class CreatePeminjaman extends Component
         if ($this->selectAll) {
             $this->bukuIds = [];
             foreach ($this->buku as $item) {
-                $this->bukuIds[] = $item->buku->id;
+                $this->bukuIds[] = $this->setAllBooks ? $item->id : $item->buku->id;
             }
         } else {
             $this->bukuIds = [];
@@ -78,6 +78,7 @@ class CreatePeminjaman extends Component
     public function handlePerubahanKelasJurusan()
     {
         if ($this->kelasId && $this->jurusanId) {
+            $this->setAllBooks = false;
             $this->buku = Buku_kelas::where('kelas_id', $this->kelasId)->where('jurusan_id', $this->jurusanId)->get();
         }
     }
@@ -100,6 +101,6 @@ class CreatePeminjaman extends Component
     }
     public function AllBooks()
     {
-        $this->setAllBooks = !$this->setAllBooks;
+        $this->setAllBooks = true;
     }
 }

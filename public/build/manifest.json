@@ -1,0 +1,69 @@
+{
+  "_index-2630c011.js": {
+    "file": "assets/index-2630c011.js"
+  },
+  "_jquery-5af47638.js": {
+    "file": "assets/jquery-5af47638.js"
+  },
+  "public/font/aAtmospheric.ttf": {
+    "file": "assets/aAtmospheric-380bcedb.ttf",
+    "src": "public/font/aAtmospheric.ttf"
+  },
+  "public/img/perpus1.jpg": {
+    "file": "assets/perpus1-3e07b0a7.jpg",
+    "src": "public/img/perpus1.jpg"
+  },
+  "public/img/pjj.jpg": {
+    "file": "assets/pjj-5c4c595b.jpg",
+    "src": "public/img/pjj.jpg"
+  },
+  "public/img/pjj1.jpg": {
+    "file": "assets/pjj1-279b183e.jpg",
+    "src": "public/img/pjj1.jpg"
+  },
+  "public/img/starr.png": {
+    "file": "assets/starr-fc25142f.png",
+    "src": "public/img/starr.png"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-ac88dca0.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-6dfe5873.js",
+    "imports": [
+      "_index-2630c011.js",
+      "_jquery-5af47638.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/dashboard.js": {
+    "file": "assets/dashboard-45669ec9.js",
+    "isEntry": true,
+    "src": "resources/js/dashboard.js"
+  },
+  "resources/js/dashboardPeminjaman.js": {
+    "file": "assets/dashboardPeminjaman-c7191c46.js",
+    "imports": [
+      "_index-2630c011.js",
+      "_jquery-5af47638.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/dashboardPeminjaman.js"
+  },
+  "resources/js/peminjaman.js": {
+    "file": "assets/peminjaman-9ff18922.js",
+    "isEntry": true,
+    "src": "resources/js/peminjaman.js"
+  },
+  "resources/js/pengembalianSearch.js": {
+    "file": "assets/pengembalianSearch-acd82334.js",
+    "imports": [
+      "_jquery-5af47638.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/pengembalianSearch.js"
+  }
+}
