@@ -17,16 +17,12 @@
     "file": "assets/pjj-5c4c595b.jpg",
     "src": "public/img/pjj.jpg"
   },
-  "public/img/pjj1.jpg": {
-    "file": "assets/pjj1-279b183e.jpg",
-    "src": "public/img/pjj1.jpg"
-  },
   "public/img/starr.png": {
     "file": "assets/starr-fc25142f.png",
     "src": "public/img/starr.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-ac88dca0.css",
+    "file": "assets/app-1b0dea83.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },

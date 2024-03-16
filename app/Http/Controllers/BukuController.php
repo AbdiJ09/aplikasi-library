@@ -18,7 +18,6 @@ class BukuController extends Controller
     }
     public function AllBuku(Request $request)
     {
-
         $allBooks = Buku::latest()->paginate(8);
         return view('buku.buku', compact('allBooks'));
     }

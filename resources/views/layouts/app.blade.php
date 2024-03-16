@@ -14,7 +14,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&display=swap"
         rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/peminjaman.js'])
+    <link rel="stylesheet" href="/build/assets/app-1b0dea83.css">
+    {{-- @vite(['resources/css/app.css', 'resources/js/peminjaman.js']) --}}
     <style>
         :root {
             background-color: #e2e8f0
@@ -28,6 +29,9 @@
     {{ $slot }}
 
     @livewireScripts
+
+    <script type="module" src="/build/assets/app-6dfe5873.js"></script>
+    <script src="/build/assets/peminjaman-9ff18922.js"></script>
 </body>
 
 </html>

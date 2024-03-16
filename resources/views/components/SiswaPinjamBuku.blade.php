@@ -16,8 +16,11 @@
         class="bg-transparent border border-slate-200 text-white rounded-lg py-2 px-3 font-medium uppercase mb-7 w-full ">Di
         Pinjam</button>
 @else
-    <button class="bg-slate-200 text-black rounded-lg py-2 px-3 font-medium uppercase mb-7 w-full"
-        onclick="toggleModalPinjam.showModal()">Pinjam sekarang</button>
+    @if (auth()->user()->level === 'user')
+        <button class="bg-slate-200 text-black rounded-lg py-2 px-3 font-medium uppercase mb-7 w-full"
+            onclick="toggleModalPinjam.showModal()">Pinjam sekarang</button>
+    @endif
+
     <dialog id="toggleModalPinjam" class="modal">
         <div
             class="modal-box w-11/12 max-w-3xl bg-gradient-to-r from-purple-600 via-purple-800 to-purple-700 text-white">

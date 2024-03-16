@@ -32,9 +32,6 @@ use App\Livewire\Pengembalian\Index as PengembalianIndex;
 |
 */
 
-Route::get('/', function () {
-    return view('components.landingPage.landingPage');
-});
 Route::get('/profil', function () {
     return view('profil', [
         'petugas' => User::with('Peminjaman')->where('level', 'petugas')->get(),
@@ -42,17 +39,18 @@ Route::get('/profil', function () {
         'admin' => User::where('level', 'admin')->count(),
     ]);
 })->name('profil');
+
 Route::get('/petugas/{username}', [PetugasController::class, 'index'])->name('petugas');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::controller(BukuController::class)->group(function () {
-    Route::get('/home', 'index')->name('home');
+    Route::get('/', 'index')->name('home');
     Route::get('/buku', 'AllBuku')->name('buku');
     Route::get('/book/{slug}', 'detailBuku')->name('detail-buku');
     Route::get('/search', 'search')->name('search');
     Route::get('/result', 'show')->name('show.buku');
 });
 Route::controller(AuthController::class)->group(function () {
-    Route::post('/auth/login', 'login');
+    Route::post('/auth/login', 'login')->name('login');
     Route::get('/auth/logout', 'logout')->name('logout');
 });
 Route::controller(PeminjamanController::class)->group(function () {

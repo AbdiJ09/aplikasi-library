@@ -1,5 +1,4 @@
  <div class="flex items-center space-x-2">
-
      <h1 class="text-neutral-700 text-xl font-semibold  tracking-widest">Data Peminjaman</h1>
      <button class="bg-purple-900 p-2 rounded-lg w-10 text-center text-white" onclick="add_peminjaman.showModal()">
          <span><i class="fa-solid fa-plus"></i></span>

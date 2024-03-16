@@ -2,7 +2,7 @@
     <header class="w-full fixed top-0 left-0 z-50  bg-transparent transition-all duration-500 ease-in-out"
         id="header-sticky">
         <div class="flex justify-between  items-center py-4 px-4 lg:px-10">
-            <a href="/home">
+            <a href="{{ route('home') }}">
                 <button>
                     <span><i class="fa-solid fa-chevron-left text-black transition duration-500 ease-in-out"></i></span>
                 </button>

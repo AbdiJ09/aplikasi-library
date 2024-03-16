@@ -16,7 +16,7 @@
                             </div>
                             <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                                 <div class="py-6 px-3 sm:mt-0">
-                                    <a href="/home" wire:navigate>
+                                    <a href="{{ route('home') }}" wire:navigate>
                                         <button
                                             class="bg-green-500 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150 m-auto block"
                                             type="button">
@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-8">
                                     @foreach ($petugas as $item)
-                                        <a href="/petugas/{{ $item->username }}" wire:navigate>
+                                        <a href="{{ route('petugas', $item->username) }}">
                                             <div
                                                 class=" w-[190px] h-[254px]  bg-gray-300 shadow-xl rounded-xl hover:shadow-lg hover:shadow-gray-400 transition duration-300 ease-in-out py-3 px-2 overflow-hidden my-3">
                                                 <div class="flex flex-col gap-y-4 justify-center items-center">

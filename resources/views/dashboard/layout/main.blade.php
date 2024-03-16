@@ -8,7 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="/img/logo/logo_tamsis.png" type="image/x-icon">
     @livewireStyles
-    @vite(['resources/css/app.css', 'resources/js/dashboard.js', 'resources/js/dashboardPeminjaman.js'])
+    <link rel="stylesheet" href="/build/assets/app-1b0dea83.css">
+
+    {{-- @vite(['resources/css/app.css', 'resources/js/dashboard.js', 'resources/js/dashboardPeminjaman.js']) --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -32,6 +34,8 @@
             @yield('content')
         </div>
     </div>
+    <script src="/build/assets/dashboard-45669ec9.js"></script>
+    <script src="/build/assets/dashboardPeminjaman-c7191c46.js"></script>
     @livewireScripts
 </body>
 

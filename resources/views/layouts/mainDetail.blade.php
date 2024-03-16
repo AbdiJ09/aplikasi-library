@@ -17,10 +17,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&display=swap"
         rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="/build/assets/app-1b0dea83.css">
+
     <style>
         :root {
-           background: linear-gradient(180deg, #261D25 100%, #23072D 105.23%);
+            background: linear-gradient(180deg, #261D25 100%, #23072D 105.23%);
         }
     </style>
     <title>App library</title>
@@ -29,6 +30,8 @@
 <body>
     <x-partials.header />
     @yield('content')
+    <script src="/build/assets/app-6dfe5873.js"></script>
+
 </body>
 
 </html>

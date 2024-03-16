@@ -19,7 +19,7 @@
           </li>
           <li>
 
-              <a href="{{ route('profil') }}" wire:navigate
+              <a href="{{ route('profil') }}"
                   class="flex items-center p-2 w-44 navBar transition ease-in-out duration-300 absolute left-8 mt-10 text-gray-900 rounded-lg dark:text-white  group">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor" class="w-6 h-6 text-color-navbar group-hover:text-white">

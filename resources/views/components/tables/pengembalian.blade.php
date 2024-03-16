@@ -1,7 +1,8 @@
   <div class="flex items-center space-x-2">
       <h1 class="text-neutral-700 text-xl font-semibold  tracking-widest">Data Pengembalian
       </h1>
-
+      <button onclick="add_pengembalian.showModal()"
+          class="bg-purple-900 p-2 rounded-lg w-10 text-center text-white">+</button>
       <x-dashboard.addPengembalian :peminjaman="$peminjaman" />
       <a href="/buku-export">
           <button class="bg-green-600 p-2 rounded-lg w-10 text-center text-white">

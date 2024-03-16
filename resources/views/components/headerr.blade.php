@@ -13,7 +13,7 @@
                 </svg>
             </button>
         </div>
-        <a href="/home" aria-label="logo"><img src="/img/logo/logo_tamsis.png"
+        <a href="{{ route('home') }}" aria-label="logo"><img src="/img/logo/logo_tamsis.png"
                 class="w-10 lg:-translate-x-16 object-cover" alt=""></a>
         <livewire:search-buku />
         <x-hamburgerMenu />

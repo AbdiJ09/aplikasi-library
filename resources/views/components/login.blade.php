@@ -3,7 +3,7 @@
          style="background-image: url('/img/bgg.png')">
          <div class="px-6 py-6 lg:px-8">
              <h3 class="mb-4 text-xl font-medium text-white dark:text-white">Sign in</h3>
-             <form class="space-y-6" action="/auth/login" method="post">
+             <form class="space-y-6" action="{{ route('login') }}" method="post">
                  @csrf
                  <div>
                      <label for="email"
